@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "ChessbaseDatabaseViewController.h"
 
 @implementation AppDelegate
 
@@ -18,6 +19,9 @@
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
+    
+    self.window.rootViewController = [[ChessbaseDatabaseViewController alloc] init];
+    
     return YES;
 }
 

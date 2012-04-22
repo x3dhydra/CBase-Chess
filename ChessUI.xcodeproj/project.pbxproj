@@ -13,6 +13,21 @@
 		19B79B7014833F5B000AD1A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B6E14833F5B000AD1A7 /* InfoPlist.strings */; };
 		19B79B7214833F5B000AD1A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B79B7114833F5B000AD1A7 /* main.m */; };
 		19B79B7614833F5B000AD1A7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B79B7514833F5B000AD1A7 /* AppDelegate.m */; };
+		19B79B8014833F97000AD1A7 /* ChessbaseDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B79B7F14833F97000AD1A7 /* ChessbaseDatabaseViewController.m */; };
+		19B79B9614834005000AD1A7 /* austen.cba in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8414834005000AD1A7 /* austen.cba */; };
+		19B79B9714834005000AD1A7 /* austen.cbb in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8514834005000AD1A7 /* austen.cbb */; };
+		19B79B9814834005000AD1A7 /* austen.cbc in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8614834005000AD1A7 /* austen.cbc */; };
+		19B79B9914834005000AD1A7 /* austen.cbe in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8714834005000AD1A7 /* austen.cbe */; };
+		19B79B9A14834005000AD1A7 /* austen.cbg in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8814834005000AD1A7 /* austen.cbg */; };
+		19B79B9B14834005000AD1A7 /* austen.cbgi in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8914834005000AD1A7 /* austen.cbgi */; };
+		19B79B9C14834005000AD1A7 /* austen.cbh in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8A14834005000AD1A7 /* austen.cbh */; };
+		19B79B9D14834005000AD1A7 /* austen.cbj in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8B14834005000AD1A7 /* austen.cbj */; };
+		19B79B9E14834005000AD1A7 /* austen.cbm in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8C14834005000AD1A7 /* austen.cbm */; };
+		19B79B9F14834005000AD1A7 /* austen.cbp in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8D14834005000AD1A7 /* austen.cbp */; };
+		19B79BA014834005000AD1A7 /* austen.cbs in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8E14834005000AD1A7 /* austen.cbs */; };
+		19B79BA114834005000AD1A7 /* austen.cbt in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8F14834005000AD1A7 /* austen.cbt */; };
+		19B79BA214834005000AD1A7 /* austen.cbtt in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B9014834005000AD1A7 /* austen.cbtt */; };
+		19B79BA914834089000AD1A7 /* libChessbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79BA814834089000AD1A7 /* libChessbase.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +35,39 @@
 		19B79B6514833F5B000AD1A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		19B79B6714833F5B000AD1A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		19B79B6914833F5B000AD1A7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		19B79B6D14833F5B000AD1A7 /* ChessUI-Info.plist */ = {isa = PBXFileReference; path = "ChessUI-Info.plist"; sourceTree = "<group>"; };
+		19B79B6D14833F5B000AD1A7 /* ChessUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ChessUI-Info.plist"; sourceTree = "<group>"; };
 		19B79B6F14833F5B000AD1A7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		19B79B7114833F5B000AD1A7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		19B79B7314833F5B000AD1A7 /* ChessUI-Prefix.pch */ = {isa = PBXFileReference; path = "ChessUI-Prefix.pch"; sourceTree = "<group>"; };
-		19B79B7414833F5B000AD1A7 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		19B79B7314833F5B000AD1A7 /* ChessUI-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ChessUI-Prefix.pch"; sourceTree = "<group>"; };
+		19B79B7414833F5B000AD1A7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		19B79B7514833F5B000AD1A7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		19B79B7E14833F97000AD1A7 /* ChessbaseDatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChessbaseDatabaseViewController.h; sourceTree = "<group>"; };
+		19B79B7F14833F97000AD1A7 /* ChessbaseDatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChessbaseDatabaseViewController.m; sourceTree = "<group>"; };
+		19B79B8414834005000AD1A7 /* austen.cba */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cba; path = Resources/Database/Chessbase/austen.cba; sourceTree = "<group>"; };
+		19B79B8514834005000AD1A7 /* austen.cbb */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbb; path = Resources/Database/Chessbase/austen.cbb; sourceTree = "<group>"; };
+		19B79B8614834005000AD1A7 /* austen.cbc */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbc; path = Resources/Database/Chessbase/austen.cbc; sourceTree = "<group>"; };
+		19B79B8714834005000AD1A7 /* austen.cbe */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbe; path = Resources/Database/Chessbase/austen.cbe; sourceTree = "<group>"; };
+		19B79B8814834005000AD1A7 /* austen.cbg */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbg; path = Resources/Database/Chessbase/austen.cbg; sourceTree = "<group>"; };
+		19B79B8914834005000AD1A7 /* austen.cbgi */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbgi; path = Resources/Database/Chessbase/austen.cbgi; sourceTree = "<group>"; };
+		19B79B8A14834005000AD1A7 /* austen.cbh */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbh; path = Resources/Database/Chessbase/austen.cbh; sourceTree = "<group>"; };
+		19B79B8B14834005000AD1A7 /* austen.cbj */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbj; path = Resources/Database/Chessbase/austen.cbj; sourceTree = "<group>"; };
+		19B79B8C14834005000AD1A7 /* austen.cbm */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbm; path = Resources/Database/Chessbase/austen.cbm; sourceTree = "<group>"; };
+		19B79B8D14834005000AD1A7 /* austen.cbp */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbp; path = Resources/Database/Chessbase/austen.cbp; sourceTree = "<group>"; };
+		19B79B8E14834005000AD1A7 /* austen.cbs */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbs; path = Resources/Database/Chessbase/austen.cbs; sourceTree = "<group>"; };
+		19B79B8F14834005000AD1A7 /* austen.cbt */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbt; path = Resources/Database/Chessbase/austen.cbt; sourceTree = "<group>"; };
+		19B79B9014834005000AD1A7 /* austen.cbtt */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbtt; path = Resources/Database/Chessbase/austen.cbtt; sourceTree = "<group>"; };
+		19B79BA814834089000AD1A7 /* libChessbase.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libChessbase.a; path = "../Chessbase/build/Release-iphoneos/libChessbase.a"; sourceTree = "<group>"; };
+		19B79BAB148340DF000AD1A7 /* CBTournamentFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBTournamentFile.h; path = ../../Chessbase/Chessbase/Classes/CBTournamentFile.h; sourceTree = "<group>"; };
+		19B79BAC148340DF000AD1A7 /* CBTournamentRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBTournamentRecord.h; path = ../../Chessbase/Chessbase/Classes/CBTournamentRecord.h; sourceTree = "<group>"; };
+		19B79BAD148340DF000AD1A7 /* CBPlayerFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBPlayerFile.h; path = ../../Chessbase/Chessbase/Classes/CBPlayerFile.h; sourceTree = "<group>"; };
+		19B79BAE148340DF000AD1A7 /* CBPlayerRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBPlayerRecord.h; path = ../../Chessbase/Chessbase/Classes/CBPlayerRecord.h; sourceTree = "<group>"; };
+		19B79BAF148340DF000AD1A7 /* CBHeaderFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBHeaderFile.h; path = ../../Chessbase/Chessbase/Classes/CBHeaderFile.h; sourceTree = "<group>"; };
+		19B79BB0148340DF000AD1A7 /* CBHeaderRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBHeaderRecord.h; path = ../../Chessbase/Chessbase/Classes/CBHeaderRecord.h; sourceTree = "<group>"; };
+		19B79BB1148340DF000AD1A7 /* CBBaseFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBBaseFile.h; path = ../../Chessbase/Chessbase/Classes/CBBaseFile.h; sourceTree = "<group>"; };
+		19B79BB2148340DF000AD1A7 /* CBDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBDatabase.h; path = ../../Chessbase/Chessbase/Classes/CBDatabase.h; sourceTree = "<group>"; };
+		19B79BB3148340DF000AD1A7 /* CBBaseRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBBaseRecord.h; path = ../../Chessbase/Chessbase/Classes/CBBaseRecord.h; sourceTree = "<group>"; };
+		19B79BB4148340DF000AD1A7 /* CBRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBRecord.h; path = ../../Chessbase/Chessbase/Classes/CBRecord.h; sourceTree = "<group>"; };
+		19B79BB714834136000AD1A7 /* CBBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBBase.h; path = ../../Chessbase/Chessbase/CBBase.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19B79BA914834089000AD1A7 /* libChessbase.a in Frameworks */,
 				19B79B6614833F5B000AD1A7 /* UIKit.framework in Frameworks */,
 				19B79B6814833F5B000AD1A7 /* Foundation.framework in Frameworks */,
 				19B79B6A14833F5B000AD1A7 /* CoreGraphics.framework in Frameworks */,
@@ -45,6 +88,7 @@
 		19B79B5614833F5B000AD1A7 = {
 			isa = PBXGroup;
 			children = (
+				19B79BA814834089000AD1A7 /* libChessbase.a */,
 				19B79B6B14833F5B000AD1A7 /* ChessUI */,
 				19B79B6414833F5B000AD1A7 /* Frameworks */,
 				19B79B6214833F5B000AD1A7 /* Products */,
@@ -72,6 +116,8 @@
 		19B79B6B14833F5B000AD1A7 /* ChessUI */ = {
 			isa = PBXGroup;
 			children = (
+				19B79B8114833FB2000AD1A7 /* Resources */,
+				19B79B7C14833F65000AD1A7 /* Classes */,
 				19B79B7414833F5B000AD1A7 /* AppDelegate.h */,
 				19B79B7514833F5B000AD1A7 /* AppDelegate.m */,
 				19B79B6C14833F5B000AD1A7 /* Supporting Files */,
@@ -88,6 +134,78 @@
 				19B79B7314833F5B000AD1A7 /* ChessUI-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		19B79B7C14833F65000AD1A7 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				19B79BAA148340AD000AD1A7 /* libChessbase */,
+				19B79B7D14833F70000AD1A7 /* Controller */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		19B79B7D14833F70000AD1A7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				19B79B7E14833F97000AD1A7 /* ChessbaseDatabaseViewController.h */,
+				19B79B7F14833F97000AD1A7 /* ChessbaseDatabaseViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		19B79B8114833FB2000AD1A7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				19B79B8214833FB9000AD1A7 /* Database */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		19B79B8214833FB9000AD1A7 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				19B79B8314833FBF000AD1A7 /* Chessbase */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		19B79B8314833FBF000AD1A7 /* Chessbase */ = {
+			isa = PBXGroup;
+			children = (
+				19B79B8414834005000AD1A7 /* austen.cba */,
+				19B79B8514834005000AD1A7 /* austen.cbb */,
+				19B79B8614834005000AD1A7 /* austen.cbc */,
+				19B79B8714834005000AD1A7 /* austen.cbe */,
+				19B79B8814834005000AD1A7 /* austen.cbg */,
+				19B79B8914834005000AD1A7 /* austen.cbgi */,
+				19B79B8A14834005000AD1A7 /* austen.cbh */,
+				19B79B8B14834005000AD1A7 /* austen.cbj */,
+				19B79B8C14834005000AD1A7 /* austen.cbm */,
+				19B79B8D14834005000AD1A7 /* austen.cbp */,
+				19B79B8E14834005000AD1A7 /* austen.cbs */,
+				19B79B8F14834005000AD1A7 /* austen.cbt */,
+				19B79B9014834005000AD1A7 /* austen.cbtt */,
+			);
+			name = Chessbase;
+			sourceTree = "<group>";
+		};
+		19B79BAA148340AD000AD1A7 /* libChessbase */ = {
+			isa = PBXGroup;
+			children = (
+				19B79BB714834136000AD1A7 /* CBBase.h */,
+				19B79BAB148340DF000AD1A7 /* CBTournamentFile.h */,
+				19B79BAC148340DF000AD1A7 /* CBTournamentRecord.h */,
+				19B79BAD148340DF000AD1A7 /* CBPlayerFile.h */,
+				19B79BAE148340DF000AD1A7 /* CBPlayerRecord.h */,
+				19B79BAF148340DF000AD1A7 /* CBHeaderFile.h */,
+				19B79BB0148340DF000AD1A7 /* CBHeaderRecord.h */,
+				19B79BB1148340DF000AD1A7 /* CBBaseFile.h */,
+				19B79BB2148340DF000AD1A7 /* CBDatabase.h */,
+				19B79BB3148340DF000AD1A7 /* CBBaseRecord.h */,
+				19B79BB4148340DF000AD1A7 /* CBRecord.h */,
+			);
+			name = libChessbase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +260,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				19B79B7014833F5B000AD1A7 /* InfoPlist.strings in Resources */,
+				19B79B9614834005000AD1A7 /* austen.cba in Resources */,
+				19B79B9714834005000AD1A7 /* austen.cbb in Resources */,
+				19B79B9814834005000AD1A7 /* austen.cbc in Resources */,
+				19B79B9914834005000AD1A7 /* austen.cbe in Resources */,
+				19B79B9A14834005000AD1A7 /* austen.cbg in Resources */,
+				19B79B9B14834005000AD1A7 /* austen.cbgi in Resources */,
+				19B79B9C14834005000AD1A7 /* austen.cbh in Resources */,
+				19B79B9D14834005000AD1A7 /* austen.cbj in Resources */,
+				19B79B9E14834005000AD1A7 /* austen.cbm in Resources */,
+				19B79B9F14834005000AD1A7 /* austen.cbp in Resources */,
+				19B79BA014834005000AD1A7 /* austen.cbs in Resources */,
+				19B79BA114834005000AD1A7 /* austen.cbt in Resources */,
+				19B79BA214834005000AD1A7 /* austen.cbtt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,6 +285,7 @@
 			files = (
 				19B79B7214833F5B000AD1A7 /* main.m in Sources */,
 				19B79B7614833F5B000AD1A7 /* AppDelegate.m in Sources */,
+				19B79B8014833F97000AD1A7 /* ChessbaseDatabaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
