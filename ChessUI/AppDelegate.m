@@ -8,8 +8,17 @@
 
 #import "AppDelegate.h"
 #import "ChessbaseDatabaseViewController.h"
+#import "ChessKit.h"
+#import "BoardViewController.h"
+
+@interface AppDelegate()
+
+@property (nonatomic, strong) CKDatabase *database;
+
+@end
 
 @implementation AppDelegate
+@synthesize database;
 
 @synthesize window = _window;
 
@@ -20,7 +29,11 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    self.window.rootViewController = [[ChessbaseDatabaseViewController alloc] init];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"2500" withExtension:@"pgn"];
+    self.database = [CKDatabase databaseWithContentsOfURL:url];
+    
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[BoardViewController alloc] init]];
+    //self.window.rootViewController = [[ChessbaseDatabaseViewController alloc] init];
     
     return YES;
 }

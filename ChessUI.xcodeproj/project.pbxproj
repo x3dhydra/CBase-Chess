@@ -28,6 +28,28 @@
 		19B79BA114834005000AD1A7 /* austen.cbt in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8F14834005000AD1A7 /* austen.cbt */; };
 		19B79BA214834005000AD1A7 /* austen.cbtt in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B9014834005000AD1A7 /* austen.cbtt */; };
 		19B79BA914834089000AD1A7 /* libChessbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79BA814834089000AD1A7 /* libChessbase.a */; };
+		19DE68A5154DC8760019F0A1 /* CKBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE68A4154DC8760019F0A1 /* CKBoardView.m */; };
+		19DE68A9154DCF1F0019F0A1 /* mahogany_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */; };
+		19DE68AA154DCF1F0019F0A1 /* maple_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68A8154DCF1F0019F0A1 /* maple_square.jpg */; };
+		19DE68AD154DCF4E0019F0A1 /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE68AC154DCF4E0019F0A1 /* BoardViewController.m */; };
+		19FF471D1544A0D100A7C545 /* 2500.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 19FF471C1544A0D100A7C545 /* 2500.pgn */; };
+		19FF47201544A10A00A7C545 /* libChessKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19FF471F1544A10A00A7C545 /* libChessKit.a */; };
+		19FF47371544A17E00A7C545 /* CKDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF47251544A17E00A7C545 /* CKDatabase.m */; };
+		19FF47381544A17E00A7C545 /* CKGame.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF47271544A17E00A7C545 /* CKGame.m */; };
+		19FF47391544A17E00A7C545 /* CKGameTree.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF47291544A17E00A7C545 /* CKGameTree.m */; };
+		19FF473A1544A17E00A7C545 /* CKGameTreeEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF472B1544A17E00A7C545 /* CKGameTreeEnumerator.m */; };
+		19FF473B1544A17E00A7C545 /* CKMove.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF472D1544A17E00A7C545 /* CKMove.m */; };
+		19FF473C1544A17E00A7C545 /* CKMutablePosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF472F1544A17E00A7C545 /* CKMutablePosition.m */; };
+		19FF473D1544A17E00A7C545 /* CKPosition+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF47311544A17E00A7C545 /* CKPosition+Private.m */; };
+		19FF473E1544A17E00A7C545 /* CKPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF47331544A17E00A7C545 /* CKPosition.m */; };
+		19FF473F1544A17E00A7C545 /* CKPGNDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF47361544A17E00A7C545 /* CKPGNDatabase.m */; };
+		19FF475D1544A1AA00A7C545 /* CCBitboard+MoveGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF47441544A1AA00A7C545 /* CCBitboard+MoveGeneration.m */; };
+		19FF475E1544A1AA00A7C545 /* CCBitboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF47461544A1AA00A7C545 /* CCBitboard.m */; };
+		19FF475F1544A1AA00A7C545 /* CCBoard+MoveGeneration.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF47481544A1AA00A7C545 /* CCBoard+MoveGeneration.m */; };
+		19FF47601544A1AA00A7C545 /* CCBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF474A1544A1AA00A7C545 /* CCBoard.m */; };
+		19FF47611544A1AA00A7C545 /* CCPiece.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF474D1544A1AA00A7C545 /* CCPiece.m */; };
+		19FF47621544A1AA00A7C545 /* CCPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF474F1544A1AA00A7C545 /* CCPosition.m */; };
+		19FF47631544A1AA00A7C545 /* CCSquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 19FF47511544A1AA00A7C545 /* CCSquare.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,7 +78,7 @@
 		19B79B8E14834005000AD1A7 /* austen.cbs */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbs; path = Resources/Database/Chessbase/austen.cbs; sourceTree = "<group>"; };
 		19B79B8F14834005000AD1A7 /* austen.cbt */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbt; path = Resources/Database/Chessbase/austen.cbt; sourceTree = "<group>"; };
 		19B79B9014834005000AD1A7 /* austen.cbtt */ = {isa = PBXFileReference; lastKnownFileType = file; name = austen.cbtt; path = Resources/Database/Chessbase/austen.cbtt; sourceTree = "<group>"; };
-		19B79BA814834089000AD1A7 /* libChessbase.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libChessbase.a; path = "../Chessbase/build/Release-iphoneos/libChessbase.a"; sourceTree = "<group>"; };
+		19B79BA814834089000AD1A7 /* libChessbase.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libChessbase.a; path = "../Chessbase/build/Release-iphoneos/libChessbase.a"; sourceTree = "<group>"; };
 		19B79BAB148340DF000AD1A7 /* CBTournamentFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBTournamentFile.h; path = ../../Chessbase/Chessbase/Classes/CBTournamentFile.h; sourceTree = "<group>"; };
 		19B79BAC148340DF000AD1A7 /* CBTournamentRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBTournamentRecord.h; path = ../../Chessbase/Chessbase/Classes/CBTournamentRecord.h; sourceTree = "<group>"; };
 		19B79BAD148340DF000AD1A7 /* CBPlayerFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBPlayerFile.h; path = ../../Chessbase/Chessbase/Classes/CBPlayerFile.h; sourceTree = "<group>"; };
@@ -68,6 +90,51 @@
 		19B79BB3148340DF000AD1A7 /* CBBaseRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBBaseRecord.h; path = ../../Chessbase/Chessbase/Classes/CBBaseRecord.h; sourceTree = "<group>"; };
 		19B79BB4148340DF000AD1A7 /* CBRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBRecord.h; path = ../../Chessbase/Chessbase/Classes/CBRecord.h; sourceTree = "<group>"; };
 		19B79BB714834136000AD1A7 /* CBBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBBase.h; path = ../../Chessbase/Chessbase/CBBase.h; sourceTree = "<group>"; };
+		19DE68A3154DC8760019F0A1 /* CKBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKBoardView.h; path = UI/CKBoardView.h; sourceTree = "<group>"; };
+		19DE68A4154DC8760019F0A1 /* CKBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKBoardView.m; path = UI/CKBoardView.m; sourceTree = "<group>"; };
+		19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mahogany_square.jpg; sourceTree = "<group>"; };
+		19DE68A8154DCF1F0019F0A1 /* maple_square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maple_square.jpg; sourceTree = "<group>"; };
+		19DE68AB154DCF4E0019F0A1 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
+		19DE68AC154DCF4E0019F0A1 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
+		19FF471C1544A0D100A7C545 /* 2500.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 2500.pgn; path = ../ChessKit/ChessKitTests/2500.pgn; sourceTree = "<group>"; };
+		19FF471F1544A10A00A7C545 /* libChessKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libChessKit.a; path = "../../../../Library/Developer/Xcode/DerivedData/Chess-figmfltbxwiioablppkbsvluywcn/Build/Products/Debug-iphoneos/libChessKit.a"; sourceTree = "<group>"; };
+		19FF47221544A17E00A7C545 /* ChessKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChessKit-Prefix.pch"; sourceTree = "<group>"; };
+		19FF47231544A17E00A7C545 /* ChessKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChessKit.h; sourceTree = "<group>"; };
+		19FF47241544A17E00A7C545 /* CKDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKDatabase.h; sourceTree = "<group>"; };
+		19FF47251544A17E00A7C545 /* CKDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKDatabase.m; sourceTree = "<group>"; };
+		19FF47261544A17E00A7C545 /* CKGame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKGame.h; sourceTree = "<group>"; };
+		19FF47271544A17E00A7C545 /* CKGame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKGame.m; sourceTree = "<group>"; };
+		19FF47281544A17E00A7C545 /* CKGameTree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKGameTree.h; sourceTree = "<group>"; };
+		19FF47291544A17E00A7C545 /* CKGameTree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKGameTree.m; sourceTree = "<group>"; };
+		19FF472A1544A17E00A7C545 /* CKGameTreeEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKGameTreeEnumerator.h; sourceTree = "<group>"; };
+		19FF472B1544A17E00A7C545 /* CKGameTreeEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKGameTreeEnumerator.m; sourceTree = "<group>"; };
+		19FF472C1544A17E00A7C545 /* CKMove.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMove.h; sourceTree = "<group>"; };
+		19FF472D1544A17E00A7C545 /* CKMove.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMove.m; sourceTree = "<group>"; };
+		19FF472E1544A17E00A7C545 /* CKMutablePosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKMutablePosition.h; sourceTree = "<group>"; };
+		19FF472F1544A17E00A7C545 /* CKMutablePosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKMutablePosition.m; sourceTree = "<group>"; };
+		19FF47301544A17E00A7C545 /* CKPosition+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKPosition+Private.h"; sourceTree = "<group>"; };
+		19FF47311544A17E00A7C545 /* CKPosition+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKPosition+Private.m"; sourceTree = "<group>"; };
+		19FF47321544A17E00A7C545 /* CKPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKPosition.h; sourceTree = "<group>"; };
+		19FF47331544A17E00A7C545 /* CKPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKPosition.m; sourceTree = "<group>"; };
+		19FF47351544A17E00A7C545 /* CKPGNDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKPGNDatabase.h; sourceTree = "<group>"; };
+		19FF47361544A17E00A7C545 /* CKPGNDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKPGNDatabase.m; sourceTree = "<group>"; };
+		19FF47431544A1AA00A7C545 /* CCBitboard+MoveGeneration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCBitboard+MoveGeneration.h"; sourceTree = "<group>"; };
+		19FF47441544A1AA00A7C545 /* CCBitboard+MoveGeneration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCBitboard+MoveGeneration.m"; sourceTree = "<group>"; };
+		19FF47451544A1AA00A7C545 /* CCBitboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBitboard.h; sourceTree = "<group>"; };
+		19FF47461544A1AA00A7C545 /* CCBitboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBitboard.m; sourceTree = "<group>"; };
+		19FF47471544A1AA00A7C545 /* CCBoard+MoveGeneration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CCBoard+MoveGeneration.h"; sourceTree = "<group>"; };
+		19FF47481544A1AA00A7C545 /* CCBoard+MoveGeneration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CCBoard+MoveGeneration.m"; sourceTree = "<group>"; };
+		19FF47491544A1AA00A7C545 /* CCBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCBoard.h; sourceTree = "<group>"; };
+		19FF474A1544A1AA00A7C545 /* CCBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCBoard.m; sourceTree = "<group>"; };
+		19FF474B1544A1AA00A7C545 /* CCCastlingRights.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCCastlingRights.h; sourceTree = "<group>"; };
+		19FF474C1544A1AA00A7C545 /* CCPiece.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPiece.h; sourceTree = "<group>"; };
+		19FF474D1544A1AA00A7C545 /* CCPiece.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPiece.m; sourceTree = "<group>"; };
+		19FF474E1544A1AA00A7C545 /* CCPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPosition.h; sourceTree = "<group>"; };
+		19FF474F1544A1AA00A7C545 /* CCPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCPosition.m; sourceTree = "<group>"; };
+		19FF47501544A1AA00A7C545 /* CCSquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCSquare.h; sourceTree = "<group>"; };
+		19FF47511544A1AA00A7C545 /* CCSquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCSquare.m; sourceTree = "<group>"; };
+		19FF47521544A1AA00A7C545 /* CoreChess-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CoreChess-Prefix.pch"; sourceTree = "<group>"; };
+		19FF47531544A1AA00A7C545 /* CoreChess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreChess.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +142,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19FF47201544A10A00A7C545 /* libChessKit.a in Frameworks */,
 				19B79BA914834089000AD1A7 /* libChessbase.a in Frameworks */,
 				19B79B6614833F5B000AD1A7 /* UIKit.framework in Frameworks */,
 				19B79B6814833F5B000AD1A7 /* Foundation.framework in Frameworks */,
@@ -88,6 +156,10 @@
 		19B79B5614833F5B000AD1A7 = {
 			isa = PBXGroup;
 			children = (
+				19FF47401544A1A900A7C545 /* CoreChess */,
+				19FF47211544A17E00A7C545 /* ChessKit */,
+				19FF471F1544A10A00A7C545 /* libChessKit.a */,
+				19FF471C1544A0D100A7C545 /* 2500.pgn */,
 				19B79BA814834089000AD1A7 /* libChessbase.a */,
 				19B79B6B14833F5B000AD1A7 /* ChessUI */,
 				19B79B6414833F5B000AD1A7 /* Frameworks */,
@@ -139,6 +211,7 @@
 		19B79B7C14833F65000AD1A7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				19DE68A1154DC84D0019F0A1 /* UI */,
 				19B79BAA148340AD000AD1A7 /* libChessbase */,
 				19B79B7D14833F70000AD1A7 /* Controller */,
 			);
@@ -150,6 +223,8 @@
 			children = (
 				19B79B7E14833F97000AD1A7 /* ChessbaseDatabaseViewController.h */,
 				19B79B7F14833F97000AD1A7 /* ChessbaseDatabaseViewController.m */,
+				19DE68AB154DCF4E0019F0A1 /* BoardViewController.h */,
+				19DE68AC154DCF4E0019F0A1 /* BoardViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -157,6 +232,7 @@
 		19B79B8114833FB2000AD1A7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				19DE68A6154DCF1F0019F0A1 /* Images */,
 				19B79B8214833FB9000AD1A7 /* Database */,
 			);
 			name = Resources;
@@ -206,6 +282,102 @@
 				19B79BB4148340DF000AD1A7 /* CBRecord.h */,
 			);
 			name = libChessbase;
+			sourceTree = "<group>";
+		};
+		19DE68A1154DC84D0019F0A1 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				19DE68A3154DC8760019F0A1 /* CKBoardView.h */,
+				19DE68A4154DC8760019F0A1 /* CKBoardView.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		19DE68A6154DCF1F0019F0A1 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */,
+				19DE68A8154DCF1F0019F0A1 /* maple_square.jpg */,
+			);
+			name = Images;
+			path = Resources/Images;
+			sourceTree = "<group>";
+		};
+		19FF47211544A17E00A7C545 /* ChessKit */ = {
+			isa = PBXGroup;
+			children = (
+				19FF47221544A17E00A7C545 /* ChessKit-Prefix.pch */,
+				19FF47231544A17E00A7C545 /* ChessKit.h */,
+				19FF47241544A17E00A7C545 /* CKDatabase.h */,
+				19FF47251544A17E00A7C545 /* CKDatabase.m */,
+				19FF47261544A17E00A7C545 /* CKGame.h */,
+				19FF47271544A17E00A7C545 /* CKGame.m */,
+				19FF47281544A17E00A7C545 /* CKGameTree.h */,
+				19FF47291544A17E00A7C545 /* CKGameTree.m */,
+				19FF472A1544A17E00A7C545 /* CKGameTreeEnumerator.h */,
+				19FF472B1544A17E00A7C545 /* CKGameTreeEnumerator.m */,
+				19FF472C1544A17E00A7C545 /* CKMove.h */,
+				19FF472D1544A17E00A7C545 /* CKMove.m */,
+				19FF472E1544A17E00A7C545 /* CKMutablePosition.h */,
+				19FF472F1544A17E00A7C545 /* CKMutablePosition.m */,
+				19FF47301544A17E00A7C545 /* CKPosition+Private.h */,
+				19FF47311544A17E00A7C545 /* CKPosition+Private.m */,
+				19FF47321544A17E00A7C545 /* CKPosition.h */,
+				19FF47331544A17E00A7C545 /* CKPosition.m */,
+				19FF47341544A17E00A7C545 /* PGN */,
+			);
+			name = ChessKit;
+			path = ../ChessKit/ChessKit;
+			sourceTree = "<group>";
+		};
+		19FF47341544A17E00A7C545 /* PGN */ = {
+			isa = PBXGroup;
+			children = (
+				19FF47351544A17E00A7C545 /* CKPGNDatabase.h */,
+				19FF47361544A17E00A7C545 /* CKPGNDatabase.m */,
+			);
+			path = PGN;
+			sourceTree = "<group>";
+		};
+		19FF47401544A1A900A7C545 /* CoreChess */ = {
+			isa = PBXGroup;
+			children = (
+				19FF47411544A1AA00A7C545 /* CoreChess */,
+			);
+			name = CoreChess;
+			path = ../CoreChess;
+			sourceTree = "<group>";
+		};
+		19FF47411544A1AA00A7C545 /* CoreChess */ = {
+			isa = PBXGroup;
+			children = (
+				19FF47421544A1AA00A7C545 /* CoreChess */,
+				19FF47521544A1AA00A7C545 /* CoreChess-Prefix.pch */,
+				19FF47531544A1AA00A7C545 /* CoreChess.h */,
+			);
+			path = CoreChess;
+			sourceTree = "<group>";
+		};
+		19FF47421544A1AA00A7C545 /* CoreChess */ = {
+			isa = PBXGroup;
+			children = (
+				19FF47431544A1AA00A7C545 /* CCBitboard+MoveGeneration.h */,
+				19FF47441544A1AA00A7C545 /* CCBitboard+MoveGeneration.m */,
+				19FF47451544A1AA00A7C545 /* CCBitboard.h */,
+				19FF47461544A1AA00A7C545 /* CCBitboard.m */,
+				19FF47471544A1AA00A7C545 /* CCBoard+MoveGeneration.h */,
+				19FF47481544A1AA00A7C545 /* CCBoard+MoveGeneration.m */,
+				19FF47491544A1AA00A7C545 /* CCBoard.h */,
+				19FF474A1544A1AA00A7C545 /* CCBoard.m */,
+				19FF474B1544A1AA00A7C545 /* CCCastlingRights.h */,
+				19FF474C1544A1AA00A7C545 /* CCPiece.h */,
+				19FF474D1544A1AA00A7C545 /* CCPiece.m */,
+				19FF474E1544A1AA00A7C545 /* CCPosition.h */,
+				19FF474F1544A1AA00A7C545 /* CCPosition.m */,
+				19FF47501544A1AA00A7C545 /* CCSquare.h */,
+				19FF47511544A1AA00A7C545 /* CCSquare.m */,
+			);
+			path = CoreChess;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +445,9 @@
 				19B79BA014834005000AD1A7 /* austen.cbs in Resources */,
 				19B79BA114834005000AD1A7 /* austen.cbt in Resources */,
 				19B79BA214834005000AD1A7 /* austen.cbtt in Resources */,
+				19FF471D1544A0D100A7C545 /* 2500.pgn in Resources */,
+				19DE68A9154DCF1F0019F0A1 /* mahogany_square.jpg in Resources */,
+				19DE68AA154DCF1F0019F0A1 /* maple_square.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +461,24 @@
 				19B79B7214833F5B000AD1A7 /* main.m in Sources */,
 				19B79B7614833F5B000AD1A7 /* AppDelegate.m in Sources */,
 				19B79B8014833F97000AD1A7 /* ChessbaseDatabaseViewController.m in Sources */,
+				19FF47371544A17E00A7C545 /* CKDatabase.m in Sources */,
+				19FF47381544A17E00A7C545 /* CKGame.m in Sources */,
+				19FF47391544A17E00A7C545 /* CKGameTree.m in Sources */,
+				19FF473A1544A17E00A7C545 /* CKGameTreeEnumerator.m in Sources */,
+				19FF473B1544A17E00A7C545 /* CKMove.m in Sources */,
+				19FF473C1544A17E00A7C545 /* CKMutablePosition.m in Sources */,
+				19FF473D1544A17E00A7C545 /* CKPosition+Private.m in Sources */,
+				19FF473E1544A17E00A7C545 /* CKPosition.m in Sources */,
+				19FF473F1544A17E00A7C545 /* CKPGNDatabase.m in Sources */,
+				19FF475D1544A1AA00A7C545 /* CCBitboard+MoveGeneration.m in Sources */,
+				19FF475E1544A1AA00A7C545 /* CCBitboard.m in Sources */,
+				19FF475F1544A1AA00A7C545 /* CCBoard+MoveGeneration.m in Sources */,
+				19FF47601544A1AA00A7C545 /* CCBoard.m in Sources */,
+				19FF47611544A1AA00A7C545 /* CCPiece.m in Sources */,
+				19FF47621544A1AA00A7C545 /* CCPosition.m in Sources */,
+				19FF47631544A1AA00A7C545 /* CCSquare.m in Sources */,
+				19DE68A5154DC8760019F0A1 /* CKBoardView.m in Sources */,
+				19DE68AD154DCF4E0019F0A1 /* BoardViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +547,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChessUI/ChessUI-Prefix.pch";
 				INFOPLIST_FILE = "ChessUI/ChessUI-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Chess-figmfltbxwiioablppkbsvluywcn/Build/Products/Debug-iphoneos\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -365,6 +562,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChessUI/ChessUI-Prefix.pch";
 				INFOPLIST_FILE = "ChessUI/ChessUI-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Chess-figmfltbxwiioablppkbsvluywcn/Build/Products/Debug-iphoneos\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -389,6 +590,7 @@
 				19B79B7B14833F5B000AD1A7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
