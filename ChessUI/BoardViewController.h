@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ChessKit.h"
 
 @interface BoardViewController : UIViewController
+@property (nonatomic, strong) CKGame *game;
+
+- (id)initWithGame:(CKGame *)game;
 
 @end

@@ -10,6 +10,7 @@
 #import "ChessbaseDatabaseViewController.h"
 #import "ChessKit.h"
 #import "BoardViewController.h"
+#import "DatabaseViewController.h"
 
 @interface AppDelegate()
 
@@ -30,9 +31,9 @@
     [self.window makeKeyAndVisible];
     
     NSURL *url = [[NSBundle mainBundle] URLForResource:@"2500" withExtension:@"pgn"];
-    self.database = [CKDatabase databaseWithContentsOfURL:url];
+    CKDatabase *database = [CKDatabase databaseWithContentsOfURL:url];
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[BoardViewController alloc] init]];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[DatabaseViewController alloc] initWithDatabase:database]];
     //self.window.rootViewController = [[ChessbaseDatabaseViewController alloc] init];
     
     return YES;
