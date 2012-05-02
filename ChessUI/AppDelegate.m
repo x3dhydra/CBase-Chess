@@ -30,7 +30,7 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"2500" withExtension:@"pgn"];
+    NSURL *url = [[NSBundle mainBundle] URLForResource:@"Variations" withExtension:@"pgn"];
     CKDatabase *database = [CKDatabase databaseWithContentsOfURL:url];
     
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[DatabaseViewController alloc] initWithDatabase:database]];

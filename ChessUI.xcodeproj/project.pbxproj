@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1968B148154E47620027DC0E /* DatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B147154E47620027DC0E /* DatabaseViewController.m */; };
+		1968B14B154F5A210027DC0E /* Variations.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 1968B14A154F5A210027DC0E /* Variations.pgn */; };
 		19B79B6614833F5B000AD1A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6514833F5B000AD1A7 /* UIKit.framework */; };
 		19B79B6814833F5B000AD1A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6714833F5B000AD1A7 /* Foundation.framework */; };
 		19B79B6A14833F5B000AD1A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6914833F5B000AD1A7 /* CoreGraphics.framework */; };
@@ -236,6 +237,7 @@
 /* Begin PBXFileReference section */
 		1968B146154E47620027DC0E /* DatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseViewController.h; sourceTree = "<group>"; };
 		1968B147154E47620027DC0E /* DatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseViewController.m; sourceTree = "<group>"; };
+		1968B14A154F5A210027DC0E /* Variations.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Variations.pgn; path = ../../ChessKit/ChessKitTests/Resources/Variations.pgn; sourceTree = "<group>"; };
 		19B79B6114833F5B000AD1A7 /* ChessUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChessUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19B79B6514833F5B000AD1A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		19B79B6714833F5B000AD1A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -459,7 +461,7 @@
 		19DE6963154DDDB50019F0A1 /* XBoardWQueen@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "XBoardWQueen@2x.tiff"; sourceTree = "<group>"; };
 		19DE6964154DDDB50019F0A1 /* XBoardWRook.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = XBoardWRook.tiff; sourceTree = "<group>"; };
 		19DE6965154DDDB50019F0A1 /* XBoardWRook@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "XBoardWRook@2x.tiff"; sourceTree = "<group>"; };
-		19FF471C1544A0D100A7C545 /* 2500.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 2500.pgn; path = ../ChessKit/ChessKitTests/2500.pgn; sourceTree = "<group>"; };
+		19FF471C1544A0D100A7C545 /* 2500.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 2500.pgn; path = ../../ChessKit/ChessKitTests/2500.pgn; sourceTree = "<group>"; };
 		19FF471F1544A10A00A7C545 /* libChessKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libChessKit.a; path = "../../../../Library/Developer/Xcode/DerivedData/Chess-figmfltbxwiioablppkbsvluywcn/Build/Products/Debug-iphoneos/libChessKit.a"; sourceTree = "<group>"; };
 		19FF47221544A17E00A7C545 /* ChessKit-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ChessKit-Prefix.pch"; sourceTree = "<group>"; };
 		19FF47231544A17E00A7C545 /* ChessKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChessKit.h; sourceTree = "<group>"; };
@@ -522,7 +524,6 @@
 				19FF47401544A1A900A7C545 /* CoreChess */,
 				19FF47211544A17E00A7C545 /* ChessKit */,
 				19FF471F1544A10A00A7C545 /* libChessKit.a */,
-				19FF471C1544A0D100A7C545 /* 2500.pgn */,
 				19B79BA814834089000AD1A7 /* libChessbase.a */,
 				19B79B6B14833F5B000AD1A7 /* ChessUI */,
 				19B79B6414833F5B000AD1A7 /* Frameworks */,
@@ -606,6 +607,8 @@
 		19B79B8214833FB9000AD1A7 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				1968B14A154F5A210027DC0E /* Variations.pgn */,
+				19FF471C1544A0D100A7C545 /* 2500.pgn */,
 				19B79B8314833FBF000AD1A7 /* Chessbase */,
 			);
 			name = Database;
@@ -1181,6 +1184,7 @@
 				19DE6A17154DDDB60019F0A1 /* XBoardWQueen@2x.tiff in Resources */,
 				19DE6A18154DDDB60019F0A1 /* XBoardWRook.tiff in Resources */,
 				19DE6A19154DDDB60019F0A1 /* XBoardWRook@2x.tiff in Resources */,
+				1968B14B154F5A210027DC0E /* Variations.pgn in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

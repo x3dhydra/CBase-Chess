@@ -17,6 +17,7 @@ typedef void (^CKAnimationBlock)(void);
     NSMutableDictionary *_pieceImages;
 }
 @property (nonatomic, strong) NSMutableDictionary *pieceViews;
+@property (nonatomic, strong) NSArray *squareAccessibilityElements;
 @end
 
 @implementation CKBoardView
@@ -27,6 +28,7 @@ typedef void (^CKAnimationBlock)(void);
 @synthesize flipped = _flipped;
 @synthesize debugSquares = _debugSquares;
 @synthesize pieceViews = _pieceViews;
+@synthesize squareAccessibilityElements = _squareAccessibilityElements;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -155,6 +157,15 @@ typedef void (^CKAnimationBlock)(void);
         [UIView animateWithDuration:0.3 animations:animationBlock];
     else
         animationBlock();
+    
+    
+    // nil out the accessibility elements
+    if (_squareAccessibilityElements)
+    {
+        self.squareAccessibilityElements = nil;
+    }
+    UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+    
 }
 
 - (void)setDebugSquares:(BOOL)debugSquares
@@ -389,5 +400,38 @@ typedef void (^CKAnimationBlock)(void);
     return [UIColor colorWithRed: 107.0/255.0 green: 123.0/255.0 blue: 169.0/255.0 alpha: 1.0];
 }
 
+#pragma mark - Accessibility
+
+- (NSInteger)accessibilityElementCount
+{
+    return self.squareAccessibilityElements.count;
+}
+
+- (id)accessibilityElementAtIndex:(NSInteger)index
+{
+    return [self.squareAccessibilityElements objectAtIndex:index];
+}
+
+- (NSInteger)indexOfAccessibilityElement:(id)element
+{
+    return [self.squareAccessibilityElements indexOfObject:element];
+}
+
+- (NSArray *)squareAccessibilityElements
+{
+    if (!_squareAccessibilityElements)
+    {
+        NSMutableArray *elements = [NSMutableArray arrayWithCapacity:64];
+        for (CCSquare square = a1; square <= h8; square++)
+        {
+            UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
+            element.accessibilityFrame = [self convertRect:[self rectForSquare:square] toView:self.window];
+            element.accessibilityLabel = (__bridge NSString *)CCSquareName(square);
+            [elements addObject:element];
+        }
+        _squareAccessibilityElements = elements;
+    }
+    return _squareAccessibilityElements;
+}
 
 @end

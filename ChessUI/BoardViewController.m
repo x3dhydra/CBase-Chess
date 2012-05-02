@@ -116,7 +116,7 @@
     [boardView sizeToFit];
     [self.view addSubview:boardView];
     self.boardView = boardView;
-    
+        
     UISwipeGestureRecognizer *left = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipe:)];
     left.direction = UISwipeGestureRecognizerDirectionLeft;
     [self.boardView addGestureRecognizer:left];
@@ -134,8 +134,21 @@
     {
         if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight && self.currentNode.children.count)
         {
-            self.currentNode = self.currentNode.nextTree;
-            [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
+            if (self.currentNode.children.count == 1)
+            {
+                self.currentNode = self.currentNode.nextTree;
+                [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
+            }
+            else {
+                UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Select Variation", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles: nil];
+                NSArray *titles = [self.currentNode.children valueForKeyPath:@"moveString"];
+                
+                for (NSString *title in titles)
+                    [sheet addButtonWithTitle:title];
+                
+                [sheet showInView:self.view];
+            }
+            
         }
         else if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionLeft && self.currentNode.parent)
         {
@@ -167,8 +180,8 @@
     [self.boardView setImage:[UIImage imageNamed:@"AlphaWQueen.tiff"] forPiece:WQ];
     [self.boardView setImage:[UIImage imageNamed:@"AlphaWRook.tiff"] forPiece:WR];
     
-    [self.boardView setPosition:[CKPosition standardPosition]];
 	// Do any additional setup after loading the view.
+    [self.boardView setPosition:self.game.gameTree.position];
 }
 
 - (void)viewDidUnload
@@ -180,6 +193,18 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex != [actionSheet cancelButtonIndex])
+    {
+        NSInteger index = buttonIndex + [actionSheet firstOtherButtonIndex];
+        self.currentNode = [self.currentNode.children objectAtIndex:index];
+        [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
+    }
 }
 
 @end
