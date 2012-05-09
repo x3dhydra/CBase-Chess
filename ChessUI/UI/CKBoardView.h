@@ -49,6 +49,8 @@ typedef enum
 - (void)setPieceImages:(NSDictionary *)pieceImages;
 - (NSDictionary *)pieceImages;
 
+- (void)reloadPieces;
+
 @end
 
 @protocol CKBoardViewDelegate <NSObject>

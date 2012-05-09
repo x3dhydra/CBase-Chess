@@ -42,7 +42,6 @@ typedef void (^CKAnimationBlock)(void);
     return self;
 }
 
-
 - (void)drawRect:(CGRect)rect
 {
     for (CCSquare square = a1; square <= h8; square++)
@@ -386,6 +385,17 @@ typedef void (^CKAnimationBlock)(void);
         }];
         self.userInteractionEnabled = YES;
     }];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    for (CCSquare square = a1; square < h8; square++)
+    {
+        CCColoredPiece piece = CCBoardGetPieceAtSquare(_board, square);
+        [self setPiece:piece atSquare:square];
+    }
 }
 
 #pragma mark - Class Methods

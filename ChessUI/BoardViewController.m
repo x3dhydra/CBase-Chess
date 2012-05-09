@@ -9,6 +9,10 @@
 #import "BoardViewController.h"
 #import "CKBoardView.h"
 #import "ChessKit.h"
+#import "CKGameFormatter.h"
+#import <QuartzCore/QuartzCore.h>
+#import <CoreText/CoreText.h>
+#import "CTLabel.h"
 
 @interface BoardViewController ()
 {
@@ -18,6 +22,8 @@
 @property (nonatomic, strong) CKBoardView *boardView;
 @property (nonatomic, strong) CKGameTree *gameTree;
 @property (nonatomic, strong) CKGameTree *currentNode;
+@property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) CTLabel *gameTextLabel;
 
 @end
 
@@ -26,6 +32,8 @@
 @synthesize gameTree = _gameTree;
 @synthesize currentNode = _currentNode;
 @synthesize game = _game;
+@synthesize scrollView = _scrollView;
+@synthesize gameTextLabel = _gameTextLabel;
 
 - (id)initWithGame:(CKGame *)game
 {
@@ -34,80 +42,11 @@
     {
         _currentNode = game.gameTree;
         _game = game;
-    }
-    return self;
-}
-
-/*
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-        _gameTree = [[CKGameTree alloc] initWithPosition:[CKPosition standardPosition]];
-        
-        CKGameTree *node = _gameTree;
-        
-        [node addMove:[CKMove moveWithFrom:h2 to:h4]];
-        node = [node nextTree];
-        
-        [node addMove:[CKMove moveWithFrom:c7 to:c5]];
-        node = [node nextTree];
-        
-        [node addMove:[CKMove moveWithFrom:h4 to:h5]];
-        node = [node nextTree];
-
-        [node addMove:[CKMove moveWithFrom:c5 to:c4]];
-        node = [node nextTree];
-
-        [node addMove:[CKMove moveWithFrom:h5 to:h6]];
-        node = [node nextTree];
-        
-        [node addMove:[CKMove moveWithFrom:a7 to:a5]];
-        node = [node nextTree];
-        
-        [node addMove:[CKMove moveWithFrom:h6 to:g7]];
-        node = [node nextTree];
-
-        [node addMove:[CKMove moveWithFrom:a5 to:a4]];
-        node = [node nextTree];
-
-        CKMove *move = [CKMove moveWithFrom:g7 to:h8];
-        move.promotionPiece = QueenPiece;
-        [node addMove:move];
-
-        
-//        [node addMove:[CKMove moveWithFrom:c7 to:c5]];
-//        node = [node nextTree];
-//        
-//        [node addMove:[CKMove moveWithFrom:d2 to:d4]];
-//        node = [node nextTree];
-//        
-//        [node addMove:[CKMove moveWithFrom:c5 to:d4]];
-//        node = [node nextTree];
-        
-//        [node addMove:[CKMove moveWithFrom:g1 to:f3]];
-//        node = [node nextTree];
-//        
-//        [node addMove:[CKMove moveWithFrom:b8 to:c6]];
-//        node = [node nextTree];
-//        
-//        [node addMove:[CKMove moveWithFrom:f1 to:b5]];
-//        node = [node nextTree];
-//        
-//        [node addMove:[CKMove moveWithFrom:g8 to:f6]];
-//        node = [node nextTree];
-//        
-//        [node addMove:[CKMove moveWithFrom:e1 to:g1]];
-//        node = [node nextTree];
-        
-        
-        _currentNode = _gameTree;
         
     }
     return self;
 }
- */
+
 
 - (void)loadView
 {
@@ -126,6 +65,47 @@
     [self.boardView addGestureRecognizer:right];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Flip" style:UIBarButtonItemStyleBordered target:self action:@selector(flipBoard)];
+    
+    // Add attributed string scroll view
+    CKGameFormatter *formatter = [[CKGameFormatter alloc] initWithGame:_game];
+    formatter.textSize = 36.0f;
+    NSAttributedString *string = [formatter attributedGameTree];
+    
+    CTLabel *label = [[CTLabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
+    [label setText:string];
+    label.numberOfLines = 0;
+    [label sizeToFit];
+    label.backgroundColor = [UIColor greenColor];
+    self.gameTextLabel = label;
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:scrollView];
+    scrollView.contentSize = label.bounds.size;
+    [scrollView addSubview:label];
+    self.scrollView = scrollView;
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    
+    CGFloat width = MIN(CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds));
+    self.boardView.frame = CGRectMake(0.0f, 0.0f, width, width);
+    
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
+    {
+        CGRect frame = CGRectMake(0.0f, CGRectGetMaxY(self.boardView.frame), CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMaxY(self.boardView.frame));
+        self.scrollView.frame = frame;
+    }
+    else 
+    {
+        CGRect frame = CGRectMake(CGRectGetMaxX(self.boardView.frame), 0.0f, CGRectGetWidth(self.view.bounds) - CGRectGetMaxX(self.boardView.frame), CGRectGetHeight(self.view.bounds));
+        self.scrollView.frame = frame;
+    }
+    
+    self.gameTextLabel.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.scrollView.bounds), CGRectGetHeight(self.view.bounds));
+    [self.gameTextLabel sizeToFitCurrentWidth];
+    self.scrollView.contentSize = self.gameTextLabel.bounds.size;
 }
 
 - (void)swipe:(UISwipeGestureRecognizer *)gestureRecognizer
@@ -190,10 +170,13 @@
     // Release any retained subviews of the main view.
 }
 
+#pragma mark - Rotation
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
+
 
 #pragma mark - UIActionSheetDelegate
 
