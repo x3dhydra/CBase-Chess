@@ -287,6 +287,7 @@ typedef void (^CKAnimationBlock)(void);
 {
     NSMutableArray *animations = [NSMutableArray array];
     NSMutableArray *completion = [NSMutableArray array];
+    NSLog(@"%d\n%@", self.subviews.count, self.subviews);
     
     [CCPieceGetAllPieces() enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
         CCColoredPiece piece = (CCColoredPiece)idx;
@@ -384,6 +385,7 @@ typedef void (^CKAnimationBlock)(void);
             completionBlock();
         }];
         self.userInteractionEnabled = YES;
+        NSLog(@"%d\n%@", self.subviews.count, self.subviews);
     }];
 }
 
@@ -391,11 +393,16 @@ typedef void (^CKAnimationBlock)(void);
 {
     [super layoutSubviews];
     
-    for (CCSquare square = a1; square < h8; square++)
-    {
-        CCColoredPiece piece = CCBoardGetPieceAtSquare(_board, square);
-        [self setPiece:piece atSquare:square];
-    }
+    [self.pieceViews enumerateKeysAndObjectsUsingBlock:^(id key, UIImageView *view, BOOL *stop) {
+        CCSquare square = [key integerValue];
+        view.frame = [self rectForSquare:square];
+    }];
+    
+//    for (CCSquare square = a1; square < h8; square++)
+//    {
+//        CCColoredPiece piece = CCBoardGetPieceAtSquare(_board, square);
+//        [self setPiece:piece atSquare:square];
+//    }
 }
 
 #pragma mark - Class Methods
@@ -442,6 +449,11 @@ typedef void (^CKAnimationBlock)(void);
         _squareAccessibilityElements = elements;
     }
     return _squareAccessibilityElements;
+}
+
+- (void)addSubview:(UIView *)view
+{
+    [super addSubview:view];
 }
 
 @end

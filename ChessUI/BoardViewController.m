@@ -66,16 +66,25 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Flip" style:UIBarButtonItemStyleBordered target:self action:@selector(flipBoard)];
     
+    __weak BoardViewController *controller = self;
+    
     // Add attributed string scroll view
     CKGameFormatter *formatter = [[CKGameFormatter alloc] initWithGame:_game];
-    formatter.textSize = 36.0f;
+    formatter.moveCallback = ^(CKGameTree *tree, NSMutableAttributedString *string)
+    {
+        [string setLink:^(CTLabel *button, NSRange range, CTLinkBlockSelectionType selectionType) {
+            controller.currentNode = tree;
+            [controller.boardView setPosition:tree.position withAnimation:CKBoardAnimationNone];
+        }];
+        [string addAttribute:kCTLabelLinkHighlightedForegroundColorKey value:(__bridge id)[[UIColor orangeColor] CGColor] range:NSMakeRange(0, string.length)];
+    };
+    
     NSAttributedString *string = [formatter attributedGameTree];
     
     CTLabel *label = [[CTLabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
     [label setText:string];
     label.numberOfLines = 0;
     [label sizeToFit];
-    label.backgroundColor = [UIColor greenColor];
     self.gameTextLabel = label;
     
     UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
