@@ -15,12 +15,11 @@
 
 @interface AppDelegate()
 
-@property (nonatomic, strong) CKDatabase *database;
-
+@property (nonatomic, strong) DatabaseListViewController *databaseListController;
 @end
 
 @implementation AppDelegate
-@synthesize database;
+@synthesize databaseListController;
 
 @synthesize window = _window;
 
@@ -31,13 +30,29 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    NSURL *url = [[NSBundle mainBundle] URLForResource:@"Variations" withExtension:@"pgn"];
-    CKDatabase *database = [CKDatabase databaseWithContentsOfURL:url];
+    self.databaseListController = [[DatabaseListViewController alloc] init];
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[DatabaseListViewController alloc] init]];
+    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:self.databaseListController];
     //self.window.rootViewController = [[ChessbaseDatabaseViewController alloc] init];
     
     return YES;
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    NSURL *newURL = [[NSURL fileURLWithPath:[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]] URLByAppendingPathComponent:[url lastPathComponent]];
+    
+    NSError *error = nil;
+    BOOL success = [[NSFileManager defaultManager] moveItemAtURL:url toURL:newURL error:&error];
+    
+    if (success)
+    {
+        [self.databaseListController reloadData];
+    }
+    else {
+        NSLog(@"Error moving file: %@", error);
+    }
+    return success;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

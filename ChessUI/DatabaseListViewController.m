@@ -99,15 +99,15 @@
 {
     if (!_databaseURLs)
     {
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, NO) lastObject];
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         
         NSArray *allContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
         NSPredicate *filter = [NSPredicate predicateWithFormat:@"pathExtension IN %@", [self supportedExtensions]];
         NSArray *filteredContents = [allContents filteredArrayUsingPredicate:filter];
         
         NSMutableArray *databaseURLs = [[NSMutableArray alloc] initWithCapacity:filteredContents.count];
-        [filteredContents enumerateObjectsUsingBlock:^(NSString *path, NSUInteger idx, BOOL *stop) {
-            [databaseURLs addObject:[NSURL fileURLWithPath:path]];
+        [filteredContents enumerateObjectsUsingBlock:^(NSString *fileName, NSUInteger idx, BOOL *stop) {
+            [databaseURLs addObject:[NSURL fileURLWithPath:[path stringByAppendingPathComponent:fileName]]];
         }];
         
         _databaseURLs = databaseURLs;
