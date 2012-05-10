@@ -12,6 +12,7 @@
 		191291331559F120006F02B2 /* BRParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912912C1559F120006F02B2 /* BRParagraphStyle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		191291341559F120006F02B2 /* CTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912912E1559F120006F02B2 /* CTLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		191291351559F120006F02B2 /* NSMutableAttributedString+BRExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 191291301559F120006F02B2 /* NSMutableAttributedString+BRExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		19129151155B6A29006F02B2 /* DatabaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19129150155B6A28006F02B2 /* DatabaseListViewController.m */; };
 		1968B148154E47620027DC0E /* DatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B147154E47620027DC0E /* DatabaseViewController.m */; };
 		1968B14B154F5A210027DC0E /* Variations.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 1968B14A154F5A210027DC0E /* Variations.pgn */; };
 		1968B1B115534C6C0027DC0E /* CKGameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B1B015534C6C0027DC0E /* CKGameCell.m */; };
@@ -261,6 +262,8 @@
 		1912912E1559F120006F02B2 /* CTLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTLabel.m; sourceTree = "<group>"; };
 		1912912F1559F120006F02B2 /* NSMutableAttributedString+BRExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+BRExtensions.h"; sourceTree = "<group>"; };
 		191291301559F120006F02B2 /* NSMutableAttributedString+BRExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+BRExtensions.m"; sourceTree = "<group>"; };
+		1912914F155B6A28006F02B2 /* DatabaseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseListViewController.h; sourceTree = "<group>"; };
+		19129150155B6A28006F02B2 /* DatabaseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseListViewController.m; sourceTree = "<group>"; };
 		1968B146154E47620027DC0E /* DatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseViewController.h; sourceTree = "<group>"; };
 		1968B147154E47620027DC0E /* DatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseViewController.m; sourceTree = "<group>"; };
 		1968B14A154F5A210027DC0E /* Variations.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Variations.pgn; path = ../../ChessKit/ChessKitTests/Resources/Variations.pgn; sourceTree = "<group>"; };
@@ -631,6 +634,8 @@
 				19DE68AC154DCF4E0019F0A1 /* BoardViewController.m */,
 				1968B146154E47620027DC0E /* DatabaseViewController.h */,
 				1968B147154E47620027DC0E /* DatabaseViewController.m */,
+				1912914F155B6A28006F02B2 /* DatabaseListViewController.h */,
+				19129150155B6A28006F02B2 /* DatabaseListViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1196,6 +1201,7 @@
 				191291331559F120006F02B2 /* BRParagraphStyle.m in Sources */,
 				191291341559F120006F02B2 /* CTLabel.m in Sources */,
 				191291351559F120006F02B2 /* NSMutableAttributedString+BRExtensions.m in Sources */,
+				19129151155B6A29006F02B2 /* DatabaseListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
