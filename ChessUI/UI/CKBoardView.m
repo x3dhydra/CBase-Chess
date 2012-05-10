@@ -287,7 +287,6 @@ typedef void (^CKAnimationBlock)(void);
 {
     NSMutableArray *animations = [NSMutableArray array];
     NSMutableArray *completion = [NSMutableArray array];
-    NSLog(@"%d\n%@", self.subviews.count, self.subviews);
     
     [CCPieceGetAllPieces() enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
         CCColoredPiece piece = (CCColoredPiece)idx;
@@ -385,7 +384,6 @@ typedef void (^CKAnimationBlock)(void);
             completionBlock();
         }];
         self.userInteractionEnabled = YES;
-        NSLog(@"%d\n%@", self.subviews.count, self.subviews);
     }];
 }
 
