@@ -29,11 +29,13 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     [self.view addSubview:tableView];
+    self.tableView = tableView;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];    
+    
     [self.tableView reloadData];
 }
 
@@ -56,7 +58,8 @@
 - (void)reloadData
 {
     self.databaseURLs = nil;
-    [self.tableView reloadData];
+    if ([self isViewLoaded])
+        [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
@@ -86,6 +89,26 @@
     NSURL *url = [self.databaseURLs objectAtIndex:indexPath.row];
     DatabaseViewController *controller = [[DatabaseViewController alloc] initWithDatabase:[CKDatabase databaseWithContentsOfURL:url]];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        NSURL *url = [self.databaseURLs objectAtIndex:indexPath.row];
+        
+        if ([[NSFileManager defaultManager] removeItemAtURL:url error:NULL])
+        {
+            self.databaseURLs = nil;
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSURL *url = [self.databaseURLs objectAtIndex:indexPath.row];
+    return [[NSFileManager defaultManager] isDeletableFileAtPath:url.path];
 }
 
 #pragma mark - Data

@@ -70,6 +70,7 @@
     
     // Add attributed string scroll view
     CKGameFormatter *formatter = [[CKGameFormatter alloc] initWithGame:_game];
+    formatter.textSize = 18.0f;
     formatter.moveCallback = ^(CKGameTree *tree, NSMutableAttributedString *string)
     {
         [string setLink:^(CTLabel *button, NSRange range, CTLinkBlockSelectionType selectionType) {
