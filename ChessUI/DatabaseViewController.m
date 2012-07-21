@@ -9,13 +9,22 @@
 #import "DatabaseViewController.h"
 #import "BoardViewController.h"
 #import "CKGameCell.h"
+#import "CKDatabaseSearchController.h"
 
-@interface DatabaseViewController ()
+
+@interface DatabaseViewController () <UIDocumentInteractionControllerDelegate, CKDatabaseSearchControllerDelegate>
+{
+    BOOL _isDisplayingShareMenu;
+}
+@property (nonatomic, strong) UIDocumentInteractionController *shareController;
+@property (nonatomic, strong) CKDatabaseSearchController *databaseSearchController;
 
 @end
 
 @implementation DatabaseViewController
 @synthesize database = _database;
+@synthesize shareController = _shareController;
+@synthesize databaseSearchController = _databaseSearchController;
 
 - (id)initWithDatabase:(CKDatabase *)database
 {
@@ -23,21 +32,35 @@
     if (self)
     {
         _database = database;
+        _shareController = [[UIDocumentInteractionController alloc] init];
+        _shareController.URL = database.url;
+        _shareController.delegate = self;
+        
+        UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareDatabase:)];
+        self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:share, nil];
     }
     return self;
 }
- 
+
+- (void)loadView
+{
+    [super loadView];
+    self.tableView.rowHeight = 76.0f;
+    
+    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), 44.0f)];
+    [searchBar sizeToFit];
+        
+    UISearchDisplayController *searchDisplayController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
+    _databaseSearchController = [[CKDatabaseSearchController alloc] initWithDatabase:self.database searchDisplayController:searchDisplayController];
+    _databaseSearchController.delegate = self;
+    
+    self.tableView.tableHeaderView = searchBar;
+}
 
 - (void)viewDidLoad
 {
-    self.tableView.rowHeight = 76.0f;
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.clearsSelectionOnViewWillAppear = YES;
 }
 
 - (void)viewDidUnload
@@ -129,9 +152,37 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CKGame *game = [self.database gameAtIndex:indexPath.row];
+    [self displayGameAtIndex:indexPath.row];
+}
+
+#pragma mark - sharing
+
+- (void)shareDatabase:(UIBarButtonItem *)item
+{
+    if (!_isDisplayingShareMenu)
+        _isDisplayingShareMenu = [self.shareController presentOpenInMenuFromBarButtonItem:item animated:YES];
+}
+
+#pragma mark UIDocumentInteractionControllerDelegate
+
+- (void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller
+{
+   _isDisplayingShareMenu = NO;    
+}
+
+#pragma mark - 
+
+- (void)displayGameAtIndex:(NSUInteger)index
+{
+    CKGame *game = [self.database gameAtIndex:index];
     BoardViewController *viewController = [[BoardViewController alloc] initWithGame:game];
     [self.navigationController pushViewController:viewController animated:YES];
 }
+
+- (void)databaseSearchController:(CKDatabaseSearchController *)searchController didSelectGameAtIndex:(NSUInteger)index;
+{
+    [self displayGameAtIndex:index];
+}
+
 
 @end

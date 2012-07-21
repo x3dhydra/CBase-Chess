@@ -42,7 +42,6 @@
     {
         _currentNode = game.gameTree;
         _game = game;
-        
     }
     return self;
 }
@@ -83,6 +82,8 @@
     NSAttributedString *string = [formatter attributedGameTree];
     
     CTLabel *label = [[CTLabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
+    //[label setText:string];
+    //[label setAttributedText:string];
     [label setText:string];
     label.numberOfLines = 0;
     [label sizeToFit];

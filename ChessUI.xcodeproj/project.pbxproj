@@ -13,6 +13,7 @@
 		191291341559F120006F02B2 /* CTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912912E1559F120006F02B2 /* CTLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		191291351559F120006F02B2 /* NSMutableAttributedString+BRExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 191291301559F120006F02B2 /* NSMutableAttributedString+BRExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		19129151155B6A29006F02B2 /* DatabaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19129150155B6A28006F02B2 /* DatabaseListViewController.m */; };
+		1934A4EC15B1E5C0008794DD /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1934A4EB15B1E5C0008794DD /* QuickLook.framework */; };
 		1968B148154E47620027DC0E /* DatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B147154E47620027DC0E /* DatabaseViewController.m */; };
 		1968B14B154F5A210027DC0E /* Variations.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 1968B14A154F5A210027DC0E /* Variations.pgn */; };
 		1968B1B115534C6C0027DC0E /* CKGameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B1B015534C6C0027DC0E /* CKGameCell.m */; };
@@ -39,6 +40,7 @@
 		19B79BA114834005000AD1A7 /* austen.cbt in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8F14834005000AD1A7 /* austen.cbt */; };
 		19B79BA214834005000AD1A7 /* austen.cbtt in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B9014834005000AD1A7 /* austen.cbtt */; };
 		19B79BA914834089000AD1A7 /* libChessbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79BA814834089000AD1A7 /* libChessbase.a */; };
+		19C3584515B1ECF7002A8CB8 /* CKDatabaseSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C3584415B1ECF7002A8CB8 /* CKDatabaseSearchController.m */; };
 		19DE68A5154DC8760019F0A1 /* CKBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE68A4154DC8760019F0A1 /* CKBoardView.m */; };
 		19DE68A9154DCF1F0019F0A1 /* mahogany_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */; };
 		19DE68AA154DCF1F0019F0A1 /* maple_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68A8154DCF1F0019F0A1 /* maple_square.jpg */; };
@@ -264,6 +266,7 @@
 		191291301559F120006F02B2 /* NSMutableAttributedString+BRExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+BRExtensions.m"; sourceTree = "<group>"; };
 		1912914F155B6A28006F02B2 /* DatabaseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseListViewController.h; sourceTree = "<group>"; };
 		19129150155B6A28006F02B2 /* DatabaseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseListViewController.m; sourceTree = "<group>"; };
+		1934A4EB15B1E5C0008794DD /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		1968B146154E47620027DC0E /* DatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseViewController.h; sourceTree = "<group>"; };
 		1968B147154E47620027DC0E /* DatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseViewController.m; sourceTree = "<group>"; };
 		1968B14A154F5A210027DC0E /* Variations.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Variations.pgn; path = ../../ChessKit/ChessKitTests/Resources/Variations.pgn; sourceTree = "<group>"; };
@@ -309,6 +312,8 @@
 		19B79BB3148340DF000AD1A7 /* CBBaseRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBBaseRecord.h; path = ../../Chessbase/Chessbase/Classes/CBBaseRecord.h; sourceTree = "<group>"; };
 		19B79BB4148340DF000AD1A7 /* CBRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBRecord.h; path = ../../Chessbase/Chessbase/Classes/CBRecord.h; sourceTree = "<group>"; };
 		19B79BB714834136000AD1A7 /* CBBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBBase.h; path = ../../Chessbase/Chessbase/CBBase.h; sourceTree = "<group>"; };
+		19C3584315B1ECF7002A8CB8 /* CKDatabaseSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKDatabaseSearchController.h; path = UI/CKDatabaseSearchController.h; sourceTree = "<group>"; };
+		19C3584415B1ECF7002A8CB8 /* CKDatabaseSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKDatabaseSearchController.m; path = UI/CKDatabaseSearchController.m; sourceTree = "<group>"; };
 		19DE68A3154DC8760019F0A1 /* CKBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKBoardView.h; path = UI/CKBoardView.h; sourceTree = "<group>"; };
 		19DE68A4154DC8760019F0A1 /* CKBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKBoardView.m; path = UI/CKBoardView.m; sourceTree = "<group>"; };
 		19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mahogany_square.jpg; sourceTree = "<group>"; };
@@ -504,6 +509,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1934A4EC15B1E5C0008794DD /* QuickLook.framework in Frameworks */,
 				199997021558AFF400F437EC /* QuartzCore.framework in Frameworks */,
 				199997001558AF7300F437EC /* CoreText.framework in Frameworks */,
 				19FF47201544A10A00A7C545 /* libChessKit.a in Frameworks */,
@@ -562,6 +568,7 @@
 		19B79B5614833F5B000AD1A7 = {
 			isa = PBXGroup;
 			children = (
+				1934A4EB15B1E5C0008794DD /* QuickLook.framework */,
 				199997011558AFF400F437EC /* QuartzCore.framework */,
 				199996FF1558AF7300F437EC /* CoreText.framework */,
 				199996F51558AF2100F437EC /* ChessKit.xcodeproj */,
@@ -636,6 +643,8 @@
 				1968B147154E47620027DC0E /* DatabaseViewController.m */,
 				1912914F155B6A28006F02B2 /* DatabaseListViewController.h */,
 				19129150155B6A28006F02B2 /* DatabaseListViewController.m */,
+				19C3584315B1ECF7002A8CB8 /* CKDatabaseSearchController.h */,
+				19C3584415B1ECF7002A8CB8 /* CKDatabaseSearchController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1202,6 +1211,7 @@
 				191291341559F120006F02B2 /* CTLabel.m in Sources */,
 				191291351559F120006F02B2 /* NSMutableAttributedString+BRExtensions.m in Sources */,
 				19129151155B6A29006F02B2 /* DatabaseListViewController.m in Sources */,
+				19C3584515B1ECF7002A8CB8 /* CKDatabaseSearchController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
