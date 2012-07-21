@@ -25,7 +25,6 @@
 		19B79B7014833F5B000AD1A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B6E14833F5B000AD1A7 /* InfoPlist.strings */; };
 		19B79B7214833F5B000AD1A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B79B7114833F5B000AD1A7 /* main.m */; };
 		19B79B7614833F5B000AD1A7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B79B7514833F5B000AD1A7 /* AppDelegate.m */; };
-		19B79B8014833F97000AD1A7 /* ChessbaseDatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B79B7F14833F97000AD1A7 /* ChessbaseDatabaseViewController.m */; };
 		19B79B9614834005000AD1A7 /* austen.cba in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8414834005000AD1A7 /* austen.cba */; };
 		19B79B9714834005000AD1A7 /* austen.cbb in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8514834005000AD1A7 /* austen.cbb */; };
 		19B79B9814834005000AD1A7 /* austen.cbc in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8614834005000AD1A7 /* austen.cbc */; };
@@ -39,7 +38,6 @@
 		19B79BA014834005000AD1A7 /* austen.cbs in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8E14834005000AD1A7 /* austen.cbs */; };
 		19B79BA114834005000AD1A7 /* austen.cbt in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8F14834005000AD1A7 /* austen.cbt */; };
 		19B79BA214834005000AD1A7 /* austen.cbtt in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B9014834005000AD1A7 /* austen.cbtt */; };
-		19B79BA914834089000AD1A7 /* libChessbase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79BA814834089000AD1A7 /* libChessbase.a */; };
 		19C3584515B1ECF7002A8CB8 /* CKDatabaseSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C3584415B1ECF7002A8CB8 /* CKDatabaseSearchController.m */; };
 		19DE68A5154DC8760019F0A1 /* CKBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE68A4154DC8760019F0A1 /* CKBoardView.m */; };
 		19DE68A9154DCF1F0019F0A1 /* mahogany_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */; };
@@ -513,7 +511,6 @@
 				199997021558AFF400F437EC /* QuartzCore.framework in Frameworks */,
 				199997001558AF7300F437EC /* CoreText.framework in Frameworks */,
 				19FF47201544A10A00A7C545 /* libChessKit.a in Frameworks */,
-				19B79BA914834089000AD1A7 /* libChessbase.a in Frameworks */,
 				19B79B6614833F5B000AD1A7 /* UIKit.framework in Frameworks */,
 				19B79B6814833F5B000AD1A7 /* Foundation.framework in Frameworks */,
 				19B79B6A14833F5B000AD1A7 /* CoreGraphics.framework in Frameworks */,
@@ -1200,7 +1197,6 @@
 			files = (
 				19B79B7214833F5B000AD1A7 /* main.m in Sources */,
 				19B79B7614833F5B000AD1A7 /* AppDelegate.m in Sources */,
-				19B79B8014833F97000AD1A7 /* ChessbaseDatabaseViewController.m in Sources */,
 				19DE68A5154DC8760019F0A1 /* CKBoardView.m in Sources */,
 				19DE68AD154DCF4E0019F0A1 /* BoardViewController.m in Sources */,
 				1968B148154E47620027DC0E /* DatabaseViewController.m in Sources */,
@@ -1262,6 +1258,10 @@
 					"../CoreChess/CoreChess/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1285,6 +1285,10 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-all_load",
+				);
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
