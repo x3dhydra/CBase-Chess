@@ -9,9 +9,11 @@
 #import "CKDatabaseSearchController.h"
 #import "CKGameCell.h"
 #import "CKGame.h"
+#import "CKFetchRequest.h"
 
 @interface CKDatabaseSearchController()
 @property (nonatomic, strong) NSArray *gameIndexes;
+@property (nonatomic, strong) id currentSearch;
 @end
 
 @implementation CKDatabaseSearchController
@@ -19,6 +21,7 @@
 @synthesize searchDisplayController = _searchDisplayController;
 @synthesize gameIndexes = _gameIndexes;
 @synthesize delegate;
+@synthesize currentSearch = _currentSearch;
 
 - (id)initWithDatabase:(CKDatabase *)database searchDisplayController:(UISearchDisplayController *)searchDisplayController
 {
@@ -75,10 +78,21 @@
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
+    [self.database cancelSearch:self.currentSearch];
     NSPredicate *predicate = [self searchPredicate];
-    self.gameIndexes = [self.database filteredGamesUsingPredicate:predicate];
-    [controller.searchResultsTableView reloadData];
-
+    
+    CKFetchRequest *request = [[CKFetchRequest alloc] init];
+    request.predicate = predicate;
+    
+    __weak CKDatabaseSearchController *weakSelf = self;
+    
+    self.currentSearch = [self.database executeFetchRequest:request completion:^(NSArray *matchingIndexes, CKDatabase *database) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.gameIndexes = matchingIndexes;
+            [weakSelf.searchDisplayController.searchResultsTableView reloadData];
+        });
+    }];
+    
     return YES;
 }
 
