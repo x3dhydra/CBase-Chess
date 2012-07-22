@@ -11,15 +11,26 @@
 #import "ChessKit.h"
 #import "CKDatabaseMetadataViewController.h"
 
-@interface DatabaseListViewController ()
+@interface DatabaseListViewController () <CKDatabaseMetadataViewControllerDelegate>
 @property (nonatomic, strong) NSArray *databaseURLs;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSIndexPath *indexPathToReloadOnViewWillAppear;
 
 @end
 
 @implementation DatabaseListViewController
 @synthesize databaseURLs = _databaseURLs;
 @synthesize tableView = _tableView;
+
+- (id)init
+{
+    self = [super init];
+    if (self)
+    {
+        self.title = NSLocalizedString(@"CK_DATABASE_LIST_TITLE", @"Title for database list");
+    }
+    return self;
+}
 
 - (void)loadView
 {
@@ -49,6 +60,13 @@
     self.tableView = nil;
     
     self.databaseURLs = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -120,6 +138,7 @@
      NSURL *url = [self.databaseURLs objectAtIndex:indexPath.row];
     
     CKDatabaseMetadataViewController *controller = [[CKDatabaseMetadataViewController alloc] initWithURL:url];
+    controller.delegate = self;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -145,9 +164,32 @@
             [databaseURLs addObject:[NSURL fileURLWithPath:[path stringByAppendingPathComponent:fileName]]];
         }];
         
+        [databaseURLs sortUsingDescriptors:[self databaseSortDescriptors]];
+        
         _databaseURLs = databaseURLs;
     }
     return _databaseURLs;
+}
+
+- (NSArray *)databaseSortDescriptors
+{
+    NSSortDescriptor *alphabetical = [[NSSortDescriptor alloc] initWithKey:@"lastPathComponent" ascending:YES];
+    return [NSArray arrayWithObjects:alphabetical, nil];
+}
+
+#pragma mark - MetadataControllerDelegate
+
+- (void)metadataViewController:(CKDatabaseMetadataViewController *)metadataViewController didMoveDatabaseAtURL:(NSURL *)sourceURL toURL:(NSURL *)destinationURL
+{
+    self.databaseURLs = nil;
+    NSInteger index = [self.databaseURLs indexOfObject:destinationURL];
+    [self.tableView reloadData];
+    
+    if (index != NSNotFound)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
 }
 
 @end

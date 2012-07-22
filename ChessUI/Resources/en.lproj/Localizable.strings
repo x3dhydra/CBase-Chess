@@ -1,0 +1,51 @@
+/* Localizable.strings
+  ChessUI
+
+  Created by Austen Green on 7/22/12.
+  Copyright (c) 2012 Austen Green Consulting. All rights reserved. */
+
+/* Database attributes - File Name */
+"CKDatabaseTitleKey" = "Title";
+
+/* File attributes - file size */
+"NSFileSize" = "Size";
+
+/* File attributes - creation date */
+"NSFileCreationDate" = "Created";
+
+/* File attributes - modified date */
+"NSFileModificationDate" = "Modified";
+
+/* No comment provided by engineer. */
+"Cancel" = "Cancel";
+
+/* Message for generic error when renaming database */
+"CK_DATABASE_RENAMING_ERROR_MESSAGE" = "The database could not be renamed.";
+
+/* Title for generic error when renaming database */
+"CK_DATABASE_RENAMING_ERROR_TITLE" = "Error";
+
+/* Generic title for error alerts which only have on option */
+"CK_ERROR_ALERT_GENERIC_CANCEL_BUTTON_TITLE" = "OK";
+
+/* Message for invalid name when renaming database */
+"CK_INVALID_DATABASE_NAME_MESSAGE" = "The name you have entered is not valid.";
+
+/* Title for invalid name when renaming database */
+"CK_INVALID_DATABASE_NAME_TITLE" = "Error";
+
+/* Event date (table view cell) */
+"Date" = "Date";
+
+/* Round (table view cell) */
+"Round" = "Round";
+
+/* No comment provided by engineer. */
+"Select Variation" = "Select Variation";
+
+/* Format string for displaying title (1st argument, object) and number of games (2nd argument, object) in a database) */
+"CK_DATABASE_DETAIL_FORMAT_STRING" = "%@ (%@)";
+
+/* Title for database list */
+"CK_DATABASE_LIST_TITLE" = "Databases";
+

@@ -38,6 +38,9 @@
         
         UIBarButtonItem *share = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(shareDatabase:)];
         self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:share, nil];
+        
+        NSString *format = NSLocalizedString(@"CK_DATABASE_DETAIL_FORMAT_STRING", @"Format string for displaying title (1st argument, object) and number of games (2nd argument, object) in a database)");
+        self.title = [NSString stringWithFormat:format, self.database.title, [NSNumber numberWithUnsignedInteger:self.database.count]];
     }
     return self;
 }
