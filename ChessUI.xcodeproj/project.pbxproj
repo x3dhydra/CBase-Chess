@@ -42,6 +42,8 @@
 		19DB32C815BC5C8F0050B976 /* CKDatabaseMetadataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB32C715BC5C8F0050B976 /* CKDatabaseMetadataViewController.m */; };
 		19DB32CC15BC771E0050B976 /* CKKeyValueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB32CB15BC771E0050B976 /* CKKeyValueCell.m */; };
 		19DB32CF15BC78560050B976 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19DB32D115BC78560050B976 /* Localizable.strings */; };
+		19DB32D715BCAFDF0050B976 /* CKGameMetadataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB32D615BCAFDF0050B976 /* CKGameMetadataViewController.m */; };
+		19DB32DA15BCB1B60050B976 /* PGNTags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19DB32DC15BCB1B60050B976 /* PGNTags.strings */; };
 		19DE68A5154DC8760019F0A1 /* CKBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE68A4154DC8760019F0A1 /* CKBoardView.m */; };
 		19DE68A9154DCF1F0019F0A1 /* mahogany_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */; };
 		19DE68AA154DCF1F0019F0A1 /* maple_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68A8154DCF1F0019F0A1 /* maple_square.jpg */; };
@@ -320,6 +322,9 @@
 		19DB32CA15BC771E0050B976 /* CKKeyValueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKKeyValueCell.h; path = UI/CKKeyValueCell.h; sourceTree = "<group>"; };
 		19DB32CB15BC771E0050B976 /* CKKeyValueCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKKeyValueCell.m; path = UI/CKKeyValueCell.m; sourceTree = "<group>"; };
 		19DB32D015BC78560050B976 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		19DB32D515BCAFDF0050B976 /* CKGameMetadataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKGameMetadataViewController.h; path = Classes/Controller/CKGameMetadataViewController.h; sourceTree = "<group>"; };
+		19DB32D615BCAFDF0050B976 /* CKGameMetadataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKGameMetadataViewController.m; path = Classes/Controller/CKGameMetadataViewController.m; sourceTree = "<group>"; };
+		19DB32DB15BCB1B60050B976 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/PGNTags.strings; sourceTree = "<group>"; };
 		19DE68A3154DC8760019F0A1 /* CKBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKBoardView.h; path = UI/CKBoardView.h; sourceTree = "<group>"; };
 		19DE68A4154DC8760019F0A1 /* CKBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKBoardView.m; path = UI/CKBoardView.m; sourceTree = "<group>"; };
 		19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mahogany_square.jpg; sourceTree = "<group>"; };
@@ -623,6 +628,7 @@
 				19B79B7114833F5B000AD1A7 /* main.m */,
 				19B79B7314833F5B000AD1A7 /* ChessUI-Prefix.pch */,
 				19DB32D115BC78560050B976 /* Localizable.strings */,
+				19DB32DC15BCB1B60050B976 /* PGNTags.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -653,6 +659,8 @@
 				19C3584415B1ECF7002A8CB8 /* CKDatabaseSearchController.m */,
 				19DB32C615BC5C8F0050B976 /* CKDatabaseMetadataViewController.h */,
 				19DB32C715BC5C8F0050B976 /* CKDatabaseMetadataViewController.m */,
+				19DB32D515BCAFDF0050B976 /* CKGameMetadataViewController.h */,
+				19DB32D615BCAFDF0050B976 /* CKGameMetadataViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1199,6 +1207,7 @@
 				19DE6A19154DDDB60019F0A1 /* XBoardWRook@2x.tiff in Resources */,
 				1968B14B154F5A210027DC0E /* Variations.pgn in Resources */,
 				19DB32CF15BC78560050B976 /* Localizable.strings in Resources */,
+				19DB32DA15BCB1B60050B976 /* PGNTags.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1224,6 +1233,7 @@
 				19C3584515B1ECF7002A8CB8 /* CKDatabaseSearchController.m in Sources */,
 				19DB32C815BC5C8F0050B976 /* CKDatabaseMetadataViewController.m in Sources */,
 				19DB32CC15BC771E0050B976 /* CKKeyValueCell.m in Sources */,
+				19DB32D715BCAFDF0050B976 /* CKGameMetadataViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1252,6 +1262,15 @@
 				19DB32D015BC78560050B976 /* en */,
 			);
 			name = Localizable.strings;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		19DB32DC15BCB1B60050B976 /* PGNTags.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				19DB32DB15BCB1B60050B976 /* en */,
+			);
+			name = PGNTags.strings;
 			path = Resources;
 			sourceTree = "<group>";
 		};

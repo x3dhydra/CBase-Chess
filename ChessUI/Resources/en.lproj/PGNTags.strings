@@ -1,0 +1,57 @@
+/* PGNTags.strings
+  ChessUI
+
+  Created by Austen Green on 7/22/12.
+  Copyright (c) 2012 Austen Green Consulting. All rights reserved. */
+
+/* White Player Name */
+"White" = "White";
+
+/* Black Player Name */
+"Black" = "Black";
+
+/* Site */
+"Site" = "Site";
+
+/* Event */
+"Event" = "Event";
+
+/* Game Date */
+"Date" = "Date";
+
+/* Round */
+"Round" = "Round";
+
+/* Result (1-0, 0-1, draw, etc) */
+"Result" = "Result";
+
+/* White Player's Title */
+"WhiteTitle" = "White Title";
+
+/* SubVariation */
+"SubVariation" = "SubVariation";
+
+/* Encyclopedia of Chess Openings */
+"ECO" = "ECO";
+
+/* Black Player's USCF Rating */
+"BlackUSCF" = "Black USCF";
+
+/* White Player's ELO */
+"WhiteElo" = "White Rating";
+
+/* Black Player's ELO */
+"BlackElo" = "Black Rating";
+
+/* Black Player's Title */
+"BlackTitle" = "Black Title";
+
+/* Time Control */
+"TimeControl" = "Time Control";
+
+/* Event Date */
+"EventDate" = "Event Date";
+
+/* Variation */
+"Variation" = "Variation";
+

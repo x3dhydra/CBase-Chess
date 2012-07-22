@@ -14,7 +14,6 @@
 @interface DatabaseListViewController () <CKDatabaseMetadataViewControllerDelegate>
 @property (nonatomic, strong) NSArray *databaseURLs;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSIndexPath *indexPathToReloadOnViewWillAppear;
 
 @end
 
@@ -28,6 +27,7 @@
     if (self)
     {
         self.title = NSLocalizedString(@"CK_DATABASE_LIST_TITLE", @"Title for database list");
+        self.hidesBottomBarWhenPushed = YES;
     }
     return self;
 }

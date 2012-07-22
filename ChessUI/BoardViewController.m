@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreText/CoreText.h>
 #import "CTLabel.h"
+#import "CKGameMetadataViewController.h"
 
 @interface BoardViewController ()
 {
@@ -42,6 +43,12 @@
     {
         _currentNode = game.gameTree;
         _game = game;
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
+        [button addTarget:self action:@selector(showGameDetails) forControlEvents:UIControlEventTouchUpInside];
+        UIBarButtonItem *info = [[UIBarButtonItem alloc] initWithCustomView:button];
+        
+        self.toolbarItems = [NSArray arrayWithObjects:info, nil];
     }
     return self;
 }
@@ -94,6 +101,13 @@
     scrollView.contentSize = label.bounds.size;
     [scrollView addSubview:label];
     self.scrollView = scrollView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setToolbarHidden:NO animated:animated];
 }
 
 - (void)viewWillLayoutSubviews
@@ -199,6 +213,14 @@
         self.currentNode = [self.currentNode.children objectAtIndex:index];
         [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
     }
+}
+
+#pragma mark - Details
+
+- (void)showGameDetails
+{
+    CKGameMetadataViewController *controller = [[CKGameMetadataViewController alloc] initWithGame:self.game];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end
