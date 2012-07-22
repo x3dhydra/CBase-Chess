@@ -106,8 +106,20 @@
     NSString *searchQuery = self.searchDisplayController.searchBar.text;
     
     NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSDictionary *evaluatedObject, NSDictionary *bindings) {
-        NSString *name = [evaluatedObject objectForKey:CKGameWhitePlayerKey];
-        NSRange range = [name rangeOfString:searchQuery options:NSAnchoredSearch | NSCaseInsensitiveSearch];
+        
+        NSInteger options = NSCaseInsensitiveSearch;
+        
+        // Check white player
+        NSRange range = [[evaluatedObject objectForKey:CKGameWhitePlayerKey] rangeOfString:searchQuery options:options];
+        
+        // Check black player
+        if (range.location == NSNotFound)
+            range = [[evaluatedObject objectForKey:CKGameBlackPlayerKey] rangeOfString:searchQuery options:options];
+        
+        // Check event - don't do an anchored search
+        if (range.location == NSNotFound)
+            range = [[evaluatedObject objectForKey:CKGameEventKey] rangeOfString:searchQuery options:options];
+        
         return range.location != NSNotFound;
     }];
     
