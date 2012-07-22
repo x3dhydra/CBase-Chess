@@ -39,6 +39,7 @@
 		19B79BA114834005000AD1A7 /* austen.cbt in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8F14834005000AD1A7 /* austen.cbt */; };
 		19B79BA214834005000AD1A7 /* austen.cbtt in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B9014834005000AD1A7 /* austen.cbtt */; };
 		19C3584515B1ECF7002A8CB8 /* CKDatabaseSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C3584415B1ECF7002A8CB8 /* CKDatabaseSearchController.m */; };
+		19DB32C815BC5C8F0050B976 /* CKDatabaseMetadataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB32C715BC5C8F0050B976 /* CKDatabaseMetadataViewController.m */; };
 		19DE68A5154DC8760019F0A1 /* CKBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE68A4154DC8760019F0A1 /* CKBoardView.m */; };
 		19DE68A9154DCF1F0019F0A1 /* mahogany_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */; };
 		19DE68AA154DCF1F0019F0A1 /* maple_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68A8154DCF1F0019F0A1 /* maple_square.jpg */; };
@@ -312,6 +313,8 @@
 		19B79BB714834136000AD1A7 /* CBBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBBase.h; path = ../../Chessbase/Chessbase/CBBase.h; sourceTree = "<group>"; };
 		19C3584315B1ECF7002A8CB8 /* CKDatabaseSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKDatabaseSearchController.h; path = UI/CKDatabaseSearchController.h; sourceTree = "<group>"; };
 		19C3584415B1ECF7002A8CB8 /* CKDatabaseSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKDatabaseSearchController.m; path = UI/CKDatabaseSearchController.m; sourceTree = "<group>"; };
+		19DB32C615BC5C8F0050B976 /* CKDatabaseMetadataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKDatabaseMetadataViewController.h; path = Classes/Controller/CKDatabaseMetadataViewController.h; sourceTree = "<group>"; };
+		19DB32C715BC5C8F0050B976 /* CKDatabaseMetadataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKDatabaseMetadataViewController.m; path = Classes/Controller/CKDatabaseMetadataViewController.m; sourceTree = "<group>"; };
 		19DE68A3154DC8760019F0A1 /* CKBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKBoardView.h; path = UI/CKBoardView.h; sourceTree = "<group>"; };
 		19DE68A4154DC8760019F0A1 /* CKBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKBoardView.m; path = UI/CKBoardView.m; sourceTree = "<group>"; };
 		19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mahogany_square.jpg; sourceTree = "<group>"; };
@@ -642,6 +645,8 @@
 				19129150155B6A28006F02B2 /* DatabaseListViewController.m */,
 				19C3584315B1ECF7002A8CB8 /* CKDatabaseSearchController.h */,
 				19C3584415B1ECF7002A8CB8 /* CKDatabaseSearchController.m */,
+				19DB32C615BC5C8F0050B976 /* CKDatabaseMetadataViewController.h */,
+				19DB32C715BC5C8F0050B976 /* CKDatabaseMetadataViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1208,6 +1213,7 @@
 				191291351559F120006F02B2 /* NSMutableAttributedString+BRExtensions.m in Sources */,
 				19129151155B6A29006F02B2 /* DatabaseListViewController.m in Sources */,
 				19C3584515B1ECF7002A8CB8 /* CKDatabaseSearchController.m in Sources */,
+				19DB32C815BC5C8F0050B976 /* CKDatabaseMetadataViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,6 +9,7 @@
 #import "DatabaseListViewController.h"
 #import "DatabaseViewController.h"
 #import "ChessKit.h"
+#import "CKDatabaseMetadataViewController.h"
 
 @interface DatabaseListViewController ()
 @property (nonatomic, strong) NSArray *databaseURLs;
@@ -74,7 +75,10 @@
     static NSString *identifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
     if (!cell)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    }
     
     NSURL *url = [self.databaseURLs objectAtIndex:indexPath.row];
     cell.textLabel.text = [[[url path] lastPathComponent] stringByDeletingPathExtension];
@@ -109,6 +113,14 @@
 {
     NSURL *url = [self.databaseURLs objectAtIndex:indexPath.row];
     return [[NSFileManager defaultManager] isDeletableFileAtPath:url.path];
+}
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+     NSURL *url = [self.databaseURLs objectAtIndex:indexPath.row];
+    
+    CKDatabaseMetadataViewController *controller = [[CKDatabaseMetadataViewController alloc] initWithURL:url];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 #pragma mark - Data
