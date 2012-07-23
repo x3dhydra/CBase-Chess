@@ -141,6 +141,7 @@
     [super viewWillDisappear:animated];
     [self.popoverController dismissPopoverAnimated:animated];
     self.popoverController = nil;
+    [self.navigationController setToolbarHidden:YES animated:animated];
 }
 
 - (void)viewWillLayoutSubviews

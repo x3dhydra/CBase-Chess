@@ -14,6 +14,7 @@
 @interface CKDatabaseSearchController()
 @property (nonatomic, strong) NSArray *gameIndexes;
 @property (nonatomic, strong) id currentSearch;
+@property (nonatomic, assign) BOOL loading;
 @end
 
 @implementation CKDatabaseSearchController
@@ -22,6 +23,7 @@
 @synthesize gameIndexes = _gameIndexes;
 @synthesize delegate;
 @synthesize currentSearch = _currentSearch;
+@synthesize loading = _loading;
 
 - (id)initWithDatabase:(CKDatabase *)database searchDisplayController:(UISearchDisplayController *)searchDisplayController
 {
@@ -49,49 +51,85 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.gameIndexes.count;
+    if (self.loading)
+        return 1;
+    else
+        return self.gameIndexes.count;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    CKGameCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (!cell)
+    if (self.loading)
     {
-        cell = [[CKGameCell alloc] initWithReuseIdentifier:CellIdentifier];
-        //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        static NSString *loadingIdentifier = @"Loading";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:loadingIdentifier];
+        
+        if (!cell)
+        {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:loadingIdentifier];
+            UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+            [activity startAnimating];
+            cell.accessoryView = activity;
+            cell.textLabel.text = NSLocalizedString(@"Loading...", @"Loading cell text for search results");
+        }
+        
+        return cell;
     }
-    
-    NSUInteger index = [self indexForIndexPath:indexPath];
-    
-    NSDictionary *metadata = [self.database metadataAtIndex:index];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", [metadata objectForKey:CKGameWhitePlayerKey], [metadata objectForKey:CKGameBlackPlayerKey]];
-    cell.detailTextLabel.text = [metadata objectForKey:CKGameEventKey];
-    cell.resultLabel.text = [metadata objectForKey:CKGameResultKey];
-    cell.subtitleLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Date", @"Event date (table view cell)"), [metadata objectForKey:CKGameDateKey]];
-    cell.alternateSubtitleLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Round", @"Round (table view cell)"), [metadata objectForKey:CKGameRoundKey]];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    return cell;
+    else 
+    {
+        static NSString *CellIdentifier = @"Cell";
+        CKGameCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+        
+        if (!cell)
+        {
+            cell = [[CKGameCell alloc] initWithReuseIdentifier:CellIdentifier];
+            //cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+        }
+        
+        NSUInteger index = [self indexForIndexPath:indexPath];
+        
+        NSDictionary *metadata = [self.database metadataAtIndex:index];
+        cell.textLabel.text = [NSString stringWithFormat:@"%@ - %@", [metadata objectForKey:CKGameWhitePlayerKey], [metadata objectForKey:CKGameBlackPlayerKey]];
+        cell.detailTextLabel.text = [metadata objectForKey:CKGameEventKey];
+        cell.resultLabel.text = [metadata objectForKey:CKGameResultKey];
+        cell.subtitleLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Date", @"Event date (table view cell)"), [metadata objectForKey:CKGameDateKey]];
+        cell.alternateSubtitleLabel.text = [NSString stringWithFormat:@"%@: %@", NSLocalizedString(@"Round", @"Round (table view cell)"), [metadata objectForKey:CKGameRoundKey]];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        
+        return cell;
+
+    }
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
     [self.database cancelSearch:self.currentSearch];
-    NSPredicate *predicate = [self searchPredicate];
     
-    CKFetchRequest *request = [[CKFetchRequest alloc] init];
-    request.predicate = predicate;
+    if (searchString.length)
+    {
+        NSPredicate *predicate = [self searchPredicate];
+        
+        CKFetchRequest *request = [[CKFetchRequest alloc] init];
+        request.predicate = predicate;
+        
+        __weak CKDatabaseSearchController *weakSelf = self;
+        
+        self.loading = YES;
+        
+        self.currentSearch = [self.database executeFetchRequest:request completion:^(NSArray *matchingIndexes, CKDatabase *database) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.gameIndexes = matchingIndexes;
+                weakSelf.loading = NO;
+                [weakSelf.searchDisplayController.searchResultsTableView reloadData];
+            });
+        }];
+    }
+    else
+    {
+        self.loading = NO;
+    }
     
-    __weak CKDatabaseSearchController *weakSelf = self;
-    
-    self.currentSearch = [self.database executeFetchRequest:request completion:^(NSArray *matchingIndexes, CKDatabase *database) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            weakSelf.gameIndexes = matchingIndexes;
-            [weakSelf.searchDisplayController.searchResultsTableView reloadData];
-        });
-    }];
     
     return YES;
 }
@@ -124,6 +162,14 @@
     }];
     
     return predicate;
+}
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (self.loading)
+        return nil;
+    else
+        return indexPath;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
