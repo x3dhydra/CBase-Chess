@@ -106,6 +106,7 @@
     {
         [string setLink:^(CTLabel *button, NSRange range, CTLinkBlockSelectionType selectionType) {
             controller.currentNode = tree;
+            [controller updateToolbarButtons];
             [controller.boardView setPosition:tree.position withAnimation:CKBoardAnimationNone];
         }];
         [string addAttribute:kCTLabelLinkHighlightedForegroundColorKey value:(__bridge id)[[UIColor orangeColor] CGColor] range:NSMakeRange(0, string.length)];
@@ -133,6 +134,13 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setToolbarHidden:NO animated:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.popoverController dismissPopoverAnimated:animated];
+    self.popoverController = nil;
 }
 
 - (void)viewWillLayoutSubviews
@@ -205,7 +213,7 @@
 
 - (void)showNextMoveWithTree:(CKGameTree *)tree
 {
-    self.currentNode = self.currentNode.nextTree;
+    self.currentNode = tree;
     [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
     
     NSString *move = CKAccessibilityNameForGameTree(self.currentNode);
@@ -346,7 +354,11 @@
 - (void)showSettings:(UIBarButtonItem *)item
 {
     if (self.popoverController)
+    {
+        [self.popoverController dismissPopoverAnimated:YES];
+        self.popoverController = nil;
         return;
+    }
     
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Settings" bundle:[NSBundle mainBundle]];
     UIViewController *settings = [storyboard instantiateViewControllerWithIdentifier:@"GameSettings"];
@@ -373,6 +385,12 @@
 - (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
 {
     self.popoverController = nil;
+}
+
+- (BOOL)popoverControllerShouldDismissPopover:(UIPopoverController *)popoverController
+{
+    self.popoverController = nil;
+    return YES;
 }
 
 @end
