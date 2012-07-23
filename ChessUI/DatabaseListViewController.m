@@ -10,14 +10,17 @@
 #import "DatabaseViewController.h"
 #import "ChessKit.h"
 #import "CKDatabaseMetadataViewController.h"
+#import "CKDatabaseListProvider.h"
 
 @interface DatabaseListViewController () <CKDatabaseMetadataViewControllerDelegate>
 @property (nonatomic, strong) NSArray *databaseURLs;
+@property (nonatomic, strong) CKDatabaseListProvider *listProvider;
 
 @end
 
 @implementation DatabaseListViewController
 @synthesize databaseURLs = _databaseURLs;
+@synthesize listProvider = _listProvider;
 
 - (id)init
 {
@@ -26,6 +29,8 @@
     {
         self.title = NSLocalizedString(@"CK_DATABASE_LIST_TITLE", @"Title for database list");
         self.hidesBottomBarWhenPushed = YES;
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        self.listProvider = [[CKDatabaseListProvider alloc] initWithRootDirectory:path];
     }
     return self;
 }
@@ -106,7 +111,7 @@
         
         if ([[NSFileManager defaultManager] removeItemAtURL:url error:NULL])
         {
-            self.databaseURLs = nil;
+            [self.listProvider reloadData];
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     }
@@ -120,7 +125,7 @@
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-     NSURL *url = [self.databaseURLs objectAtIndex:indexPath.row];
+    NSURL *url = [self.databaseURLs objectAtIndex:indexPath.row];
     
     CKDatabaseMetadataViewController *controller = [[CKDatabaseMetadataViewController alloc] initWithURL:url];
     controller.delegate = self;
@@ -129,44 +134,16 @@
 
 #pragma mark - Data
 
-- (NSArray *)supportedExtensions
-{
-    return [NSArray arrayWithObjects:@"pgn", nil];
-}
-
 - (NSArray *)databaseURLs
 {
-    if (!_databaseURLs)
-    {
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        
-        NSArray *allContents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:path error:NULL];
-        NSPredicate *filter = [NSPredicate predicateWithFormat:@"pathExtension IN %@", [self supportedExtensions]];
-        NSArray *filteredContents = [allContents filteredArrayUsingPredicate:filter];
-        
-        NSMutableArray *databaseURLs = [[NSMutableArray alloc] initWithCapacity:filteredContents.count];
-        [filteredContents enumerateObjectsUsingBlock:^(NSString *fileName, NSUInteger idx, BOOL *stop) {
-            [databaseURLs addObject:[NSURL fileURLWithPath:[path stringByAppendingPathComponent:fileName]]];
-        }];
-        
-        [databaseURLs sortUsingDescriptors:[self databaseSortDescriptors]];
-        
-        _databaseURLs = databaseURLs;
-    }
-    return _databaseURLs;
-}
-
-- (NSArray *)databaseSortDescriptors
-{
-    NSSortDescriptor *alphabetical = [[NSSortDescriptor alloc] initWithKey:@"lastPathComponent" ascending:YES];
-    return [NSArray arrayWithObjects:alphabetical, nil];
+    return self.listProvider.databaseURLs;
 }
 
 #pragma mark - MetadataControllerDelegate
 
 - (void)metadataViewController:(CKDatabaseMetadataViewController *)metadataViewController didMoveDatabaseAtURL:(NSURL *)sourceURL toURL:(NSURL *)destinationURL
 {
-    self.databaseURLs = nil;
+    [self.listProvider reloadData];
     NSInteger index = [self.databaseURLs indexOfObject:destinationURL];
     [self.tableView reloadData];
     

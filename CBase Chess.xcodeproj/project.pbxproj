@@ -28,6 +28,7 @@
 		193A933215BD1DBE00E7F73A /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 193A932E15BD1DBE00E7F73A /* Icon@2x.png */; };
 		193A933415BD1E2400E7F73A /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 193A933315BD1E2400E7F73A /* Default-Portrait~ipad.png */; };
 		193A933615BD1E2E00E7F73A /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 193A933515BD1E2E00E7F73A /* Default-Portrait@2x~ipad.png */; };
+		193A934A15BD21AB00E7F73A /* CKDatabaseListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 193A934915BD21AB00E7F73A /* CKDatabaseListProvider.m */; };
 		1968B148154E47620027DC0E /* DatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B147154E47620027DC0E /* DatabaseViewController.m */; };
 		1968B14B154F5A210027DC0E /* Variations.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 1968B14A154F5A210027DC0E /* Variations.pgn */; };
 		1968B1B115534C6C0027DC0E /* CKGameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B1B015534C6C0027DC0E /* CKGameCell.m */; };
@@ -39,19 +40,6 @@
 		19B79B7014833F5B000AD1A7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B6E14833F5B000AD1A7 /* InfoPlist.strings */; };
 		19B79B7214833F5B000AD1A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B79B7114833F5B000AD1A7 /* main.m */; };
 		19B79B7614833F5B000AD1A7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B79B7514833F5B000AD1A7 /* AppDelegate.m */; };
-		19B79B9614834005000AD1A7 /* austen.cba in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8414834005000AD1A7 /* austen.cba */; };
-		19B79B9714834005000AD1A7 /* austen.cbb in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8514834005000AD1A7 /* austen.cbb */; };
-		19B79B9814834005000AD1A7 /* austen.cbc in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8614834005000AD1A7 /* austen.cbc */; };
-		19B79B9914834005000AD1A7 /* austen.cbe in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8714834005000AD1A7 /* austen.cbe */; };
-		19B79B9A14834005000AD1A7 /* austen.cbg in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8814834005000AD1A7 /* austen.cbg */; };
-		19B79B9B14834005000AD1A7 /* austen.cbgi in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8914834005000AD1A7 /* austen.cbgi */; };
-		19B79B9C14834005000AD1A7 /* austen.cbh in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8A14834005000AD1A7 /* austen.cbh */; };
-		19B79B9D14834005000AD1A7 /* austen.cbj in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8B14834005000AD1A7 /* austen.cbj */; };
-		19B79B9E14834005000AD1A7 /* austen.cbm in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8C14834005000AD1A7 /* austen.cbm */; };
-		19B79B9F14834005000AD1A7 /* austen.cbp in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8D14834005000AD1A7 /* austen.cbp */; };
-		19B79BA014834005000AD1A7 /* austen.cbs in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8E14834005000AD1A7 /* austen.cbs */; };
-		19B79BA114834005000AD1A7 /* austen.cbt in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B8F14834005000AD1A7 /* austen.cbt */; };
-		19B79BA214834005000AD1A7 /* austen.cbtt in Resources */ = {isa = PBXBuildFile; fileRef = 19B79B9014834005000AD1A7 /* austen.cbtt */; };
 		19C3584515B1ECF7002A8CB8 /* CKDatabaseSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C3584415B1ECF7002A8CB8 /* CKDatabaseSearchController.m */; };
 		19DB32C815BC5C8F0050B976 /* CKDatabaseMetadataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB32C715BC5C8F0050B976 /* CKDatabaseMetadataViewController.m */; };
 		19DB32CC15BC771E0050B976 /* CKKeyValueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB32CB15BC771E0050B976 /* CKKeyValueCell.m */; };
@@ -264,7 +252,6 @@
 		19DE6A17154DDDB60019F0A1 /* XBoardWQueen@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE6963154DDDB50019F0A1 /* XBoardWQueen@2x.tiff */; };
 		19DE6A18154DDDB60019F0A1 /* XBoardWRook.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE6964154DDDB50019F0A1 /* XBoardWRook.tiff */; };
 		19DE6A19154DDDB60019F0A1 /* XBoardWRook@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE6965154DDDB50019F0A1 /* XBoardWRook@2x.tiff */; };
-		19FF471D1544A0D100A7C545 /* 2500.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 19FF471C1544A0D100A7C545 /* 2500.pgn */; };
 		19FF47201544A10A00A7C545 /* libChessKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19FF471F1544A10A00A7C545 /* libChessKit.a */; };
 /* End PBXBuildFile section */
 
@@ -320,6 +307,8 @@
 		193A932E15BD1DBE00E7F73A /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		193A933315BD1E2400E7F73A /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = "<group>"; };
 		193A933515BD1E2E00E7F73A /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
+		193A934815BD21AB00E7F73A /* CKDatabaseListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKDatabaseListProvider.h; path = Classes/Controller/CKDatabaseListProvider.h; sourceTree = "<group>"; };
+		193A934915BD21AB00E7F73A /* CKDatabaseListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKDatabaseListProvider.m; path = Classes/Controller/CKDatabaseListProvider.m; sourceTree = "<group>"; };
 		1968B146154E47620027DC0E /* DatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseViewController.h; sourceTree = "<group>"; };
 		1968B147154E47620027DC0E /* DatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseViewController.m; sourceTree = "<group>"; };
 		1968B14A154F5A210027DC0E /* Variations.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Variations.pgn; path = ../../ChessKit/ChessKitTests/Resources/Variations.pgn; sourceTree = "<group>"; };
@@ -745,6 +734,8 @@
 				19DB32D615BCAFDF0050B976 /* CKGameMetadataViewController.m */,
 				19DB330015BCE3030050B976 /* CKGameSettingsViewController.h */,
 				19DB330115BCE3030050B976 /* CKGameSettingsViewController.m */,
+				193A934815BD21AB00E7F73A /* CKDatabaseListProvider.h */,
+				193A934915BD21AB00E7F73A /* CKDatabaseListProvider.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -1131,20 +1122,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				19B79B7014833F5B000AD1A7 /* InfoPlist.strings in Resources */,
-				19B79B9614834005000AD1A7 /* austen.cba in Resources */,
-				19B79B9714834005000AD1A7 /* austen.cbb in Resources */,
-				19B79B9814834005000AD1A7 /* austen.cbc in Resources */,
-				19B79B9914834005000AD1A7 /* austen.cbe in Resources */,
-				19B79B9A14834005000AD1A7 /* austen.cbg in Resources */,
-				19B79B9B14834005000AD1A7 /* austen.cbgi in Resources */,
-				19B79B9C14834005000AD1A7 /* austen.cbh in Resources */,
-				19B79B9D14834005000AD1A7 /* austen.cbj in Resources */,
-				19B79B9E14834005000AD1A7 /* austen.cbm in Resources */,
-				19B79B9F14834005000AD1A7 /* austen.cbp in Resources */,
-				19B79BA014834005000AD1A7 /* austen.cbs in Resources */,
-				19B79BA114834005000AD1A7 /* austen.cbt in Resources */,
-				19B79BA214834005000AD1A7 /* austen.cbtt in Resources */,
-				19FF471D1544A0D100A7C545 /* 2500.pgn in Resources */,
 				19DE68A9154DCF1F0019F0A1 /* mahogany_square.jpg in Resources */,
 				19DE68AA154DCF1F0019F0A1 /* maple_square.jpg in Resources */,
 				19DE6966154DDDB50019F0A1 /* AlphaBBishop.tiff in Resources */,
@@ -1392,6 +1369,7 @@
 				19DB330215BCE3030050B976 /* CKGameSettingsViewController.m in Sources */,
 				19DB330515BCE3C60050B976 /* CBaseConstants.m in Sources */,
 				19DB330C15BCF8280050B976 /* CKAccessibility.m in Sources */,
+				193A934A15BD21AB00E7F73A /* CKDatabaseListProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
