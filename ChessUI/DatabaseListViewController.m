@@ -13,60 +13,21 @@
 
 @interface DatabaseListViewController () <CKDatabaseMetadataViewControllerDelegate>
 @property (nonatomic, strong) NSArray *databaseURLs;
-@property (nonatomic, strong) UITableView *tableView;
 
 @end
 
 @implementation DatabaseListViewController
 @synthesize databaseURLs = _databaseURLs;
-@synthesize tableView = _tableView;
 
 - (id)init
 {
-    self = [super init];
+    self = [super initWithStyle:UITableViewStylePlain];
     if (self)
     {
         self.title = NSLocalizedString(@"CK_DATABASE_LIST_TITLE", @"Title for database list");
         self.hidesBottomBarWhenPushed = YES;
     }
     return self;
-}
-
-- (void)loadView
-{
-    self.view = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
-    tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [self.view addSubview:tableView];
-    self.tableView = tableView;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];    
-    
-    [self.tableView reloadData];
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    
-    self.tableView.delegate = nil;
-    self.tableView.dataSource = nil;
-    self.tableView = nil;
-    
-    self.databaseURLs = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -79,6 +40,13 @@
     self.databaseURLs = nil;
     if ([self isViewLoaded])
         [self.tableView reloadData];
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 #pragma mark - UITableViewDataSource
@@ -100,6 +68,7 @@
     
     NSURL *url = [self.databaseURLs objectAtIndex:indexPath.row];
     cell.textLabel.text = [[[url path] lastPathComponent] stringByDeletingPathExtension];
+    cell.accessoryView = nil;
     
     return cell;
 }
@@ -109,8 +78,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSURL *url = [self.databaseURLs objectAtIndex:indexPath.row];
-    DatabaseViewController *controller = [[DatabaseViewController alloc] initWithDatabase:[CKDatabase databaseWithContentsOfURL:url]];
-    [self.navigationController pushViewController:controller animated:YES];
+    [[UIApplication sharedApplication] beginIgnoringInteractionEvents];
+    
+    UIActivityIndicatorView *activity = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    cell.accessoryView = activity;
+    [activity startAnimating];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        CKDatabase *database = [CKDatabase databaseWithContentsOfURL:url];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            DatabaseViewController *controller = [[DatabaseViewController alloc] initWithDatabase:database];
+            [self.navigationController pushViewController:controller animated:YES];
+            [[UIApplication sharedApplication] endIgnoringInteractionEvents];
+        });
+    });
+    
+    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath

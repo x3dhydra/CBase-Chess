@@ -42,7 +42,7 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="Ob2-Xx-Z6q">
                                                     <rect key="frame" x="215" y="8" width="79" height="27"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                                     <connections>
                                                         <action selector="toggleVariations:" destination="IJg-YV-EGn" eventType="valueChanged" id="maT-4a-IUi"/>
                                                     </connections>
@@ -81,6 +81,16 @@
             <point key="canvasLocation" x="294" y="-152"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CKGameSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CKGameSettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="toggleVariations:" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="variationsSwitch" candidateClass="UISwitch"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DatabaseListViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DatabaseListViewController : UITableViewController
 
 - (void)reloadData;
 
