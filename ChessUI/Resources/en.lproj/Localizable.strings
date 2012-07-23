@@ -49,3 +49,6 @@
 /* Title for database list */
 "CK_DATABASE_LIST_TITLE" = "Databases";
 
+/* Title for game metadata screen */
+"CK_GAME_METADATA_TITLE" = "Game";
+

@@ -24,6 +24,7 @@
     if (self)
     {
         _game = game;
+        self.title = NSLocalizedString(@"CK_GAME_METADATA_TITLE", @"Title for game metadata screen");
         self.hidesBottomBarWhenPushed = YES;
     }
     return self;
