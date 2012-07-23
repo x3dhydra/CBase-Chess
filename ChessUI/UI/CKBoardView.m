@@ -18,6 +18,7 @@ typedef void (^CKAnimationBlock)(void);
 }
 @property (nonatomic, strong) NSMutableDictionary *pieceViews;
 @property (nonatomic, strong) NSArray *squareAccessibilityElements;
+@property (nonatomic, strong) NSMutableArray *animationCompletionBlocks;
 @end
 
 @implementation CKBoardView
@@ -29,6 +30,7 @@ typedef void (^CKAnimationBlock)(void);
 @synthesize debugSquares = _debugSquares;
 @synthesize pieceViews = _pieceViews;
 @synthesize squareAccessibilityElements = _squareAccessibilityElements;
+@synthesize animationCompletionBlocks = _animationCompletionBlocks;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -38,6 +40,7 @@ typedef void (^CKAnimationBlock)(void);
         _board = CCBoardCreateMutable();
         _pieceViews = [[NSMutableDictionary alloc] initWithCapacity:32];
         _pieceImages = [[NSMutableDictionary alloc] initWithCapacity:12];
+        _animationCompletionBlocks = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -286,7 +289,16 @@ typedef void (^CKAnimationBlock)(void);
 - (void)animateDifferenceToBoard:(CCBoardRef)board
 {
     NSMutableArray *animations = [NSMutableArray array];
-    NSMutableArray *completion = [NSMutableArray array];
+    NSMutableArray *completion = self.animationCompletionBlocks;
+    
+    if (completion.count)
+    {
+        [completion enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+            CKAnimationBlock completionBlock = obj;
+            completionBlock();
+        }];
+        [completion removeAllObjects];
+    }
     
     [CCPieceGetAllPieces() enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
         CCColoredPiece piece = (CCColoredPiece)idx;
@@ -379,10 +391,14 @@ typedef void (^CKAnimationBlock)(void);
             animationBlock();
         }];
     } completion:^(BOOL finished) {
-        [completion enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-            CKAnimationBlock completionBlock = obj;
-            completionBlock();
-        }];
+        if (finished)
+        {
+            [completion enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                CKAnimationBlock completionBlock = obj;
+                completionBlock();
+            }];
+            [completion removeAllObjects];
+        }
         self.userInteractionEnabled = YES;
     }];
 }
@@ -441,7 +457,7 @@ typedef void (^CKAnimationBlock)(void);
         {
             UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
             element.accessibilityFrame = [self convertRect:[self rectForSquare:square] toView:self.window];
-            element.accessibilityLabel = (__bridge NSString *)CCSquareName(square);
+            element.accessibilityLabel = [(__bridge NSString *)CCSquareName(square) uppercaseString];
             [elements addObject:element];
         }
         _squareAccessibilityElements = elements;

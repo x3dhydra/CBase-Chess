@@ -26,6 +26,9 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) CTLabel *gameTextLabel;
 
+@property (nonatomic, strong) UIBarButtonItem *previousBarButtonItem;
+@property (nonatomic, strong) UIBarButtonItem *nextBarButtonItem;
+
 @end
 
 @implementation BoardViewController
@@ -36,6 +39,9 @@
 @synthesize scrollView = _scrollView;
 @synthesize gameTextLabel = _gameTextLabel;
 
+@synthesize previousBarButtonItem = _previousBarButtonItem;
+@synthesize nextBarButtonItem = _nextBarButtonItem;
+
 - (id)initWithGame:(CKGame *)game
 {
     self = [super init];
@@ -44,11 +50,7 @@
         _currentNode = game.gameTree;
         _game = game;
         
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
-        [button addTarget:self action:@selector(showGameDetails) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *info = [[UIBarButtonItem alloc] initWithCustomView:button];
-        
-        self.toolbarItems = [NSArray arrayWithObjects:info, nil];
+        [self updateToolbar];        
     }
     return self;
 }
@@ -137,30 +139,57 @@
 {
     if (gestureRecognizer.state == UIGestureRecognizerStateRecognized)
     {
-        if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight && self.currentNode.children.count)
+        if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionRight)
         {
-            if (self.currentNode.children.count == 1)
-            {
-                self.currentNode = self.currentNode.nextTree;
-                [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
-            }
-            else {
-                UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Select Variation", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles: nil];
-                NSArray *titles = [self.currentNode.children valueForKeyPath:@"moveString"];
-                
-                for (NSString *title in titles)
-                    [sheet addButtonWithTitle:title];
-                
-                [sheet showInView:self.view];
-            }
-            
+            [self showNextMove];            
         }
-        else if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionLeft && self.currentNode.parent)
+        else if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionLeft)
         {
-            self.currentNode = self.currentNode.parent;
-            [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
+            [self showPreviousMove];            
         }
     }
+}
+
+- (void)showPreviousMove
+{
+    if ([self canShowPreviousMove])
+    {
+        self.currentNode = self.currentNode.parent;
+        [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
+        [self updateToolbarButtons];
+    }
+}
+
+- (void)showNextMove
+{
+    if ([self canShowNextMove])
+    {
+        if (self.currentNode.children.count == 1)
+        {
+            self.currentNode = self.currentNode.nextTree;
+            [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
+            [self updateToolbarButtons];
+        }
+        else {
+            UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Select Variation", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles: nil];
+            NSArray *titles = [self.currentNode.children valueForKeyPath:@"moveString"];
+            
+            for (NSString *title in titles)
+                [sheet addButtonWithTitle:title];
+            
+            [sheet showInView:self.view];
+        }
+    }
+}
+
+- (BOOL)canShowPreviousMove
+{
+    return self.currentNode.parent != nil;
+}
+
+- (BOOL)canShowNextMove
+{
+    return self.currentNode.children.count > 0;
 }
 
 - (void)flipBoard
@@ -212,6 +241,8 @@
         NSInteger index = buttonIndex + [actionSheet firstOtherButtonIndex];
         self.currentNode = [self.currentNode.children objectAtIndex:index];
         [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
+        
+        [self updateToolbarButtons];
     }
 }
 
@@ -221,6 +252,30 @@
 {
     CKGameMetadataViewController *controller = [[CKGameMetadataViewController alloc] initWithGame:self.game];
     [self.navigationController pushViewController:controller animated:YES];
+}
+
+#pragma mark - Toolbar
+
+- (void)updateToolbar
+{
+    UIButtonType type = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ? UIButtonTypeInfoLight : UIButtonTypeInfoDark;
+    UIButton *button = [UIButton buttonWithType:type];
+    [button addTarget:self action:@selector(showGameDetails) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *info = [[UIBarButtonItem alloc] initWithCustomView:button];
+    
+    UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    self.previousBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"UIButtonBarArrowLeft"] landscapeImagePhone:[UIImage imageNamed:@"UIButtonBarArrowLeftLandscape"] style:UIBarButtonItemStylePlain target:self action:@selector(showPreviousMove)];
+    self.nextBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"UIButtonBarArrowRight"] landscapeImagePhone:[UIImage imageNamed:@"UIButtonBarArrowRightLandscape"] style:UIBarButtonItemStylePlain target:self action:@selector(showNextMove)];
+    
+    self.toolbarItems = [NSArray arrayWithObjects:flexibleSpace, info, flexibleSpace, self.previousBarButtonItem, flexibleSpace, self.nextBarButtonItem, flexibleSpace, nil];
+    
+    [self updateToolbarButtons];
+}
+
+- (void)updateToolbarButtons
+{
+    self.previousBarButtonItem.enabled = [self canShowPreviousMove];
+    self.nextBarButtonItem.enabled = [self canShowNextMove];
 }
 
 @end
