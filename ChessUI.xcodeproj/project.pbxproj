@@ -60,6 +60,12 @@
 		19DB32FB15BCD1B40050B976 /* UIButtonBarArrowUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DB32EB15BCD1B40050B976 /* UIButtonBarArrowUp@2x.png */; };
 		19DB32FC15BCD1B40050B976 /* UIButtonBarArrowUpSmall.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DB32EC15BCD1B40050B976 /* UIButtonBarArrowUpSmall.png */; };
 		19DB32FD15BCD1B40050B976 /* UIButtonBarArrowUpSmall@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DB32ED15BCD1B40050B976 /* UIButtonBarArrowUpSmall@2x.png */; };
+		19DB32FF15BCE0B10050B976 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 19DB32FE15BCE0B10050B976 /* Settings.storyboard */; };
+		19DB330215BCE3030050B976 /* CKGameSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB330115BCE3030050B976 /* CKGameSettingsViewController.m */; };
+		19DB330515BCE3C60050B976 /* CBaseConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB330415BCE3C50050B976 /* CBaseConstants.m */; };
+		19DB330715BCE5630050B976 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19DB330615BCE5630050B976 /* Defaults.plist */; };
+		19DB330915BCF1500050B976 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 19DB330815BCF1500050B976 /* gear.png */; };
+		19DB330C15BCF8280050B976 /* CKAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB330B15BCF8270050B976 /* CKAccessibility.m */; };
 		19DE68A5154DC8760019F0A1 /* CKBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE68A4154DC8760019F0A1 /* CKBoardView.m */; };
 		19DE68A9154DCF1F0019F0A1 /* mahogany_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */; };
 		19DE68AA154DCF1F0019F0A1 /* maple_square.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68A8154DCF1F0019F0A1 /* maple_square.jpg */; };
@@ -357,6 +363,15 @@
 		19DB32EB15BCD1B40050B976 /* UIButtonBarArrowUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UIButtonBarArrowUp@2x.png"; path = "BoardView/UIButtonBarArrowUp@2x.png"; sourceTree = "<group>"; };
 		19DB32EC15BCD1B40050B976 /* UIButtonBarArrowUpSmall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UIButtonBarArrowUpSmall.png; path = BoardView/UIButtonBarArrowUpSmall.png; sourceTree = "<group>"; };
 		19DB32ED15BCD1B40050B976 /* UIButtonBarArrowUpSmall@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "UIButtonBarArrowUpSmall@2x.png"; path = "BoardView/UIButtonBarArrowUpSmall@2x.png"; sourceTree = "<group>"; };
+		19DB32FE15BCE0B10050B976 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Settings.storyboard; path = Resources/Settings.storyboard; sourceTree = "<group>"; };
+		19DB330015BCE3030050B976 /* CKGameSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKGameSettingsViewController.h; path = Classes/Controller/CKGameSettingsViewController.h; sourceTree = "<group>"; };
+		19DB330115BCE3030050B976 /* CKGameSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKGameSettingsViewController.m; path = Classes/Controller/CKGameSettingsViewController.m; sourceTree = "<group>"; };
+		19DB330315BCE3C50050B976 /* CBaseConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBaseConstants.h; path = Classes/CBaseConstants.h; sourceTree = "<group>"; };
+		19DB330415BCE3C50050B976 /* CBaseConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBaseConstants.m; path = Classes/CBaseConstants.m; sourceTree = "<group>"; };
+		19DB330615BCE5630050B976 /* Defaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Defaults.plist; path = Resources/Defaults.plist; sourceTree = "<group>"; };
+		19DB330815BCF1500050B976 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gear.png; path = BoardView/gear.png; sourceTree = "<group>"; };
+		19DB330A15BCF8270050B976 /* CKAccessibility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKAccessibility.h; path = Classes/CKAccessibility.h; sourceTree = "<group>"; };
+		19DB330B15BCF8270050B976 /* CKAccessibility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKAccessibility.m; path = Classes/CKAccessibility.m; sourceTree = "<group>"; };
 		19DE68A3154DC8760019F0A1 /* CKBoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKBoardView.h; path = UI/CKBoardView.h; sourceTree = "<group>"; };
 		19DE68A4154DC8760019F0A1 /* CKBoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKBoardView.m; path = UI/CKBoardView.m; sourceTree = "<group>"; };
 		19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = mahogany_square.jpg; sourceTree = "<group>"; };
@@ -661,6 +676,7 @@
 				19B79B7314833F5B000AD1A7 /* ChessUI-Prefix.pch */,
 				19DB32D115BC78560050B976 /* Localizable.strings */,
 				19DB32DC15BCB1B60050B976 /* PGNTags.strings */,
+				19DB330615BCE5630050B976 /* Defaults.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -672,6 +688,10 @@
 				19DE68A1154DC84D0019F0A1 /* UI */,
 				19B79BAA148340AD000AD1A7 /* libChessbase */,
 				19B79B7D14833F70000AD1A7 /* Controller */,
+				19DB330315BCE3C50050B976 /* CBaseConstants.h */,
+				19DB330415BCE3C50050B976 /* CBaseConstants.m */,
+				19DB330A15BCF8270050B976 /* CKAccessibility.h */,
+				19DB330B15BCF8270050B976 /* CKAccessibility.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -693,6 +713,8 @@
 				19DB32C715BC5C8F0050B976 /* CKDatabaseMetadataViewController.m */,
 				19DB32D515BCAFDF0050B976 /* CKGameMetadataViewController.h */,
 				19DB32D615BCAFDF0050B976 /* CKGameMetadataViewController.m */,
+				19DB330015BCE3030050B976 /* CKGameSettingsViewController.h */,
+				19DB330115BCE3030050B976 /* CKGameSettingsViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -702,6 +724,7 @@
 			children = (
 				19DE68A6154DCF1F0019F0A1 /* Images */,
 				19B79B8214833FB9000AD1A7 /* Database */,
+				19DB32FE15BCE0B10050B976 /* Settings.storyboard */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -757,6 +780,7 @@
 		19DB32DD15BCD1930050B976 /* BoardView */ = {
 			isa = PBXGroup;
 			children = (
+				19DB330815BCF1500050B976 /* gear.png */,
 				19DB32DE15BCD1B40050B976 /* UIButtonBarArrowDown.png */,
 				19DB32DF15BCD1B40050B976 /* UIButtonBarArrowDown@2x.png */,
 				19DB32E015BCD1B40050B976 /* UIButtonBarArrowDownSmall.png */,
@@ -1280,6 +1304,9 @@
 				19DB32FB15BCD1B40050B976 /* UIButtonBarArrowUp@2x.png in Resources */,
 				19DB32FC15BCD1B40050B976 /* UIButtonBarArrowUpSmall.png in Resources */,
 				19DB32FD15BCD1B40050B976 /* UIButtonBarArrowUpSmall@2x.png in Resources */,
+				19DB32FF15BCE0B10050B976 /* Settings.storyboard in Resources */,
+				19DB330715BCE5630050B976 /* Defaults.plist in Resources */,
+				19DB330915BCF1500050B976 /* gear.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1306,6 +1333,9 @@
 				19DB32C815BC5C8F0050B976 /* CKDatabaseMetadataViewController.m in Sources */,
 				19DB32CC15BC771E0050B976 /* CKKeyValueCell.m in Sources */,
 				19DB32D715BCAFDF0050B976 /* CKGameMetadataViewController.m in Sources */,
+				19DB330215BCE3030050B976 /* CKGameSettingsViewController.m in Sources */,
+				19DB330515BCE3C60050B976 /* CBaseConstants.m in Sources */,
+				19DB330C15BCF8280050B976 /* CKAccessibility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

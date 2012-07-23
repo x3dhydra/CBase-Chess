@@ -8,6 +8,8 @@
 
 #import "CKBoardView.h"
 #import "CKPosition.h"
+#import "CBaseConstants.h"
+#import "CKAccessibility.h"
 
 typedef void (^CKAnimationBlock)(void);
 
@@ -391,6 +393,7 @@ typedef void (^CKAnimationBlock)(void);
             animationBlock();
         }];
     } completion:^(BOOL finished) {
+        
         if (finished)
         {
             [completion enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -400,6 +403,7 @@ typedef void (^CKAnimationBlock)(void);
             [completion removeAllObjects];
         }
         self.userInteractionEnabled = YES;
+        self.squareAccessibilityElements = nil;  // Reset Accessibility
     }];
 }
 
@@ -457,7 +461,23 @@ typedef void (^CKAnimationBlock)(void);
         {
             UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
             element.accessibilityFrame = [self convertRect:[self rectForSquare:square] toView:self.window];
-            element.accessibilityLabel = [(__bridge NSString *)CCSquareName(square) uppercaseString];
+            
+            NSString *squareName = [(__bridge NSString *)CCSquareName(square) uppercaseString];
+            NSString *accessibilityLabel = nil;
+            
+            CCColoredPiece piece = CCBoardGetPieceAtSquare(_board, square);
+            
+            if (piece != NoPiece)
+            {
+                NSString *pieceName = CKAccessibilityNameForColoredPiece(piece);
+                NSString *format = NSLocalizedString(@"CK_ACCESSIBILITY_PIECE_SQUARE", @"Accessibility format string for board view.  First argument is the piece name, second argument is square.");
+                accessibilityLabel = [NSString stringWithFormat:format, pieceName, squareName];
+            }
+            else
+                accessibilityLabel = squareName;
+            
+            element.accessibilityLabel = accessibilityLabel;
+            
             [elements addObject:element];
         }
         _squareAccessibilityElements = elements;

@@ -14,8 +14,10 @@
 #import <CoreText/CoreText.h>
 #import "CTLabel.h"
 #import "CKGameMetadataViewController.h"
+#import "CBaseConstants.h"
+#import "CKAccessibility.h"
 
-@interface BoardViewController ()
+@interface BoardViewController () <UIPopoverControllerDelegate>
 {
     BOOL reverse;
 }
@@ -25,6 +27,9 @@
 @property (nonatomic, strong) CKGameTree *currentNode;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) CTLabel *gameTextLabel;
+@property (nonatomic, strong) UIPopoverController *popoverController;
+@property (nonatomic, assign) BOOL shouldDisplayVariationsDialog;
+@property (nonatomic, strong) UIActionSheet *actionSheet;
 
 @property (nonatomic, strong) UIBarButtonItem *previousBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *nextBarButtonItem;
@@ -38,6 +43,9 @@
 @synthesize game = _game;
 @synthesize scrollView = _scrollView;
 @synthesize gameTextLabel = _gameTextLabel;
+@synthesize popoverController = _presentedPopoverController;
+@synthesize actionSheet = _actionSheet;
+@synthesize shouldDisplayVariationsDialog = _shouldDisplayVariationsDialog;
 
 @synthesize previousBarButtonItem = _previousBarButtonItem;
 @synthesize nextBarButtonItem = _nextBarButtonItem;
@@ -50,6 +58,21 @@
         _currentNode = game.gameTree;
         _game = game;
         
+        NSString *white = [game.metadata objectForKey:CKGameWhitePlayerKey];
+        NSString *black = [game.metadata objectForKey:CKGameBlackPlayerKey];
+        
+        if (white.length && black.length)
+            self.title = [NSString stringWithFormat:@"%@ - %@", white, black];
+        else if (white.length)
+            self.title = white;
+        else if (black.length)
+            self.title = black;
+        else
+            self.title = NSLocalizedString(@"CK_GAME_VIEW_NO_PLAYER_TITLE", @"Title for Board View Controller when neither side has a player name");
+            
+            
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateVariationsPreference) name:CKDisplayVariationsPreferenceDidChangeNotification object:nil];
+        [self updateVariationsPreference];
         [self updateToolbar];        
     }
     return self;
@@ -145,7 +168,7 @@
         }
         else if (gestureRecognizer.direction == UISwipeGestureRecognizerDirectionLeft)
         {
-            [self showPreviousMove];            
+            [self showPreviousMove];
         }
     }
 }
@@ -154,6 +177,11 @@
 {
     if ([self canShowPreviousMove])
     {
+        if (self.actionSheet)
+        {
+            [self.actionSheet dismissWithClickedButtonIndex:[self.actionSheet cancelButtonIndex] animated:YES];
+        }
+        
         self.currentNode = self.currentNode.parent;
         [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
         [self updateToolbarButtons];
@@ -164,22 +192,52 @@
 {
     if ([self canShowNextMove])
     {
-        if (self.currentNode.children.count == 1)
+        if (self.currentNode.children.count == 1 || !self.shouldDisplayVariationsDialog)
         {
-            self.currentNode = self.currentNode.nextTree;
-            [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
-            [self updateToolbarButtons];
+            [self showNextMoveWithTree:self.currentNode.nextTree];            
         }
-        else {
-            UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Select Variation", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"Cancel", nil) destructiveButtonTitle:nil otherButtonTitles: nil];
-            NSArray *titles = [self.currentNode.children valueForKeyPath:@"moveString"];
-            
-            for (NSString *title in titles)
-                [sheet addButtonWithTitle:title];
-            
-            [sheet showInView:self.view];
+        else 
+        {
+            [self showVariationsDialog];
         }
     }
+}
+
+- (void)showNextMoveWithTree:(CKGameTree *)tree
+{
+    self.currentNode = self.currentNode.nextTree;
+    [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
+    
+    NSString *move = CKAccessibilityNameForGameTree(self.currentNode);
+    UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, move);
+    
+    [self updateToolbarButtons];
+}
+
+- (void)showVariationsDialog
+{
+    if (self.actionSheet)
+    {
+        [self.actionSheet dismissWithClickedButtonIndex:self.actionSheet.cancelButtonIndex animated:YES];
+        [self showNextMoveWithTree:self.currentNode.nextTree];
+        return;
+    }
+    
+    BOOL isIpad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+    NSString *cancelButtonTitle = isIpad ? nil : NSLocalizedString(@"Cancel", nil);
+    //NSString *cancelButtonTitle =  NSLocalizedString(@"Cancel", nil);
+    
+    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Select Variation", nil) delegate:self cancelButtonTitle:cancelButtonTitle destructiveButtonTitle:nil otherButtonTitles: nil];
+    self.actionSheet = sheet;
+    NSArray *titles = [self.currentNode.children valueForKeyPath:@"moveString"];
+    
+    for (NSString *title in titles)
+        [sheet addButtonWithTitle:title];
+    
+    if (isIpad)
+        [sheet showFromBarButtonItem:self.nextBarButtonItem animated:YES];
+    else
+        [sheet showInView:self.view];
 }
 
 - (BOOL)canShowPreviousMove
@@ -218,12 +276,6 @@
     [self.boardView setPosition:self.game.gameTree.position];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-}
-
 #pragma mark - Rotation
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -238,12 +290,17 @@
 {
     if (buttonIndex != [actionSheet cancelButtonIndex])
     {
-        NSInteger index = buttonIndex + [actionSheet firstOtherButtonIndex];
-        self.currentNode = [self.currentNode.children objectAtIndex:index];
-        [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
-        
-        [self updateToolbarButtons];
+        NSInteger index = buttonIndex;
+        if ([actionSheet cancelButtonIndex] != -1)
+            index += 1;
+        CKGameTree *tree = [self.currentNode.children objectAtIndex:index];
+        [self showNextMoveWithTree:tree];
     }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    self.actionSheet = nil;
 }
 
 #pragma mark - Details
@@ -262,12 +319,20 @@
     UIButton *button = [UIButton buttonWithType:type];
     [button addTarget:self action:@selector(showGameDetails) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *info = [[UIBarButtonItem alloc] initWithCustomView:button];
+    info.accessibilityLabel = NSLocalizedString(@"CK_BOARD_INFO_BUTTON_ACCESSIBILITY_TITLE", @"Accessibilty title for game info button on board");
     
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    self.previousBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"UIButtonBarArrowLeft"] landscapeImagePhone:[UIImage imageNamed:@"UIButtonBarArrowLeftLandscape"] style:UIBarButtonItemStylePlain target:self action:@selector(showPreviousMove)];
-    self.nextBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"UIButtonBarArrowRight"] landscapeImagePhone:[UIImage imageNamed:@"UIButtonBarArrowRightLandscape"] style:UIBarButtonItemStylePlain target:self action:@selector(showNextMove)];
     
-    self.toolbarItems = [NSArray arrayWithObjects:flexibleSpace, info, flexibleSpace, self.previousBarButtonItem, flexibleSpace, self.nextBarButtonItem, flexibleSpace, nil];
+    self.previousBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"UIButtonBarArrowLeft"] landscapeImagePhone:[UIImage imageNamed:@"UIButtonBarArrowLeftLandscape"] style:UIBarButtonItemStylePlain target:self action:@selector(showPreviousMove)];
+    self.previousBarButtonItem.accessibilityLabel = NSLocalizedString(@"CK_BOARD_PREVIOUS_BUTTON_ACCESSIBILITY_TITLE", @"Accessibilty title for previous move button on board");
+    
+    self.nextBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"UIButtonBarArrowRight"] landscapeImagePhone:[UIImage imageNamed:@"UIButtonBarArrowRightLandscape"] style:UIBarButtonItemStylePlain target:self action:@selector(showNextMove)];
+    self.nextBarButtonItem.accessibilityLabel = NSLocalizedString(@"CK_BOARD_NEXT_BUTTON_ACCESSIBILITY_TITLE", @"Accessibilty title for previous move button on board");
+    
+    UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gear"] landscapeImagePhone:nil style:UIBarButtonItemStylePlain target:self action:@selector(showSettings:)];
+    settings.accessibilityLabel = NSLocalizedString(@"CK_BOARD_SETTINGS_ACCESSIBILITY_TITLE", @"Accessibility title for game settings toolbar item");
+    
+    self.toolbarItems = [NSArray arrayWithObjects:flexibleSpace, info, flexibleSpace, settings, flexibleSpace, self.previousBarButtonItem, flexibleSpace, self.nextBarButtonItem, flexibleSpace, nil];
     
     [self updateToolbarButtons];
 }
@@ -276,6 +341,38 @@
 {
     self.previousBarButtonItem.enabled = [self canShowPreviousMove];
     self.nextBarButtonItem.enabled = [self canShowNextMove];
+}
+
+- (void)showSettings:(UIBarButtonItem *)item
+{
+    if (self.popoverController)
+        return;
+    
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Settings" bundle:[NSBundle mainBundle]];
+    UIViewController *settings = [storyboard instantiateViewControllerWithIdentifier:@"GameSettings"];
+    
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        [self presentViewController:settings animated:YES completion:nil];
+    }
+    else 
+    {        
+        UIPopoverController *popover = [[UIPopoverController alloc] initWithContentViewController:settings];
+        [popover presentPopoverFromBarButtonItem:item permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        self.popoverController = popover;
+    }
+}
+
+- (void)updateVariationsPreference
+{
+    self.shouldDisplayVariationsDialog = [[NSUserDefaults standardUserDefaults] boolForKey:CKDisplayVariationsDialogKey];
+}
+
+#pragma mark - UIPopoverControllerDelegate
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    self.popoverController = nil;
 }
 
 @end

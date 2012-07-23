@@ -52,3 +52,87 @@
 /* Title for game metadata screen */
 "CK_GAME_METADATA_TITLE" = "Game";
 
+/* Accessible name for Black Bishop */
+"CK_ACCESSIBILITY_BB" = "Black Bishop";
+
+/* Accessible name for Black King */
+"CK_ACCESSIBILITY_BK" = "Black King";
+
+/* Accessible name for Black Knight */
+"CK_ACCESSIBILITY_BN" = "Black Knight";
+
+/* Accessible name for Black Pawn */
+"CK_ACCESSIBILITY_BP" = "Black Pawn";
+
+/* Accessible name for Black Queen */
+"CK_ACCESSIBILITY_BQ" = "Black Queen";
+
+/* Accessible name for Black Rook */
+"CK_ACCESSIBILITY_BR" = "Black Rook";
+
+/* Accessibility format string for board view.  First argument is the piece name, second argument is square. */
+"CK_ACCESSIBILITY_PIECE_SQUARE" = "%@ %@";
+
+/* Accessible name for White Bishop */
+"CK_ACCESSIBILITY_WB" = "White Bishop";
+
+/* Accessible name for White King */
+"CK_ACCESSIBILITY_WK" = "White King";
+
+/* Accessible name for White Knight */
+"CK_ACCESSIBILITY_WN" = "White Knight";
+
+/* Accessible name for White Pawn */
+"CK_ACCESSIBILITY_WP" = "White Pawn";
+
+/* Accessible name for White Queen */
+"CK_ACCESSIBILITY_WQ" = "White Queen";
+
+/* Accessible name for White Rook */
+"CK_ACCESSIBILITY_WR" = "White Rook";
+
+/* Accessibilty title for game info button on board */
+"CK_BOARD_INFO_BUTTON_ACCESSIBILITY_TITLE" = "Game Information";
+
+/* Accessibilty title for previous move button on board */
+"CK_BOARD_NEXT_BUTTON_ACCESSIBILITY_TITLE" = "Next Move";
+
+/* Accessibilty title for previous move button on board */
+"CK_BOARD_PREVIOUS_BUTTON_ACCESSIBILITY_TITLE" = "Previous Move";
+
+/* Accessibility title for game settings toolbar item */
+"CK_BOARD_SETTINGS_ACCESSIBILITY_TITLE" = "Setting";
+
+/* Accessible name for Bishop */
+"CK_ACCESSIBILITY_BISHOP" = "bishop";
+
+/* Accessible name for King */
+"CK_ACCESSIBILITY_KING" = "king";
+
+/* Accessible title for Kingside Castling */
+"CK_ACCESSIBILITY_KINGSIDE_CASTLE" = "castle kingside";
+
+/* Accessible name for Knight */
+"CK_ACCESSIBILITY_KNIGHT" = "knight";
+
+/* Accessible string for \"check\" in a move */
+"CK_ACCESSIBILITY_MOVE_CHECK" = "check";
+
+/* Accessible string for \"checkmate\" in a move */
+"CK_ACCESSIBILITY_MOVE_CHECKMATE" = "checkmate";
+
+/* Accessible string for \"takes\" in a move */
+"CK_ACCESSIBILITY_MOVE_TAKES" = "takes";
+
+/* Accessible name for Pawn */
+"CK_ACCESSIBILITY_PAWN" = "pawn";
+
+/* Accessible name for Queen */
+"CK_ACCESSIBILITY_QUEEN" = "queen";
+
+/* Accessible title for Queenside Castling */
+"CK_ACCESSIBILITY_QUEENSIDE_CASTLE" = "castle queenside";
+
+/* Accessible name for Rook */
+"CK_ACCESSIBILITY_ROOK" = "rook";
+

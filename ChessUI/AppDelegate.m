@@ -35,6 +35,9 @@
     self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:self.databaseListController];
     //self.window.rootViewController = [[ChessbaseDatabaseViewController alloc] init];
     
+    NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Defaults" withExtension:@"plist"]];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
+    
     return YES;
 }
 
