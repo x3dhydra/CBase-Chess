@@ -136,3 +136,9 @@
 /* Accessible name for Rook */
 "CK_ACCESSIBILITY_ROOK" = "rook";
 
+/* Title for Board View Controller when neither side has a player name */
+"CK_GAME_VIEW_NO_PLAYER_TITLE" = "Game";
+
+/* Loading cell text for search results */
+"Loading..." = "Loading...";
+
