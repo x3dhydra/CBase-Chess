@@ -29,6 +29,7 @@
 		193A933415BD1E2400E7F73A /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 193A933315BD1E2400E7F73A /* Default-Portrait~ipad.png */; };
 		193A933615BD1E2E00E7F73A /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 193A933515BD1E2E00E7F73A /* Default-Portrait@2x~ipad.png */; };
 		193A934A15BD21AB00E7F73A /* CKDatabaseListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 193A934915BD21AB00E7F73A /* CKDatabaseListProvider.m */; };
+		193A934D15BE1FCD00E7F73A /* CKMoveListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193A934C15BE1FCD00E7F73A /* CKMoveListView.m */; };
 		1968B148154E47620027DC0E /* DatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B147154E47620027DC0E /* DatabaseViewController.m */; };
 		1968B14B154F5A210027DC0E /* Variations.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 1968B14A154F5A210027DC0E /* Variations.pgn */; };
 		1968B1B115534C6C0027DC0E /* CKGameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B1B015534C6C0027DC0E /* CKGameCell.m */; };
@@ -309,6 +310,8 @@
 		193A933515BD1E2E00E7F73A /* Default-Portrait@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~ipad.png"; sourceTree = "<group>"; };
 		193A934815BD21AB00E7F73A /* CKDatabaseListProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKDatabaseListProvider.h; path = Classes/Controller/CKDatabaseListProvider.h; sourceTree = "<group>"; };
 		193A934915BD21AB00E7F73A /* CKDatabaseListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKDatabaseListProvider.m; path = Classes/Controller/CKDatabaseListProvider.m; sourceTree = "<group>"; };
+		193A934B15BE1FCD00E7F73A /* CKMoveListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKMoveListView.h; path = UI/CKMoveListView.h; sourceTree = "<group>"; };
+		193A934C15BE1FCD00E7F73A /* CKMoveListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKMoveListView.m; path = UI/CKMoveListView.m; sourceTree = "<group>"; };
 		1968B146154E47620027DC0E /* DatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseViewController.h; sourceTree = "<group>"; };
 		1968B147154E47620027DC0E /* DatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseViewController.m; sourceTree = "<group>"; };
 		1968B14A154F5A210027DC0E /* Variations.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Variations.pgn; path = ../../ChessKit/ChessKitTests/Resources/Variations.pgn; sourceTree = "<group>"; };
@@ -837,6 +840,8 @@
 		19DE68A1154DC84D0019F0A1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				193A934B15BE1FCD00E7F73A /* CKMoveListView.h */,
+				193A934C15BE1FCD00E7F73A /* CKMoveListView.m */,
 				19DE68A3154DC8760019F0A1 /* CKBoardView.h */,
 				19DE68A4154DC8760019F0A1 /* CKBoardView.m */,
 				1968B1AF15534C6C0027DC0E /* CKGameCell.h */,
@@ -1370,6 +1375,7 @@
 				19DB330515BCE3C60050B976 /* CBaseConstants.m in Sources */,
 				19DB330C15BCF8280050B976 /* CKAccessibility.m in Sources */,
 				193A934A15BD21AB00E7F73A /* CKDatabaseListProvider.m in Sources */,
+				193A934D15BE1FCD00E7F73A /* CKMoveListView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,8 +16,9 @@
 #import "CKGameMetadataViewController.h"
 #import "CBaseConstants.h"
 #import "CKAccessibility.h"
+#import "CKMoveListView.h"
 
-@interface BoardViewController () <UIPopoverControllerDelegate>
+@interface BoardViewController () <UIPopoverControllerDelegate, CKMoveListViewDelegate>
 {
     BOOL reverse;
 }
@@ -30,6 +31,7 @@
 @property (nonatomic, strong) UIPopoverController *popoverController;
 @property (nonatomic, assign) BOOL shouldDisplayVariationsDialog;
 @property (nonatomic, strong) UIActionSheet *actionSheet;
+@property (nonatomic, strong) CKMoveListView *moveListView;
 
 @property (nonatomic, strong) UIBarButtonItem *previousBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *nextBarButtonItem;
@@ -49,6 +51,8 @@
 
 @synthesize previousBarButtonItem = _previousBarButtonItem;
 @synthesize nextBarButtonItem = _nextBarButtonItem;
+
+@synthesize moveListView = _moveListView;
 
 - (id)initWithGame:(CKGame *)game
 {
@@ -76,6 +80,13 @@
         [self updateToolbar];        
     }
     return self;
+}
+
+- (void)dealloc
+{
+    _actionSheet.delegate = nil;
+    _moveListView.delegate = nil;
+    _presentedPopoverController.delegate = nil;
 }
 
 
@@ -162,10 +173,15 @@
         self.scrollView.frame = frame;
     }
     
+    if (self.moveListView)
+        self.moveListView.frame = self.scrollView.frame;
+    
     self.gameTextLabel.frame = CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.scrollView.bounds), CGRectGetHeight(self.view.bounds));
     [self.gameTextLabel sizeToFitCurrentWidth];
     self.scrollView.contentSize = self.gameTextLabel.bounds.size;
 }
+
+#pragma mark - Move navigation
 
 - (void)swipe:(UISwipeGestureRecognizer *)gestureRecognizer
 {
@@ -186,10 +202,7 @@
 {
     if ([self canShowPreviousMove])
     {
-        if (self.actionSheet)
-        {
-            [self.actionSheet dismissWithClickedButtonIndex:[self.actionSheet cancelButtonIndex] animated:YES];
-        }
+        [self dismissVariationsDialog:YES];
         
         self.currentNode = self.currentNode.parent;
         [self.boardView setPosition:self.currentNode.position withAnimation:CKBoardAnimationDelta];
@@ -201,9 +214,13 @@
 {
     if ([self canShowNextMove])
     {
-        if (self.currentNode.children.count == 1 || !self.shouldDisplayVariationsDialog)
+        if (self.currentNode.children.count == 1 || !self.shouldDisplayVariationsDialog || [self isDisplayingVariationsDialog])
         {
-            [self showNextMoveWithTree:self.currentNode.nextTree];            
+            if ([self isDisplayingVariationsDialog])
+            {
+                [self dismissVariationsDialog:YES];                
+            }
+            [self showNextMoveWithTree:self.currentNode.nextTree];
         }
         else 
         {
@@ -223,32 +240,6 @@
     [self updateToolbarButtons];
 }
 
-- (void)showVariationsDialog
-{
-    if (self.actionSheet)
-    {
-        [self.actionSheet dismissWithClickedButtonIndex:self.actionSheet.cancelButtonIndex animated:YES];
-        [self showNextMoveWithTree:self.currentNode.nextTree];
-        return;
-    }
-    
-    BOOL isIpad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
-    NSString *cancelButtonTitle = isIpad ? nil : NSLocalizedString(@"Cancel", nil);
-    //NSString *cancelButtonTitle =  NSLocalizedString(@"Cancel", nil);
-    
-    UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Select Variation", nil) delegate:self cancelButtonTitle:cancelButtonTitle destructiveButtonTitle:nil otherButtonTitles: nil];
-    self.actionSheet = sheet;
-    NSArray *titles = [self.currentNode.children valueForKeyPath:@"moveString"];
-    
-    for (NSString *title in titles)
-        [sheet addButtonWithTitle:title];
-    
-    if (isIpad)
-        [sheet showFromBarButtonItem:self.nextBarButtonItem animated:YES];
-    else
-        [sheet showInView:self.view];
-}
-
 - (BOOL)canShowPreviousMove
 {
     return self.currentNode.parent != nil;
@@ -262,6 +253,72 @@
 - (void)flipBoard
 {    
     [self.boardView setFlipped:!self.boardView.isFlipped animated:YES];
+}
+
+#pragma mark - Variations
+
+- (void)showVariationsDialog
+{
+    NSArray *titles = [self.currentNode.children valueForKeyPath:@"moveString"];
+    
+    BOOL isIpad = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+    if (isIpad)
+    {
+        UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Select Variation", nil) delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles: nil];
+        self.actionSheet = sheet;
+        
+        for (NSString *title in titles)
+            [sheet addButtonWithTitle:title];
+
+        [sheet showFromBarButtonItem:self.nextBarButtonItem animated:YES];
+    }
+    else
+    {
+        self.moveListView = [[CKMoveListView alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.scrollView.frame), CGRectGetMaxY(self.view.bounds), CGRectGetWidth(self.scrollView.bounds), CGRectGetHeight(self.scrollView.bounds))];
+        self.moveListView.titles = titles;
+        self.moveListView.delegate = self;
+        [self.view addSubview:self.moveListView];
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            CGRect frame = self.moveListView.frame;
+            frame.origin.y = CGRectGetMaxY(self.moveListView.superview.bounds) - CGRectGetHeight(frame);
+            self.moveListView.frame = frame;
+        }];
+    }
+}
+
+- (BOOL)isDisplayingVariationsDialog
+{
+    return self.actionSheet || self.moveListView;
+}
+
+- (void)dismissVariationsDialog:(BOOL)animated
+{
+    if (self.actionSheet)
+    {
+        [self.actionSheet dismissWithClickedButtonIndex:self.actionSheet.cancelButtonIndex animated:YES];
+    }
+    else if (self.moveListView)
+    {
+        [self dismissMoveList:YES];
+    }
+}
+
+- (void)dismissMoveList:(BOOL)animated
+{
+    if (!self.moveListView)
+        return;
+    
+    self.moveListView.delegate = nil;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        CGRect frame = self.moveListView.frame;
+        frame.origin.y = CGRectGetMaxY(self.moveListView.superview.bounds);
+        self.moveListView.frame = frame;
+    } completion:^(BOOL finished) {
+        [self.moveListView removeFromSuperview];
+        self.moveListView = nil;
+    }];
 }
 
 - (void)viewDidLoad
@@ -392,6 +449,15 @@
 {
     self.popoverController = nil;
     return YES;
+}
+
+#pragma mark - CKMoveListViewDelegate
+
+- (void)moveListView:(CKMoveListView *)moveListView didSelectOptionAtIndex:(NSInteger)index
+{
+    CKGameTree *tree = [self.currentNode.children objectAtIndex:index];
+    [self showNextMoveWithTree:tree];
+    [self dismissMoveList:YES];
 }
 
 @end
