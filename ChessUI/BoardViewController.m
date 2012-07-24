@@ -152,6 +152,7 @@
     [super viewWillDisappear:animated];
     [self.popoverController dismissPopoverAnimated:animated];
     self.popoverController = nil;
+    [self dismissVariationsDialog:animated];
     [self.navigationController setToolbarHidden:YES animated:animated];
 }
 

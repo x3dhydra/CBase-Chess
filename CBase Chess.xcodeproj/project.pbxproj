@@ -30,6 +30,7 @@
 		193A933615BD1E2E00E7F73A /* Default-Portrait@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 193A933515BD1E2E00E7F73A /* Default-Portrait@2x~ipad.png */; };
 		193A934A15BD21AB00E7F73A /* CKDatabaseListProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 193A934915BD21AB00E7F73A /* CKDatabaseListProvider.m */; };
 		193A934D15BE1FCD00E7F73A /* CKMoveListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193A934C15BE1FCD00E7F73A /* CKMoveListView.m */; };
+		193A934F15BE367000E7F73A /* Semi-Transparent-Board.png in Resources */ = {isa = PBXBuildFile; fileRef = 193A934E15BE367000E7F73A /* Semi-Transparent-Board.png */; };
 		1968B148154E47620027DC0E /* DatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B147154E47620027DC0E /* DatabaseViewController.m */; };
 		1968B14B154F5A210027DC0E /* Variations.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 1968B14A154F5A210027DC0E /* Variations.pgn */; };
 		1968B1B115534C6C0027DC0E /* CKGameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B1B015534C6C0027DC0E /* CKGameCell.m */; };
@@ -312,6 +313,7 @@
 		193A934915BD21AB00E7F73A /* CKDatabaseListProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKDatabaseListProvider.m; path = Classes/Controller/CKDatabaseListProvider.m; sourceTree = "<group>"; };
 		193A934B15BE1FCD00E7F73A /* CKMoveListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKMoveListView.h; path = UI/CKMoveListView.h; sourceTree = "<group>"; };
 		193A934C15BE1FCD00E7F73A /* CKMoveListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKMoveListView.m; path = UI/CKMoveListView.m; sourceTree = "<group>"; };
+		193A934E15BE367000E7F73A /* Semi-Transparent-Board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Semi-Transparent-Board.png"; sourceTree = "<group>"; };
 		1968B146154E47620027DC0E /* DatabaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseViewController.h; sourceTree = "<group>"; };
 		1968B147154E47620027DC0E /* DatabaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseViewController.m; sourceTree = "<group>"; };
 		1968B14A154F5A210027DC0E /* Variations.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Variations.pgn; path = ../../ChessKit/ChessKitTests/Resources/Variations.pgn; sourceTree = "<group>"; };
@@ -855,6 +857,7 @@
 		19DE68A6154DCF1F0019F0A1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				193A934E15BE367000E7F73A /* Semi-Transparent-Board.png */,
 				19DB32DD15BCD1930050B976 /* BoardView */,
 				19DE68B1154DDDB50019F0A1 /* Pieces */,
 				19DE68A7154DCF1F0019F0A1 /* mahogany_square.jpg */,
@@ -1345,6 +1348,7 @@
 				193A933215BD1DBE00E7F73A /* Icon@2x.png in Resources */,
 				193A933415BD1E2400E7F73A /* Default-Portrait~ipad.png in Resources */,
 				193A933615BD1E2E00E7F73A /* Default-Portrait@2x~ipad.png in Resources */,
+				193A934F15BE367000E7F73A /* Semi-Transparent-Board.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1458,7 +1462,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1475,6 +1479,7 @@
 					"-ObjC",
 					"-all_load",
 				);
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1500,6 +1505,7 @@
 		19B79B7B14833F5B000AD1A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChessUI/CBase Chess-Prefix.pch";
 				INFOPLIST_FILE = "ChessUI/CBase Chess-Info.plist";
@@ -1509,6 +1515,7 @@
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Chess-figmfltbxwiioablppkbsvluywcn/Build/Products/Debug-iphoneos\"",
 				);
 				PRODUCT_NAME = "CBase Chess";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

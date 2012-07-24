@@ -15,12 +15,14 @@
 @interface DatabaseListViewController () <CKDatabaseMetadataViewControllerDelegate>
 @property (nonatomic, strong) NSArray *databaseURLs;
 @property (nonatomic, strong) CKDatabaseListProvider *listProvider;
+@property (nonatomic, strong) UIView *noGamesView;
 
 @end
 
 @implementation DatabaseListViewController
 @synthesize databaseURLs = _databaseURLs;
 @synthesize listProvider = _listProvider;
+@synthesize noGamesView = _noGamesView;
 
 - (id)init
 {
@@ -44,14 +46,37 @@
 {
     self.databaseURLs = nil;
     if ([self isViewLoaded])
+    {
         [self.tableView reloadData];
+        [self displayNoGamesViewIfNeeded];
+    }
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self displayNoGamesViewIfNeeded];
+}
+
+- (void)displayNoGamesViewIfNeeded
+{
+    NSInteger count = self.databaseURLs.count;
+    if (!count)
+    {
+        self.noGamesView.frame = self.view.bounds;
+        self.tableView.tableHeaderView = self.noGamesView;
+        self.tableView.scrollEnabled = NO;
+    }
+    else
+        self.tableView.scrollEnabled = YES;
 }
 
 #pragma mark - UITableViewDataSource
@@ -113,6 +138,7 @@
         {
             [self.listProvider reloadData];
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self displayNoGamesViewIfNeeded];
         }
     }
 }
@@ -152,6 +178,29 @@
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
         [self.tableView selectRowAtIndexPath:indexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
     }
+}
+
+#pragma mark - 
+
+- (UIView *)noGamesView
+{
+    if (!_noGamesView)
+    {
+        _noGamesView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Semi-Transparent-Board"]];
+        _noGamesView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
+        _noGamesView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        _noGamesView.contentMode = UIViewContentModeScaleAspectFit;
+        
+        UILabel *textLabel = [[UILabel alloc] initWithFrame:_noGamesView.bounds];
+        textLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        textLabel.text = NSLocalizedString(@"No Databases\nYou currently don't have any databases.  Download .pgn files from Safari or copy databases in via iTunes.", @"No databases title");
+        textLabel.textAlignment = UITextAlignmentCenter;
+        textLabel.backgroundColor = [UIColor clearColor];
+        textLabel.textColor = [UIColor whiteColor];
+        textLabel.numberOfLines = 0;
+        [_noGamesView addSubview:textLabel];
+    }
+    return _noGamesView;
 }
 
 @end
