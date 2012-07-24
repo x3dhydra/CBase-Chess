@@ -44,7 +44,7 @@
 
 - (void)reloadData
 {
-    self.databaseURLs = nil;
+    [self.listProvider reloadData];
     if ([self isViewLoaded])
     {
         [self.tableView reloadData];
@@ -76,7 +76,10 @@
         self.tableView.scrollEnabled = NO;
     }
     else
+    {
         self.tableView.scrollEnabled = YES;
+        self.tableView.tableHeaderView = nil;
+    }
 }
 
 #pragma mark - UITableViewDataSource
