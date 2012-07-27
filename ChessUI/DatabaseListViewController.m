@@ -11,11 +11,13 @@
 #import "ChessKit.h"
 #import "CKDatabaseMetadataViewController.h"
 #import "CKDatabaseListProvider.h"
+#import "TWICDatabaseListScraper.h"
 
 @interface DatabaseListViewController () <CKDatabaseMetadataViewControllerDelegate>
 @property (nonatomic, strong) NSArray *databaseURLs;
 @property (nonatomic, strong) CKDatabaseListProvider *listProvider;
 @property (nonatomic, strong) UIView *noGamesView;
+@property (nonatomic, strong) TWICDatabaseListScraper *listScraper;
 
 @end
 
@@ -33,6 +35,10 @@
         self.hidesBottomBarWhenPushed = YES;
         NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         self.listProvider = [[CKDatabaseListProvider alloc] initWithRootDirectory:path];
+        self.listScraper = [[TWICDatabaseListScraper alloc] init];
+        [self.listScraper fetchDatabaseListWithCompletion:^(BOOL success, NSError *error) {
+            NSLog(@"Complete: %@", error);
+        }];
     }
     return self;
 }

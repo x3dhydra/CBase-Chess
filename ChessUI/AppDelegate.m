@@ -38,6 +38,7 @@
     NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Defaults" withExtension:@"plist"]];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
+    
     return YES;
 }
 

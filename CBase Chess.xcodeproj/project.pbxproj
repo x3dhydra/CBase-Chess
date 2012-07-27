@@ -43,6 +43,7 @@
 		19B79B7214833F5B000AD1A7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B79B7114833F5B000AD1A7 /* main.m */; };
 		19B79B7614833F5B000AD1A7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B79B7514833F5B000AD1A7 /* AppDelegate.m */; };
 		19C3584515B1ECF7002A8CB8 /* CKDatabaseSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C3584415B1ECF7002A8CB8 /* CKDatabaseSearchController.m */; };
+		19C8FFD615C23C51002299C9 /* TWICDatabaseListScraper.m in Sources */ = {isa = PBXBuildFile; fileRef = 19C8FFD515C23C51002299C9 /* TWICDatabaseListScraper.m */; };
 		19DB32C815BC5C8F0050B976 /* CKDatabaseMetadataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB32C715BC5C8F0050B976 /* CKDatabaseMetadataViewController.m */; };
 		19DB32CC15BC771E0050B976 /* CKKeyValueCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB32CB15BC771E0050B976 /* CKKeyValueCell.m */; };
 		19DB32CF15BC78560050B976 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19DB32D115BC78560050B976 /* Localizable.strings */; };
@@ -361,6 +362,8 @@
 		19B79BB714834136000AD1A7 /* CBBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBBase.h; path = ../../Chessbase/Chessbase/CBBase.h; sourceTree = "<group>"; };
 		19C3584315B1ECF7002A8CB8 /* CKDatabaseSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKDatabaseSearchController.h; path = UI/CKDatabaseSearchController.h; sourceTree = "<group>"; };
 		19C3584415B1ECF7002A8CB8 /* CKDatabaseSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKDatabaseSearchController.m; path = UI/CKDatabaseSearchController.m; sourceTree = "<group>"; };
+		19C8FFD415C23C51002299C9 /* TWICDatabaseListScraper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWICDatabaseListScraper.h; path = Classes/TWIC/TWICDatabaseListScraper.h; sourceTree = "<group>"; };
+		19C8FFD515C23C51002299C9 /* TWICDatabaseListScraper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWICDatabaseListScraper.m; path = Classes/TWIC/TWICDatabaseListScraper.m; sourceTree = "<group>"; };
 		19DB32C615BC5C8F0050B976 /* CKDatabaseMetadataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKDatabaseMetadataViewController.h; path = Classes/Controller/CKDatabaseMetadataViewController.h; sourceTree = "<group>"; };
 		19DB32C715BC5C8F0050B976 /* CKDatabaseMetadataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CKDatabaseMetadataViewController.m; path = Classes/Controller/CKDatabaseMetadataViewController.m; sourceTree = "<group>"; };
 		19DB32CA15BC771E0050B976 /* CKKeyValueCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CKKeyValueCell.h; path = UI/CKKeyValueCell.h; sourceTree = "<group>"; };
@@ -708,6 +711,7 @@
 		19B79B7C14833F65000AD1A7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				19C8FFD315C23C33002299C9 /* TWIC */,
 				1912911A1559F019006F02B2 /* ThirdParty */,
 				19DE68A1154DC84D0019F0A1 /* UI */,
 				19B79BAA148340AD000AD1A7 /* libChessbase */,
@@ -813,6 +817,15 @@
 				19B79BB4148340DF000AD1A7 /* CBRecord.h */,
 			);
 			name = libChessbase;
+			sourceTree = "<group>";
+		};
+		19C8FFD315C23C33002299C9 /* TWIC */ = {
+			isa = PBXGroup;
+			children = (
+				19C8FFD415C23C51002299C9 /* TWICDatabaseListScraper.h */,
+				19C8FFD515C23C51002299C9 /* TWICDatabaseListScraper.m */,
+			);
+			name = TWIC;
 			sourceTree = "<group>";
 		};
 		19DB32DD15BCD1930050B976 /* BoardView */ = {
@@ -1380,6 +1393,7 @@
 				19DB330C15BCF8280050B976 /* CKAccessibility.m in Sources */,
 				193A934A15BD21AB00E7F73A /* CKDatabaseListProvider.m in Sources */,
 				193A934D15BE1FCD00E7F73A /* CKMoveListView.m in Sources */,
+				19C8FFD615C23C51002299C9 /* TWICDatabaseListScraper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
