@@ -41,6 +41,8 @@
 		19B554EB15C5143F00424562 /* mztools.c in Sources */ = {isa = PBXBuildFile; fileRef = 19B554E415C5143F00424562 /* mztools.c */; };
 		19B554EC15C5143F00424562 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = 19B554E615C5143F00424562 /* unzip.c */; };
 		19B554ED15C5143F00424562 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = 19B554E815C5143F00424562 /* zip.c */; };
+		19B554F215C5152000424562 /* TWICDatabaseDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B554F115C5152000424562 /* TWICDatabaseDownloader.m */; };
+		19B554F315C51F1600424562 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B554EF15C5144700424562 /* SSZipArchive.m */; };
 		19B79B6614833F5B000AD1A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6514833F5B000AD1A7 /* UIKit.framework */; };
 		19B79B6814833F5B000AD1A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6714833F5B000AD1A7 /* Foundation.framework */; };
 		19B79B6A14833F5B000AD1A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6914833F5B000AD1A7 /* CoreGraphics.framework */; };
@@ -340,6 +342,8 @@
 		19B554E915C5143F00424562 /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
 		19B554EE15C5144700424562 /* SSZipArchive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SSZipArchive.h; path = ssziparchive/SSZipArchive.h; sourceTree = SOURCE_ROOT; };
 		19B554EF15C5144700424562 /* SSZipArchive.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SSZipArchive.m; path = ssziparchive/SSZipArchive.m; sourceTree = SOURCE_ROOT; };
+		19B554F015C5152000424562 /* TWICDatabaseDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWICDatabaseDownloader.h; path = Classes/TWIC/TWICDatabaseDownloader.h; sourceTree = "<group>"; };
+		19B554F115C5152000424562 /* TWICDatabaseDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWICDatabaseDownloader.m; path = Classes/TWIC/TWICDatabaseDownloader.m; sourceTree = "<group>"; };
 		19B79B6114833F5B000AD1A7 /* CBase Chess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CBase Chess.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19B79B6514833F5B000AD1A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		19B79B6714833F5B000AD1A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -871,6 +875,8 @@
 			children = (
 				19C8FFD415C23C51002299C9 /* TWICDatabaseListScraper.h */,
 				19C8FFD515C23C51002299C9 /* TWICDatabaseListScraper.m */,
+				19B554F015C5152000424562 /* TWICDatabaseDownloader.h */,
+				19B554F115C5152000424562 /* TWICDatabaseDownloader.m */,
 			);
 			name = TWIC;
 			sourceTree = "<group>";
@@ -1445,6 +1451,8 @@
 				19B554EB15C5143F00424562 /* mztools.c in Sources */,
 				19B554EC15C5143F00424562 /* unzip.c in Sources */,
 				19B554ED15C5143F00424562 /* zip.c in Sources */,
+				19B554F215C5152000424562 /* TWICDatabaseDownloader.m in Sources */,
+				19B554F315C51F1600424562 /* SSZipArchive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

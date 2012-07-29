@@ -12,12 +12,14 @@
 #import "CKDatabaseMetadataViewController.h"
 #import "CKDatabaseListProvider.h"
 #import "TWICDatabaseListScraper.h"
+#import "TWICDatabaseDownloader.h"
 
-@interface DatabaseListViewController () <CKDatabaseMetadataViewControllerDelegate>
+@interface DatabaseListViewController () <CKDatabaseMetadataViewControllerDelegate, TWICDatabaseDownloadDelegate>
 @property (nonatomic, strong) NSArray *databaseURLs;
 @property (nonatomic, strong) CKDatabaseListProvider *listProvider;
 @property (nonatomic, strong) UIView *noGamesView;
 @property (nonatomic, strong) TWICDatabaseListScraper *listScraper;
+@property (nonatomic, strong) TWICDatabaseDownloader *downloader;
 
 @end
 
@@ -38,6 +40,11 @@
         self.listScraper = [[TWICDatabaseListScraper alloc] init];
         [self.listScraper fetchDatabaseListWithCompletion:^(BOOL success, NSError *error) {
             NSLog(@"Complete: %@", error);
+            NSURL *URL = [self.listScraper.databaseURLs objectAtIndex:0];
+            self.downloader = [[TWICDatabaseDownloader alloc] initWithURL:URL];
+            self.downloader.destinationPath = path;
+            self.downloader.delegate = self;
+            [self.downloader beginDownload];
         }];
     }
     return self;
@@ -210,6 +217,19 @@
         [_noGamesView addSubview:textLabel];
     }
     return _noGamesView;
+}
+
+#pragma mark - TWICDatabaseDownloadDelegate
+
+- (void)databaseDownloader:(TWICDatabaseDownloader *)downloader didFailWithError:(NSError *)error
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error title") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)databaseDownloaderDidFinish:(TWICDatabaseDownloader *)downloader
+{
+    [self reloadData];
 }
 
 @end

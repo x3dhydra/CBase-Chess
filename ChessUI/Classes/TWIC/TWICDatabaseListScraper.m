@@ -12,22 +12,11 @@ static NSString * const TWICDatabaseListPath = @"http://www.chess.co.uk/twic/twi
 
 @interface TWICDatabaseListScraper()
 {
-    NSOperationQueue *_networkingQueue;
     NSArray *_databaseURLs;
 }
 @end
 
 @implementation TWICDatabaseListScraper
-
-- (id)init
-{
-    self = [super init];
-    if (self)
-    {
-        _networkingQueue = [[NSOperationQueue alloc] init];
-    }
-    return self;
-}
 
 - (void)fetchDatabaseListWithCompletion:(void(^)(BOOL success, NSError *error))completion
 {
@@ -35,7 +24,7 @@ static NSString * const TWICDatabaseListPath = @"http://www.chess.co.uk/twic/twi
     NSURLRequest *request = [NSURLRequest requestWithURL:URL];
     completion = [completion copy];
     
-    [NSURLConnection sendAsynchronousRequest:request queue:_networkingQueue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
         if ((!data || error) && completion)
         {
             completion(NO, error);
