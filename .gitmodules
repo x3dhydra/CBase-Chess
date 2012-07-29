@@ -1,3 +1,6 @@
 [submodule "ssziparchive"]
 	path = ssziparchive
 	url = git://github.com/samsoffes/ssziparchive.git
+[submodule "ViewDeck"]
+	path = ViewDeck
+	url = git://github.com/Inferis/ViewDeck.git

@@ -12,6 +12,8 @@
 #import "BoardViewController.h"
 #import "DatabaseViewController.h"
 #import "DatabaseListViewController.h"
+#import "IIViewDeckController.h"
+#import "CBTabbedListViewController.h"
 
 @interface AppDelegate()
 
@@ -31,9 +33,14 @@
     [self.window makeKeyAndVisible];
     
     self.databaseListController = [[DatabaseListViewController alloc] init];
+    UINavigationController *centerController = [[UINavigationController alloc] initWithRootViewController:self.databaseListController];
     
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:self.databaseListController];
-    //self.window.rootViewController = [[ChessbaseDatabaseViewController alloc] init];
+    CBTabbedListViewController *listController = [[CBTabbedListViewController alloc] init];
+    listController.viewControllers = @[ centerController ];
+    
+    IIViewDeckController *viewDeckController = [[IIViewDeckController alloc] initWithCenterViewController:centerController leftViewController:listController];
+    
+    self.window.rootViewController = viewDeckController;
     
     NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Defaults" withExtension:@"plist"]];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];

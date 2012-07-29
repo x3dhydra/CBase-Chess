@@ -35,17 +35,17 @@
     {
         self.title = NSLocalizedString(@"CK_DATABASE_LIST_TITLE", @"Title for database list");
         self.hidesBottomBarWhenPushed = YES;
-        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-        self.listProvider = [[CKDatabaseListProvider alloc] initWithRootDirectory:path];
-        self.listScraper = [[TWICDatabaseListScraper alloc] init];
-        [self.listScraper fetchDatabaseListWithCompletion:^(BOOL success, NSError *error) {
-            NSLog(@"Complete: %@", error);
-            NSURL *URL = [self.listScraper.databaseURLs objectAtIndex:0];
-            self.downloader = [[TWICDatabaseDownloader alloc] initWithURL:URL];
-            self.downloader.destinationPath = path;
-            self.downloader.delegate = self;
-            [self.downloader beginDownload];
-        }];
+//        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+//        self.listProvider = [[CKDatabaseListProvider alloc] initWithRootDirectory:path];
+//        self.listScraper = [[TWICDatabaseListScraper alloc] init];
+//        [self.listScraper fetchDatabaseListWithCompletion:^(BOOL success, NSError *error) {
+//            NSLog(@"Complete: %@", error);
+//            NSURL *URL = [self.listScraper.databaseURLs objectAtIndex:0];
+//            self.downloader = [[TWICDatabaseDownloader alloc] initWithURL:URL];
+//            self.downloader.destinationPath = path;
+//            self.downloader.delegate = self;
+//            [self.downloader beginDownload];
+//        }];
     }
     return self;
 }
