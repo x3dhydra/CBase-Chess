@@ -47,6 +47,7 @@
 		19B554FA15C59DFB00424562 /* WrapController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B554F815C59DFB00424562 /* WrapController.m */; };
 		19B554FD15C5ACAC00424562 /* CBTabbedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B554FC15C5ACAC00424562 /* CBTabbedListViewController.m */; };
 		19B5550015C5B48700424562 /* TWICDatabaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B554FF15C5B48700424562 /* TWICDatabaseListViewController.m */; };
+		19B5550315C5C22F00424562 /* CBaseNotifications.m in Sources */ = {isa = PBXBuildFile; fileRef = 19B5550215C5C22F00424562 /* CBaseNotifications.m */; };
 		19B79B6614833F5B000AD1A7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6514833F5B000AD1A7 /* UIKit.framework */; };
 		19B79B6814833F5B000AD1A7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6714833F5B000AD1A7 /* Foundation.framework */; };
 		19B79B6A14833F5B000AD1A7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6914833F5B000AD1A7 /* CoreGraphics.framework */; };
@@ -356,6 +357,8 @@
 		19B554FC15C5ACAC00424562 /* CBTabbedListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBTabbedListViewController.m; path = Classes/Controller/CBTabbedListViewController.m; sourceTree = "<group>"; };
 		19B554FE15C5B48700424562 /* TWICDatabaseListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWICDatabaseListViewController.h; path = Classes/Controller/TWICDatabaseListViewController.h; sourceTree = "<group>"; };
 		19B554FF15C5B48700424562 /* TWICDatabaseListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWICDatabaseListViewController.m; path = Classes/Controller/TWICDatabaseListViewController.m; sourceTree = "<group>"; };
+		19B5550115C5C22E00424562 /* CBaseNotifications.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBaseNotifications.h; path = Classes/CBaseNotifications.h; sourceTree = "<group>"; };
+		19B5550215C5C22F00424562 /* CBaseNotifications.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBaseNotifications.m; path = Classes/CBaseNotifications.m; sourceTree = "<group>"; };
 		19B79B6114833F5B000AD1A7 /* CBase Chess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CBase Chess.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		19B79B6514833F5B000AD1A7 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		19B79B6714833F5B000AD1A7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -795,6 +798,8 @@
 				19DB330415BCE3C50050B976 /* CBaseConstants.m */,
 				19DB330A15BCF8270050B976 /* CKAccessibility.h */,
 				19DB330B15BCF8270050B976 /* CKAccessibility.m */,
+				19B5550115C5C22E00424562 /* CBaseNotifications.h */,
+				19B5550215C5C22F00424562 /* CBaseNotifications.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -1485,6 +1490,7 @@
 				19B554FA15C59DFB00424562 /* WrapController.m in Sources */,
 				19B554FD15C5ACAC00424562 /* CBTabbedListViewController.m in Sources */,
 				19B5550015C5B48700424562 /* TWICDatabaseListViewController.m in Sources */,
+				19B5550315C5C22F00424562 /* CBaseNotifications.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

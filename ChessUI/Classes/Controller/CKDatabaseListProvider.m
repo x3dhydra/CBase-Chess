@@ -7,6 +7,7 @@
 //
 
 #import "CKDatabaseListProvider.h"
+#import "CBaseNotifications.h"
 
 @implementation CKDatabaseListProvider
 @synthesize rootDirectory = _rootDirectory;
@@ -18,6 +19,7 @@
     if (self)
     {
         _rootDirectory = [rootDirectory copy];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(databaseAdded) name:CBaseDidAddDatabaseNotification object:nil];
     }
     return self;
 }
@@ -25,6 +27,13 @@
 - (void)reloadData
 {
     _databaseURLs = nil;
+}
+         
+- (void)databaseAdded
+{
+    [self reloadData];
+    if ([self.delegate respondsToSelector:@selector(databaseListProviderDidUpdateDatabaseList:)])
+        [self.delegate databaseListProviderDidUpdateDatabaseList:self];
 }
 
 - (NSArray *)databaseURLs

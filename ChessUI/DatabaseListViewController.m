@@ -14,7 +14,7 @@
 #import "TWICDatabaseListScraper.h"
 #import "TWICDatabaseDownloader.h"
 
-@interface DatabaseListViewController () <CKDatabaseMetadataViewControllerDelegate, TWICDatabaseDownloadDelegate>
+@interface DatabaseListViewController () <CKDatabaseMetadataViewControllerDelegate, TWICDatabaseDownloadDelegate, CKDatabaseListProviderDelegate>
 @property (nonatomic, strong) NSArray *databaseURLs;
 @property (nonatomic, strong) CKDatabaseListProvider *listProvider;
 @property (nonatomic, strong) UIView *noGamesView;
@@ -35,17 +35,9 @@
     {
         self.title = NSLocalizedString(@"CK_DATABASE_LIST_TITLE", @"Title for database list");
         self.hidesBottomBarWhenPushed = YES;
-//        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-//        self.listProvider = [[CKDatabaseListProvider alloc] initWithRootDirectory:path];
-//        self.listScraper = [[TWICDatabaseListScraper alloc] init];
-//        [self.listScraper fetchDatabaseListWithCompletion:^(BOOL success, NSError *error) {
-//            NSLog(@"Complete: %@", error);
-//            NSURL *URL = [self.listScraper.databaseURLs objectAtIndex:0];
-//            self.downloader = [[TWICDatabaseDownloader alloc] initWithURL:URL];
-//            self.downloader.destinationPath = path;
-//            self.downloader.delegate = self;
-//            [self.downloader beginDownload];
-//        }];
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        self.listProvider = [[CKDatabaseListProvider alloc] initWithRootDirectory:path];
+        self.listProvider.delegate = self;
     }
     return self;
 }
@@ -219,15 +211,10 @@
     return _noGamesView;
 }
 
-#pragma mark - TWICDatabaseDownloadDelegate
 
-- (void)databaseDownloader:(TWICDatabaseDownloader *)downloader didFailWithError:(NSError *)error
-{
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error title") message:error.localizedDescription delegate:nil cancelButtonTitle:NSLocalizedString(@"OK", nil) otherButtonTitles:nil];
-    [alert show];
-}
+#pragma mark - CKDatabaseListProviderDelegate
 
-- (void)databaseDownloaderDidFinish:(TWICDatabaseDownloader *)downloader
+- (void)databaseListProviderDidUpdateDatabaseList:(CKDatabaseListProvider *)listProvider
 {
     [self reloadData];
 }
