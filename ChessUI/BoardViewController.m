@@ -93,6 +93,8 @@
 - (void)loadView
 {
     self.view = [[UIView alloc] initWithFrame:[[[UIApplication sharedApplication] keyWindow] bounds]];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     CKBoardView *boardView = [[CKBoardView alloc] initWithFrame:self.view.bounds];
     [boardView sizeToFit];
     [self.view addSubview:boardView];
@@ -126,8 +128,6 @@
     NSAttributedString *string = [formatter attributedGameTree];
     
     CTLabel *label = [[CTLabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
-    //[label setText:string];
-    //[label setAttributedText:string];
     [label setText:string];
     label.numberOfLines = 0;
     [label sizeToFit];

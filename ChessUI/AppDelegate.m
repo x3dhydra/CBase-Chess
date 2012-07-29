@@ -54,6 +54,7 @@
     listController.viewControllers = @[ centerController, twicNav ];
     
     IIViewDeckController *viewDeckController = [[IIViewDeckController alloc] initWithCenterViewController:centerController leftViewController:listController];
+    viewDeckController.panningMode = IIViewDeckNavigationBarPanning;
     
     self.window.rootViewController = viewDeckController;
 
