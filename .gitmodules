@@ -1,0 +1,3 @@
+[submodule "ssziparchive"]
+	path = ssziparchive
+	url = git://github.com/samsoffes/ssziparchive.git
