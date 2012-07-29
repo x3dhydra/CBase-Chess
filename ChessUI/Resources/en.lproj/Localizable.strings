@@ -142,3 +142,18 @@
 /* Loading cell text for search results */
 "Loading..." = "Loading...";
 
+/* Error title */
+"Error" = "Error";
+
+/* No databases title */
+"No Databases\nYou currently don't have any databases.  Download .pgn files from Safari or copy databases in via iTunes." = "No Databases\nYou currently don't have any databases.  Download .pgn files from Safari or copy databases in via iTunes.";
+
+/* No comment provided by engineer. */
+"OK" = "OK";
+
+/* Title for The Week In Chess list view */
+"TWIC_LIST_TITLE" = "TWIC";
+
+/* Title for loading cell in TWIC dataase list */
+"TWIC_LOADING_CELL_TITLE" = "Loading";
+

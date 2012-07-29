@@ -14,6 +14,7 @@
 #import "DatabaseListViewController.h"
 #import "IIViewDeckController.h"
 #import "CBTabbedListViewController.h"
+#import "TWICDatabaseListViewController.h"
 
 @interface AppDelegate()
 
@@ -32,21 +33,30 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    self.databaseListController = [[DatabaseListViewController alloc] init];
-    UINavigationController *centerController = [[UINavigationController alloc] initWithRootViewController:self.databaseListController];
-    
-    CBTabbedListViewController *listController = [[CBTabbedListViewController alloc] init];
-    listController.viewControllers = @[ centerController ];
-    
-    IIViewDeckController *viewDeckController = [[IIViewDeckController alloc] initWithCenterViewController:centerController leftViewController:listController];
-    
-    self.window.rootViewController = viewDeckController;
+    [self setupViewControllers];
     
     NSDictionary *defaults = [NSDictionary dictionaryWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"Defaults" withExtension:@"plist"]];
     [[NSUserDefaults standardUserDefaults] registerDefaults:defaults];
     
     
     return YES;
+}
+
+- (void)setupViewControllers
+{
+    self.databaseListController = [[DatabaseListViewController alloc] init];
+    UINavigationController *centerController = [[UINavigationController alloc] initWithRootViewController:self.databaseListController];
+    
+    TWICDatabaseListViewController *twic = [[TWICDatabaseListViewController alloc] init];
+    UINavigationController *twicNav = [[UINavigationController alloc] initWithRootViewController:twic];
+    
+    CBTabbedListViewController *listController = [[CBTabbedListViewController alloc] init];
+    listController.viewControllers = @[ centerController, twicNav ];
+    
+    IIViewDeckController *viewDeckController = [[IIViewDeckController alloc] initWithCenterViewController:centerController leftViewController:listController];
+    
+    self.window.rootViewController = viewDeckController;
+
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
