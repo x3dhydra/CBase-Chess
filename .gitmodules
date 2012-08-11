@@ -4,3 +4,6 @@
 [submodule "ViewDeck"]
 	path = ViewDeck
 	url = git://github.com/Inferis/ViewDeck.git
+[submodule "libChessKit"]
+	path = libChessKit
+	url = git://github.com/x3dhydra/ChessKit.git
