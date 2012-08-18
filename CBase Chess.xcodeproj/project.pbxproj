@@ -32,7 +32,6 @@
 		193A934D15BE1FCD00E7F73A /* CKMoveListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 193A934C15BE1FCD00E7F73A /* CKMoveListView.m */; };
 		193A934F15BE367000E7F73A /* Semi-Transparent-Board.png in Resources */ = {isa = PBXBuildFile; fileRef = 193A934E15BE367000E7F73A /* Semi-Transparent-Board.png */; };
 		1968B148154E47620027DC0E /* DatabaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B147154E47620027DC0E /* DatabaseViewController.m */; };
-		1968B14B154F5A210027DC0E /* Variations.pgn in Resources */ = {isa = PBXBuildFile; fileRef = 1968B14A154F5A210027DC0E /* Variations.pgn */; };
 		1968B1B115534C6C0027DC0E /* CKGameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1968B1B015534C6C0027DC0E /* CKGameCell.m */; };
 		199997001558AF7300F437EC /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199996FF1558AF7300F437EC /* CoreText.framework */; };
 		199997021558AFF400F437EC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199997011558AFF400F437EC /* QuartzCore.framework */; };
@@ -1469,7 +1468,6 @@
 				19DE6A17154DDDB60019F0A1 /* XBoardWQueen@2x.tiff in Resources */,
 				19DE6A18154DDDB60019F0A1 /* XBoardWRook.tiff in Resources */,
 				19DE6A19154DDDB60019F0A1 /* XBoardWRook@2x.tiff in Resources */,
-				1968B14B154F5A210027DC0E /* Variations.pgn in Resources */,
 				19DB32CF15BC78560050B976 /* Localizable.strings in Resources */,
 				19DB32DA15BCB1B60050B976 /* PGNTags.strings in Resources */,
 				19DB32EE15BCD1B40050B976 /* UIButtonBarArrowDown.png in Resources */,
@@ -1662,6 +1660,7 @@
 		19B79B7A14833F5B000AD1A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Austen Green (K9XW242PUS)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChessUI/CBase Chess-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1676,6 +1675,7 @@
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Chess-figmfltbxwiioablppkbsvluywcn/Build/Products/Debug-iphoneos\"",
 				);
 				PRODUCT_NAME = "CBase Chess";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E156F43-4049-4325-B660-CB55E02B2C9B";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
