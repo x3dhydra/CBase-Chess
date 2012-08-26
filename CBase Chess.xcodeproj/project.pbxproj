@@ -311,6 +311,8 @@
 		A0A8174415EAAFFD00E08A96 /* BRMutableParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912912A1559F120006F02B2 /* BRMutableParagraphStyle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A0A8174515EAAFFD00E08A96 /* BRParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912912C1559F120006F02B2 /* BRParagraphStyle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A0A8174615EAAFFD00E08A96 /* NSMutableAttributedString+BRExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 191291301559F120006F02B2 /* NSMutableAttributedString+BRExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A0F0D2E215EAC12F004E26B6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19DB32D115BC78560050B976 /* Localizable.strings */; };
+		A0F0D2E315EAC12F004E26B6 /* PGNTags.strings in Resources */ = {isa = PBXBuildFile; fileRef = 19DB32DC15BCB1B60050B976 /* PGNTags.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1664,6 +1666,8 @@
 				A0A8172715E99FA800E08A96 /* AlphaWQueen@2x.tiff in Resources */,
 				A0A8172815E99FA800E08A96 /* AlphaWRook.tiff in Resources */,
 				A0A8172915E99FA800E08A96 /* AlphaWRook@2x.tiff in Resources */,
+				A0F0D2E215EAC12F004E26B6 /* Localizable.strings in Resources */,
+				A0F0D2E315EAC12F004E26B6 /* PGNTags.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

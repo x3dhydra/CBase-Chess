@@ -12,18 +12,22 @@
 #import "CKAccessibility.h"
 #import "CKMove.h"
 
+static const CGFloat kHighlightedSquareStrokeWidth = 4.0f;
+
 typedef void (^CKAnimationBlock)(void);
 
 @interface CKBoardView() <UIGestureRecognizerDelegate>
 {
     CCMutableBoardRef _board;
     NSMutableDictionary *_pieceImages;
-	CCSquare _selectedSquare;
 }
 @property (nonatomic, strong) NSMutableDictionary *pieceViews;
 @property (nonatomic, strong) NSArray *squareAccessibilityElements;
 @property (nonatomic, strong) NSMutableArray *animationCompletionBlocks;
 @property (nonatomic, strong) UIPanGestureRecognizer *selectionPan;
+@property (nonatomic, strong) UITapGestureRecognizer *selectionTap;
+@property (nonatomic, strong) NSMutableIndexSet *highlightedSquares;
+@property (nonatomic, assign) CCSquare selectedSquare;
 @end
 
 @implementation CKBoardView
@@ -46,11 +50,18 @@ typedef void (^CKAnimationBlock)(void);
         _pieceViews = [[NSMutableDictionary alloc] initWithCapacity:32];
         _pieceImages = [[NSMutableDictionary alloc] initWithCapacity:12];
         _animationCompletionBlocks = [[NSMutableArray alloc] init];
+	
 		_selectionPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(piecePanned:)];
 		_selectionPan.delegate = self;
 		[self addGestureRecognizer:_selectionPan];
 		
+		_selectionTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(squareTapped:)];
+		_selectionTap.delegate = self;
+		[self addGestureRecognizer:_selectionTap];
+		
 		_selectedSquare = InvalidSquare;
+		
+		_highlightedSquares = [[NSMutableIndexSet alloc] init];
     }
     return self;
 }
@@ -85,6 +96,16 @@ typedef void (^CKAnimationBlock)(void);
             [[UIColor blackColor] set];
             [name drawInRect:squareRect withFont:[UIFont systemFontOfSize:14.0f] lineBreakMode:UILineBreakModeClip alignment:UITextAlignmentCenter];
         }
+		
+		[self.highlightedSquares enumerateIndexesUsingBlock:^(CCSquare square, BOOL *stop) {
+			CGRect frame = [self rectForSquare:square];
+			frame = CGRectInset(frame, kHighlightedSquareStrokeWidth / 2.0f, kHighlightedSquareStrokeWidth / 2.0f);
+			CGContextRef context = UIGraphicsGetCurrentContext();
+			UIGraphicsPushContext(context);
+			CGContextSetStrokeColorWithColor(context, [[UIColor yellowColor] CGColor]);
+			CGContextStrokeRectWithWidth(context, frame, kHighlightedSquareStrokeWidth);
+			UIGraphicsPopContext();
+		}];
     }
 }
 
@@ -505,6 +526,9 @@ typedef void (^CKAnimationBlock)(void);
             
             element.accessibilityLabel = accessibilityLabel;
             
+			if (square == self.selectedSquare)
+				element.accessibilityTraits |= UIAccessibilityTraitSelected;
+			
             [elements addObject:element];
         }
         _squareAccessibilityElements = elements;
@@ -525,16 +549,21 @@ typedef void (^CKAnimationBlock)(void);
 	if (!self.allowsSelection)
 		return NO;
 	
+	if (gestureRecognizer == self.selectionTap)
+		return YES;
+	
+	if (gestureRecognizer == self.selectionPan && UIAccessibilityIsVoiceOverRunning())
+		return NO;
+	
 	CGPoint point = [touch locationInView:self];
 	CCSquare square = [self squareAtPoint:point];
 	
 	CCPiece piece = CCBoardGetPieceAtSquare(_board, square);
 	if (CCPieceIsValid(piece))
 	{
-		BOOL canSelect = [self.delegate respondsToSelector:@selector(boardView:canSelectSquare:)] ? [self.delegate boardView:self canSelectSquare:square] : YES;
+		BOOL canSelect = [self canSelectSquare:square];
 		if (canSelect)
 		{
-			_selectedSquare = square;
 			return YES;
 		}
 	}
@@ -546,8 +575,16 @@ typedef void (^CKAnimationBlock)(void);
 {
 	if (pan.state == UIGestureRecognizerStateBegan || pan.state == UIGestureRecognizerStateChanged)
 	{
+		CGPoint point = [pan locationInView:self];
+		CCSquare square = [self squareAtPoint:point];
+		
+		if (pan.state == UIGestureRecognizerStateBegan)
+		{
+			[self setSelectedSquare:square];
+		}
+		
 		CGPoint translation = [pan translationInView:self];
-		UIView *pieceView = [self pieceViewForSquare:_selectedSquare];
+		UIView *pieceView = [self pieceViewForSquare:self.selectedSquare];
 		pieceView.frame = CGRectOffset(pieceView.frame, translation.x, translation.y);
 		[pan setTranslation:CGPointZero inView:self];
 		
@@ -560,7 +597,7 @@ typedef void (^CKAnimationBlock)(void);
 		CGPoint point = [pan locationInView:self];
 		CCSquare square = [self squareAtPoint:point];
 		
-		[self tryMoveFromSquare:_selectedSquare toSquare:square];
+		[self tryMoveFromSquare:self.selectedSquare toSquare:square];
 	}
 	else if (pan.state == UIGestureRecognizerStateCancelled)
 	{
@@ -568,7 +605,57 @@ typedef void (^CKAnimationBlock)(void);
 	}
 }
 
+- (void)squareTapped:(UITapGestureRecognizer *)tap
+{
+	if (tap.state == UIGestureRecognizerStateRecognized)
+	{
+		CCSquare square = [self squareAtPoint:[tap locationInView:self]];
+		if (square == self.selectedSquare)
+		{
+			[self cancelPendingMove:NO];
+			return;
+		}
+		
+		if (self.selectedSquare == InvalidSquare)
+		{
+			CCPiece piece = CCBoardGetPieceAtSquare(_board, square);
+			if (CCPieceIsValid(piece) && [self canSelectSquare:square])
+			{
+				[self setSelectedSquare:square];
+			}
+		}
+		else
+		{
+			// User tapped off square
+			[self tryMoveFromSquare:self.selectedSquare toSquare:square];
+		}
+	}
+}
+
 #pragma mark - Selection
+
+- (void)setSelectedSquare:(CCSquare)selectedSquare
+{
+	_selectedSquare = selectedSquare;
+	if (_selectedSquare != InvalidSquare)
+	{
+		[self.highlightedSquares addIndex:_selectedSquare];
+		[self setNeedsDisplayInRect:[self rectForSquare:_selectedSquare]];
+		UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, [NSString stringWithFormat:NSLocalizedString(@"Selected: %@", @"Selected square accessibility"), CCSquareName(selectedSquare)]);
+	}
+	else
+	{
+		[self.highlightedSquares removeAllIndexes];
+		[self setNeedsDisplay];
+	}
+	
+	self.squareAccessibilityElements = nil;
+}
+
+- (BOOL)canSelectSquare:(CCSquare)square
+{
+	return [self.delegate respondsToSelector:@selector(boardView:canSelectSquare:)] ? [self.delegate boardView:self canSelectSquare:square] : YES;
+}
 
 - (void)tryMoveFromSquare:(CCSquare)from toSquare:(CCSquare)to
 {
@@ -578,14 +665,17 @@ typedef void (^CKAnimationBlock)(void);
 	CKMove *move = [CKMove moveWithFrom:from to:to];
 	CKPosition *position = [self.delegate boardView:self positionForMove:move];
 	if (position)
+	{
 		[self setPosition:position withAnimation:CKBoardAnimationDelta];
+		self.selectedSquare = InvalidSquare;
+	}
 	else
 		[self cancelPendingMove:YES];
 }
 
 - (void)cancelPendingMove:(BOOL)animated
 {
-	_selectedSquare = InvalidSquare;
+	self.selectedSquare = InvalidSquare;
 	NSTimeInterval animationDuration = animated ? 0.1 : 0.0;
 	
 	[UIView animateWithDuration:animationDuration animations:^{
