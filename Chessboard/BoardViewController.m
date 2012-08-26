@@ -8,10 +8,17 @@
 
 #import "BoardViewController.h"
 #import "CKBoardView.h"
+#import "CKGameFormatter.h"
+#import "CTLabel.h"
 
 @interface BoardViewController () <CKBoardViewDelegate>
 @property (nonatomic, strong) CKBoardView *boardView;
-@property (nonatomic, strong) CKPosition *position;
+@property (nonatomic, strong) CKGame *game;
+@property (nonatomic, strong) CKGameTree *gameTree;
+@property (nonatomic, strong) CTLabel *gameTextLabel;
+@property (nonatomic, strong) UIScrollView *scrollView;
+
+- (CKPosition *)position;
 @end
 
 @implementation BoardViewController
@@ -21,7 +28,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-		_position = [CKPosition standardPosition];
+		_game = [CKGame game];
+		_gameTree = _game.gameTree;
 		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Flip" style:UIBarButtonItemStyleBordered target:self action:@selector(flipBoard)];
     }
     return self;
@@ -38,6 +46,19 @@
 	boardView.delegate = self;
 	[self.view addSubview:boardView];
 	self.boardView = boardView;
+	
+	CTLabel *label = [[CTLabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))];
+    //[label setText:string];
+    label.numberOfLines = 0;
+    [label sizeToFit];
+    self.gameTextLabel = label;
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0.0f, CGRectGetMaxY(self.boardView.frame), CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - CGRectGetMaxY(self.boardView.frame))];
+    [self.view addSubview:scrollView];
+    scrollView.contentSize = label.bounds.size;
+	scrollView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+    [scrollView addSubview:label];
+    self.scrollView = scrollView;
 }
 
 - (void)viewDidLoad
@@ -59,7 +80,6 @@
     [self.boardView setImage:[UIImage imageNamed:@"AlphaWRook.tiff"] forPiece:WR];
 	
 	[self.boardView setPosition:self.position];
-	self.boardView.flipped = YES;
 }
 
 - (void)viewDidUnload
@@ -83,9 +103,24 @@
 	BOOL isLegal = [self.position isMoveLegal:move];
 	if (isLegal)
 	{
-		CKPosition *position = [self.position positionByMakingMove:move];
-		self.position = position;
-		return position;
+		NSString *moveString = [CKSANHelper stringFromMove:move withPosition:self.gameTree.position];
+		
+		if (self.gameTree.children.count)
+		{
+			CKGameTree *tree = [self.gameTree gameTreeWithMove:move];
+			[self.gameTree replaceChildAtIndex:0 withGameTree:tree];
+		}
+		else
+		{
+			[self.gameTree addMove:move];
+		}
+	
+		self.gameTree = [self.gameTree nextTree];
+		self.gameTree.moveString = moveString;
+		
+		[self updateGameText];
+		
+		return self.gameTree.position;
 	}
 	else
 	{
@@ -105,6 +140,37 @@
 - (void)flipBoard
 {
 	[self.boardView setFlipped:!self.boardView.flipped animated:YES];
+}
+
+- (CKPosition *)position
+{
+	return self.gameTree.position;
+}
+
+- (void)updateGameText
+{
+	[self.gameTextLabel setText:[self gameText]];
+	[self.gameTextLabel sizeToFitCurrentWidth];
+	self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.scrollView.bounds), CGRectGetHeight(self.gameTextLabel.bounds));
+}
+
+- (NSAttributedString *)gameText
+{
+	__weak BoardViewController *controller = self;
+	
+    CKGameFormatter *formatter = [[CKGameFormatter alloc] initWithGame:self.game];
+    formatter.textSize = 36.0f;
+    formatter.moveCallback = ^(CKGameTree *tree, NSMutableAttributedString *string)
+    {
+        [string setLink:^(CTLabel *button, NSRange range, CTLinkBlockSelectionType selectionType) {
+            controller.gameTree = tree;
+            [controller.boardView setPosition:tree.position withAnimation:CKBoardAnimationNone];
+        }];
+        [string addAttribute:kCTLabelLinkHighlightedForegroundColorKey value:(__bridge id)[[UIColor orangeColor] CGColor] range:NSMakeRange(0, string.length)];
+    };
+    
+    NSAttributedString *string = [formatter attributedGameTree];
+	return string;
 }
 
 @end

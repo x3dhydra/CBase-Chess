@@ -304,6 +304,11 @@
 		A0A8172715E99FA800E08A96 /* AlphaWQueen@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C7154DDDB50019F0A1 /* AlphaWQueen@2x.tiff */; };
 		A0A8172815E99FA800E08A96 /* AlphaWRook.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C8154DDDB50019F0A1 /* AlphaWRook.tiff */; };
 		A0A8172915E99FA800E08A96 /* AlphaWRook@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C9154DDDB50019F0A1 /* AlphaWRook@2x.tiff */; };
+		A0A8174215EAAFD400E08A96 /* CTLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912912E1559F120006F02B2 /* CTLabel.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A0A8174315EAAFFD00E08A96 /* BRFont.m in Sources */ = {isa = PBXBuildFile; fileRef = 191291281559F120006F02B2 /* BRFont.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A0A8174415EAAFFD00E08A96 /* BRMutableParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912912A1559F120006F02B2 /* BRMutableParagraphStyle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A0A8174515EAAFFD00E08A96 /* BRParagraphStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 1912912C1559F120006F02B2 /* BRParagraphStyle.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A0A8174615EAAFFD00E08A96 /* NSMutableAttributedString+BRExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 191291301559F120006F02B2 /* NSMutableAttributedString+BRExtensions.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1708,6 +1713,11 @@
 				A0A8170F15E99DAB00E08A96 /* BoardViewController.m in Sources */,
 				A0A8171015E99EF600E08A96 /* CKBoardView.m in Sources */,
 				A0A8171115E99F1700E08A96 /* CKAccessibility.m in Sources */,
+				A0A8174215EAAFD400E08A96 /* CTLabel.m in Sources */,
+				A0A8174315EAAFFD00E08A96 /* BRFont.m in Sources */,
+				A0A8174415EAAFFD00E08A96 /* BRMutableParagraphStyle.m in Sources */,
+				A0A8174515EAAFFD00E08A96 /* BRParagraphStyle.m in Sources */,
+				A0A8174615EAAFFD00E08A96 /* NSMutableAttributedString+BRExtensions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1950,6 +1960,7 @@
 				A0A8170515E99D4E00E08A96 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -586,7 +586,7 @@ typedef void (^CKAnimationBlock)(void);
 - (void)cancelPendingMove:(BOOL)animated
 {
 	_selectedSquare = InvalidSquare;
-	NSTimeInterval animationDuration = animated ? 0.25 : 0.0;
+	NSTimeInterval animationDuration = animated ? 0.1 : 0.0;
 	
 	[UIView animateWithDuration:animationDuration animations:^{
 		[self setNeedsLayout];
