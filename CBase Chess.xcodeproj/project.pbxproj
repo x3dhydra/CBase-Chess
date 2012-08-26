@@ -268,6 +268,8 @@
 		19DE6A17154DDDB60019F0A1 /* XBoardWQueen@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE6963154DDDB50019F0A1 /* XBoardWQueen@2x.tiff */; };
 		19DE6A18154DDDB60019F0A1 /* XBoardWRook.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE6964154DDDB50019F0A1 /* XBoardWRook.tiff */; };
 		19DE6A19154DDDB60019F0A1 /* XBoardWRook@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE6965154DDDB50019F0A1 /* XBoardWRook@2x.tiff */; };
+		A063D9EF15EAB52A0015A981 /* CTFrameWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A063D9EE15EAB52A0015A981 /* CTFrameWrapper.m */; };
+		A063D9F015EAB52A0015A981 /* CTFrameWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A063D9EE15EAB52A0015A981 /* CTFrameWrapper.m */; };
 		A0A816F415E99D4E00E08A96 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6514833F5B000AD1A7 /* UIKit.framework */; };
 		A0A816F515E99D4E00E08A96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6714833F5B000AD1A7 /* Foundation.framework */; };
 		A0A816F615E99D4E00E08A96 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6914833F5B000AD1A7 /* CoreGraphics.framework */; };
@@ -696,6 +698,8 @@
 		19DE6964154DDDB50019F0A1 /* XBoardWRook.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = XBoardWRook.tiff; sourceTree = "<group>"; };
 		19DE6965154DDDB50019F0A1 /* XBoardWRook@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "XBoardWRook@2x.tiff"; sourceTree = "<group>"; };
 		19FF471C1544A0D100A7C545 /* 2500.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 2500.pgn; path = ../../ChessKit/ChessKitTests/2500.pgn; sourceTree = "<group>"; };
+		A063D9ED15EAB52A0015A981 /* CTFrameWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFrameWrapper.h; sourceTree = "<group>"; };
+		A063D9EE15EAB52A0015A981 /* CTFrameWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFrameWrapper.m; sourceTree = "<group>"; };
 		A0A816F215E99D4E00E08A96 /* Chessboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chessboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0A816F915E99D4E00E08A96 /* Chessboard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chessboard-Info.plist"; sourceTree = "<group>"; };
 		A0A816FB15E99D4E00E08A96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -761,6 +765,8 @@
 		191291261559F120006F02B2 /* CTLabel */ = {
 			isa = PBXGroup;
 			children = (
+				A063D9ED15EAB52A0015A981 /* CTFrameWrapper.h */,
+				A063D9EE15EAB52A0015A981 /* CTFrameWrapper.m */,
 				191291271559F120006F02B2 /* BRFont.h */,
 				191291281559F120006F02B2 /* BRFont.m */,
 				191291291559F120006F02B2 /* BRMutableParagraphStyle.h */,
@@ -1701,6 +1707,7 @@
 				19B554FD15C5ACAC00424562 /* CBTabbedListViewController.m in Sources */,
 				19B5550015C5B48700424562 /* TWICDatabaseListViewController.m in Sources */,
 				19B5550315C5C22F00424562 /* CBaseNotifications.m in Sources */,
+				A063D9EF15EAB52A0015A981 /* CTFrameWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1718,6 +1725,7 @@
 				A0A8174415EAAFFD00E08A96 /* BRMutableParagraphStyle.m in Sources */,
 				A0A8174515EAAFFD00E08A96 /* BRParagraphStyle.m in Sources */,
 				A0A8174615EAAFFD00E08A96 /* NSMutableAttributedString+BRExtensions.m in Sources */,
+				A063D9F015EAB52A0015A981 /* CTFrameWrapper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1873,7 +1881,7 @@
 		19B79B7B14833F5B000AD1A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Austen Green (K9XW242PUS)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChessUI/CBase Chess-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1888,7 +1896,7 @@
 					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Chess-figmfltbxwiioablppkbsvluywcn/Build/Products/Debug-iphoneos\"",
 				);
 				PRODUCT_NAME = "CBase Chess";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E156F43-4049-4325-B660-CB55E02B2C9B";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

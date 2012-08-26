@@ -10,6 +10,14 @@
 #import <CoreText/CoreText.h>
 #import "NSMutableAttributedString+BRExtensions.h"
 
+typedef enum  
+{
+	CTLabelAccessibilityDefault,  // Label behavior if there are no links in the text, otherwise returns by paragraph.
+	CTLabelAccessibilityLabel,
+	CTLabelAccessibilityByLine,
+	CTLabelAccessibilityByParagraph,
+} CTLabelAccessibilityType;
+
 @interface CTLabel : UIView
 {
 	CGPathRef _path;
@@ -63,12 +71,20 @@
 // Default implementation returns YES if the frame's visible string range is smaller than it's range.
 - (BOOL)shouldTruncateForFrame:(CTFrameRef)frame;
 
+// Returns the vertical offset that the text will be drawn at.  Default implementation centers the text within the height of the label.
+- (CGFloat)textOriginVerticalOffset;
+
 - (void)sizeToFitCurrentWidth;
 
 - (void)setPath:(CGPathRef)path;
 - (CGPathRef)path;
 
 - (CGRect)boundingBoxForRange:(NSRange)range;
+
+- (void)enumerateLinesInFrame:(CTFrameRef)frame usingBlock:(void(^)(CTLineRef line, NSUInteger idx, CGRect frame, BOOL *stop))block;
+
+// Accessibility support
+@property (nonatomic, assign) CTLabelAccessibilityType accessibilityType;
 
 @end
 

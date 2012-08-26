@@ -9,6 +9,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "CTLabel.h"
 #import "NSMutableAttributedString+BRExtensions.h"
+#import "CTFrameWrapper.h"
 
 static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
 {
@@ -23,6 +24,7 @@ static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
     CGRect _selectionBounds;
     NSMutableAttributedString *_text;
 	CGSize _textSize;
+	BOOL _hasLinks;
 }
 @property (nonatomic, readonly) CTFramesetterRef framesetter;
 @property (nonatomic, readonly) CTFrameRef textFrame;
@@ -45,6 +47,10 @@ static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
 // Truncation
 - (CTLineRef)copyTruncatedLine:(CTLineRef)originalLine width:(CGFloat)maxWidth;
 
+// Accessibility
+@property (nonatomic, strong) NSMutableArray *accessibilityElements;
+- (CTLabelAccessibilityType)resolvedAccessibilityType;
+
 @end
 
 @implementation CTLabel
@@ -66,19 +72,39 @@ static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
 @synthesize highlightsLinks = _highlightsLinks;
 @synthesize allowsSelection = _allowsSelection;
 
+// Accessibility
+@synthesize accessibilityType = _accessibilityType;
+@synthesize accessibilityElements = _accessibilityElements;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
-        self.layer.geometryFlipped = YES;  // Flipped for CoreText drawing
-        self.backgroundColor = [UIColor clearColor];
-        self.isAccessibilityElement = YES; // Support basic accessibility
-        
-        _allowsSelection = YES;
-        _highlightsLinks = NO;
-		_ignoreParagraphStyle = YES;
+    if (self) 
+	{
+		[self CTLabelCommonInit];
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+	if (self)
+	{
+		[self CTLabelCommonInit];
+	}
+	return self;
+}
+
+- (void)CTLabelCommonInit
+{
+	self.layer.geometryFlipped = YES;  // Flipped for CoreText drawing
+	self.backgroundColor = [UIColor clearColor];
+	self.isAccessibilityElement = YES; // Support basic accessibility
+	
+	_allowsSelection = YES;
+	_highlightsLinks = NO;
+	_ignoreParagraphStyle = YES;
 }
 
 - (void)dealloc
@@ -87,6 +113,7 @@ static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
     [_text release];
     [_font release];
     [_textColor release];
+	[_accessibilityElements release];
     
     if (_frame)
         CFRelease(_frame);
@@ -96,6 +123,18 @@ static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
 	CGPathRelease(_path);
 	
     [super dealloc];
+}
+
+- (void)setFrame:(CGRect)frame
+{
+	CGRect oldFrame = self.frame;
+	[super setFrame:frame];
+	[self invalidateAccessibilityElements];
+	
+	if (!CGSizeEqualToSize(oldFrame.size, frame.size))
+	{
+		[self invalidateTextSize];
+	}
 }
 
 #pragma mark - Drawing
@@ -142,10 +181,7 @@ static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
     CTFrameGetLineOrigins(frame, CFRangeMake(0, 0), origins);
 	
 	// Allow for vertical centering like UILabel does
-    CGFloat yOffset = 0.0f;
-	if (!CGSizeEqualToSize(_textSize, CGSizeZero))
-		yOffset = roundf((CGRectGetHeight(rect) - _textSize.height) / 2.0f);  //  The vertical offset will be half the difference between the text rect height and the actual text height
-	
+    CGFloat yOffset = [self textOriginVerticalOffset];	
     CGFloat ascent, descent, leading;
     
     // Reduce the lineCount if the number of lines is restricted
@@ -408,6 +444,15 @@ static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
 	return (visibleRange.location != textRange.location) || (visibleRange.length != textRange.length);
 }
 
+- (CGFloat)textOriginVerticalOffset
+{
+	CGFloat yOffset = 0.0f;
+	if (!CGSizeEqualToSize(_textSize, CGSizeZero))
+		yOffset = roundf((CGRectGetHeight([self textRectForBounds:self.bounds limitedToNumberOfLines:self.numberOfLines]) - _textSize.height) / 2.0f);  //  The vertical offset will be half the difference between the text rect height and the actual text height
+	
+	return yOffset;
+}
+
 #pragma mark - Accessor
 
 - (void)updateFramesetter
@@ -429,6 +474,13 @@ static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
 {
     [self updateFramesetter];
     [self setNeedsDisplay];
+	[self invalidateAccessibilityElements];
+}
+
+- (void)setNeedsLayout
+{
+	[super setNeedsLayout];
+	[self invalidateAccessibilityElements];
 }
 
 
@@ -496,6 +548,16 @@ static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
         _text = [matchedString retain];
 		[mutableText release];
 	}
+	
+	// Determine if we have links (used for default accessibility type)
+	_hasLinks = NO;
+	[_text enumerateAttribute:kCTLabelLinkKey inRange:NSMakeRange(0, _text.length) options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
+		if (value)
+		{
+			_hasLinks = YES;
+			*stop = YES;
+		}
+	}];
     
     [self invalidateTextSize];
 }
@@ -825,7 +887,7 @@ static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
         
         // Add the touch handling block as a link
         if (block)
-            [matchedString addAttribute:@"BRLink" value:block range:matchRange];
+            [matchedString addAttribute:kCTLabelLinkKey value:block range:matchRange];
     }
     
     return matchedString;
@@ -916,16 +978,6 @@ static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
     CGRect frame = self.frame;
     frame.size = CGSizeMake(width, size.height);
     self.frame = frame;
-}
-
-- (void)setFrame:(CGRect)frame
-{
-    CGSize oldSize = self.frame.size;
-        
-    [super setFrame:frame];
-    
-    if (!CGSizeEqualToSize(oldSize, frame.size))
-        [self invalidateTextSize];
 }
 
 #pragma mark - Truncation
@@ -1073,6 +1125,189 @@ static BOOL NSRangeIntersectsRange(NSRange range1, NSRange range2)
 - (UIAccessibilityTraits)accessibilityTraits
 {
     return UIAccessibilityTraitStaticText;
+}
+
+- (BOOL)isAccessibilityElement
+{
+	switch ([self resolvedAccessibilityType])
+	{
+		case CTLabelAccessibilityLabel:
+			return YES;
+			break;
+		case CTLabelAccessibilityByLine:
+		case CTLabelAccessibilityByParagraph:
+			return NO;  // NO because it will be an accessibility container
+		default:
+			return [super isAccessibilityElement];
+			break;
+	}
+}
+
+- (NSInteger)accessibilityElementCount
+{
+	if ([self isAccessibilityElement])
+		return 0;
+	else
+		return self.accessibilityElements.count;
+}
+
+- (id)accessibilityElementAtIndex:(NSInteger)index
+{
+	return [self.accessibilityElements objectAtIndex:index];
+}
+
+- (NSInteger)indexOfAccessibilityElement:(id)element
+{
+	return [self.accessibilityElements indexOfObject:element];
+}
+
+- (NSMutableArray *)accessibilityElements
+{
+	if ([self isAccessibilityElement])
+		return nil;
+	
+	if (!_accessibilityElements)
+	{
+		_accessibilityElements = [[NSMutableArray alloc] init];
+		
+		CTLabelAccessibilityType accessibilityType = [self resolvedAccessibilityType];
+		
+		if (accessibilityType == CTLabelAccessibilityByLine)
+		{
+			[self enumerateLinesInFrame:self.textFrame usingBlock:^(CTLineRef line, NSUInteger idx, CGRect frame, BOOL *stop) {
+				UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
+				
+				CGFloat yOffset = [self textOriginVerticalOffset];
+				frame.origin.y -= yOffset;
+
+				CGRect accessibilityFrame = [self.window convertRect:frame fromView:self];				
+				element.accessibilityFrame = accessibilityFrame;
+				
+				CFRange range = CTLineGetStringRange(line);
+				NSString *lineText = [self.text substringWithRange:NSMakeRange(range.location, range.length)];
+				element.accessibilityLabel = lineText;
+				
+				[_accessibilityElements addObject:element];
+			}];
+		}
+		else if (accessibilityType == CTLabelAccessibilityByParagraph)
+		{
+			_accessibilityElements = [[NSMutableArray alloc] init];
+			
+			CTFrameWrapper *wrapper = [[[CTFrameWrapper alloc] initWithFrame:self.textFrame attributedString:self.attributedString] autorelease];
+			
+			CFRange range = CTFrameGetVisibleStringRange(self.textFrame);
+			
+			[wrapper enumerateLinesInRange:NSMakeRange(range.location, range.length) options:NSStringEnumerationByParagraphs usingBlock:^(NSArray *lines, CGRect frame, NSRange substringRange, BOOL *stop) {
+				
+				[self.attributedString enumerateAttribute:kCTLabelLinkKey inRange:substringRange options:0 usingBlock:^(id value, NSRange range, BOOL *stop) {
+					CGRect frame = [self boundingBoxForRange:range];
+					
+					UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
+					
+					CGFloat yOffset = [self textOriginVerticalOffset];
+					
+					frame.origin.y -= yOffset;
+					
+					CGRect accessibilityFrame = [self.window convertRect:frame fromView:self];
+					//accessibilityFrame.origin.y += yOffset;
+					element.accessibilityFrame = accessibilityFrame;
+					
+					NSString *lineText = [self.text substringWithRange:NSMakeRange(range.location, range.length)];
+					element.accessibilityLabel = lineText;
+					
+					element.accessibilityTraits = UIAccessibilityTraitStaticText;
+					if (value)
+					{
+						// Need a link trait.  Also need to adjust the touch point
+						element.accessibilityTraits |= UIAccessibilityTraitLink;
+						if ([element respondsToSelector:@selector(setAccessibilityActivationPoint:)])
+						{
+							CGRect firstCharacterFrame = [self boundingBoxForRange:NSMakeRange(range.location, 1)];
+							element.accessibilityActivationPoint = [self.window convertPoint:firstCharacterFrame.origin fromView:nil];
+						}
+					}
+					
+					[_accessibilityElements addObject:element];
+
+				}];
+
+//				UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
+//				
+//				CGFloat yOffset = [self textOriginVerticalOffset];
+//
+//				frame.origin.y -= yOffset;
+//				
+//				CGRect accessibilityFrame = [self.window convertRect:frame fromView:self];
+//				//accessibilityFrame.origin.y += yOffset;
+//				element.accessibilityFrame = accessibilityFrame;
+//				
+//				NSString *lineText = [self.text substringWithRange:NSMakeRange(substringRange.location, substringRange.length)];
+//				element.accessibilityLabel = lineText;
+//				
+//				[_accessibilityElements addObject:element];
+								
+			}];
+		}
+	}
+	return _accessibilityElements;
+}
+
+- (void)setAccessibilityType:(CTLabelAccessibilityType)accessibilityType
+{
+	if (accessibilityType == _accessibilityType)
+		return;
+	
+	_accessibilityType = accessibilityType;
+	[self invalidateAccessibilityElements];
+}
+
+- (void)invalidateAccessibilityElements
+{
+	if (_accessibilityElements)
+		self.accessibilityElements = nil;
+	
+	// Post notification so thtat the screen will be updated
+	UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
+}
+
+- (CTLabelAccessibilityType)resolvedAccessibilityType
+{
+	if (self.accessibilityType == CTLabelAccessibilityDefault)
+	{
+		if (_hasLinks)
+			return CTLabelAccessibilityByParagraph;
+		else
+			return CTLabelAccessibilityLabel;
+	}
+	else
+		return self.accessibilityType;
+}
+
+#pragma mark - enumeration
+
+- (void)enumerateLinesInFrame:(CTFrameRef)frame usingBlock:(void(^)(CTLineRef line, NSUInteger idx, CGRect frame, BOOL *stop))block
+{
+	if (!frame || !block)
+		return;
+	
+	NSArray *lines = (NSArray *)CTFrameGetLines(frame);
+	
+	CGPoint *origins = malloc(sizeof(CGPoint) * lines.count);
+	CTFrameGetLineOrigins(frame, CFRangeMake(0, 0), origins);
+	
+	[lines enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		CTLineRef line = (CTLineRef)obj;
+		
+		CGFloat ascent, descent, leading;
+		double width = CTLineGetTypographicBounds(line, &ascent, &descent, &leading);
+		
+		CGRect textFrame = CGRectMake(origins[idx].x, origins[idx].y, width, ascent + descent);
+		
+		block(line, idx, textFrame, stop);
+	}];
+	
+	free(origins);
 }
 
 @end
