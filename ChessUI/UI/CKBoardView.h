@@ -17,6 +17,8 @@ typedef enum
     CKBoardAnimationDelta,
 } CKBoardAnimation;
 
+@class CKPosition, CKMove;
+@protocol CKBoardViewDelegate;
 
 @interface CKBoardView : UIView
 
@@ -36,8 +38,12 @@ typedef enum
 @property (nonatomic, assign, getter = isFlipped) BOOL flipped;
 - (void)setFlipped:(BOOL)flipped animated:(BOOL)animated;
 
+@property (nonatomic, assign) BOOL allowsSelection;  // Default NO
+@property (nonatomic, weak) id<CKBoardViewDelegate> delegate;
+
 - (NSIndexSet *)squaresInRect:(CGRect)rect;
 - (CGRect)rectForSquare:(CCSquare)square;
+- (CCSquare)squareAtPoint:(CGPoint)point;
 
 - (void)setPiece:(CCColoredPiece)piece atSquare:(CCSquare)square;
 - (void)removePieceFromSquare:(CCSquare)square;
@@ -54,11 +60,14 @@ typedef enum
 @end
 
 @protocol CKBoardViewDelegate <NSObject>
+@required
 
+- (CKPosition *)boardView:(CKBoardView *)boardView positionForMove:(CKMove *)move;  // Return nil to indicate the move is invalid
+
+@optional
+- (BOOL)boardView:(CKBoardView *)boardView canSelectSquare:(CCSquare)square;
 
 @end
-
-@class CKPosition;
 
 @interface CKBoardView (ChessKitAdditions)
 - (void)setPosition:(CKPosition *)position;

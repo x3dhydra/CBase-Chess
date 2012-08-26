@@ -10,17 +10,20 @@
 #import "CKPosition.h"
 #import "CBaseConstants.h"
 #import "CKAccessibility.h"
+#import "CKMove.h"
 
 typedef void (^CKAnimationBlock)(void);
 
-@interface CKBoardView()
+@interface CKBoardView() <UIGestureRecognizerDelegate>
 {
     CCMutableBoardRef _board;
     NSMutableDictionary *_pieceImages;
+	CCSquare _selectedSquare;
 }
 @property (nonatomic, strong) NSMutableDictionary *pieceViews;
 @property (nonatomic, strong) NSArray *squareAccessibilityElements;
 @property (nonatomic, strong) NSMutableArray *animationCompletionBlocks;
+@property (nonatomic, strong) UIPanGestureRecognizer *selectionPan;
 @end
 
 @implementation CKBoardView
@@ -43,6 +46,11 @@ typedef void (^CKAnimationBlock)(void);
         _pieceViews = [[NSMutableDictionary alloc] initWithCapacity:32];
         _pieceImages = [[NSMutableDictionary alloc] initWithCapacity:12];
         _animationCompletionBlocks = [[NSMutableArray alloc] init];
+		_selectionPan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(piecePanned:)];
+		_selectionPan.delegate = self;
+		[self addGestureRecognizer:_selectionPan];
+		
+		_selectedSquare = InvalidSquare;
     }
     return self;
 }
@@ -131,6 +139,25 @@ typedef void (^CKAnimationBlock)(void);
         rect.size.height -= (CGRectGetMaxY(rect) - size.height);
     
     return rect;
+}
+
+- (CCSquare)squareAtPoint:(CGPoint)point
+{
+	CGSize size = [self sizeThatFits:self.bounds.size];
+    CGFloat squareLength = size.width / 8.0f;
+	
+	if (point.x < 0.0 || point.y < 0.0 || point.x > size.width || point.y > size.height)
+		return InvalidSquare;
+	
+	signed char file = floorf(point.x / squareLength);
+	signed char rank = floorf(point.y / squareLength);
+	
+	if (self.isFlipped)
+		file = 7 - file;
+	else
+		rank = 7 - rank;
+	
+	return CCSquareMake(rank, file);
 }
 
 - (void)setFlipped:(BOOL)flipped
@@ -485,9 +512,86 @@ typedef void (^CKAnimationBlock)(void);
     return _squareAccessibilityElements;
 }
 
-- (void)addSubview:(UIView *)view
+- (UIView *)pieceViewForSquare:(CCSquare)square
 {
-    [super addSubview:view];
+	NSNumber *key = [NSNumber numberWithInteger:square];
+	return [self.pieceViews objectForKey:key];
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{
+	if (!self.allowsSelection)
+		return NO;
+	
+	CGPoint point = [touch locationInView:self];
+	CCSquare square = [self squareAtPoint:point];
+	
+	CCPiece piece = CCBoardGetPieceAtSquare(_board, square);
+	if (CCPieceIsValid(piece))
+	{
+		BOOL canSelect = [self.delegate respondsToSelector:@selector(boardView:canSelectSquare:)] ? [self.delegate boardView:self canSelectSquare:square] : YES;
+		if (canSelect)
+		{
+			_selectedSquare = square;
+			return YES;
+		}
+	}
+		
+	return NO;
+}
+
+- (void)piecePanned:(UIPanGestureRecognizer *)pan
+{
+	if (pan.state == UIGestureRecognizerStateBegan || pan.state == UIGestureRecognizerStateChanged)
+	{
+		CGPoint translation = [pan translationInView:self];
+		UIView *pieceView = [self pieceViewForSquare:_selectedSquare];
+		pieceView.frame = CGRectOffset(pieceView.frame, translation.x, translation.y);
+		[pan setTranslation:CGPointZero inView:self];
+		
+		// Make sure the piece comes to the front so that it's always visible
+		if (pan.state == UIGestureRecognizerStateBegan)
+			[self bringSubviewToFront:pieceView];
+	}
+	else if (pan.state == UIGestureRecognizerStateEnded)
+	{
+		CGPoint point = [pan locationInView:self];
+		CCSquare square = [self squareAtPoint:point];
+		
+		[self tryMoveFromSquare:_selectedSquare toSquare:square];
+	}
+	else if (pan.state == UIGestureRecognizerStateCancelled)
+	{
+		[self cancelPendingMove:YES];
+	}
+}
+
+#pragma mark - Selection
+
+- (void)tryMoveFromSquare:(CCSquare)from toSquare:(CCSquare)to
+{
+	if (!self.delegate)
+		return;
+	
+	CKMove *move = [CKMove moveWithFrom:from to:to];
+	CKPosition *position = [self.delegate boardView:self positionForMove:move];
+	if (position)
+		[self setPosition:position withAnimation:CKBoardAnimationDelta];
+	else
+		[self cancelPendingMove:YES];
+}
+
+- (void)cancelPendingMove:(BOOL)animated
+{
+	_selectedSquare = InvalidSquare;
+	NSTimeInterval animationDuration = animated ? 0.25 : 0.0;
+	
+	[UIView animateWithDuration:animationDuration animations:^{
+		[self setNeedsLayout];
+		[self layoutIfNeeded];
+	}];
 }
 
 @end

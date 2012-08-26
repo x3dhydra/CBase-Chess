@@ -268,6 +268,42 @@
 		19DE6A17154DDDB60019F0A1 /* XBoardWQueen@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE6963154DDDB50019F0A1 /* XBoardWQueen@2x.tiff */; };
 		19DE6A18154DDDB60019F0A1 /* XBoardWRook.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE6964154DDDB50019F0A1 /* XBoardWRook.tiff */; };
 		19DE6A19154DDDB60019F0A1 /* XBoardWRook@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE6965154DDDB50019F0A1 /* XBoardWRook@2x.tiff */; };
+		A0A816F415E99D4E00E08A96 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6514833F5B000AD1A7 /* UIKit.framework */; };
+		A0A816F515E99D4E00E08A96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6714833F5B000AD1A7 /* Foundation.framework */; };
+		A0A816F615E99D4E00E08A96 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6914833F5B000AD1A7 /* CoreGraphics.framework */; };
+		A0A816FC15E99D4E00E08A96 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A0A816FA15E99D4E00E08A96 /* InfoPlist.strings */; };
+		A0A816FE15E99D4E00E08A96 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A816FD15E99D4E00E08A96 /* main.m */; };
+		A0A8170215E99D4E00E08A96 /* CBAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8170115E99D4E00E08A96 /* CBAppDelegate.m */; };
+		A0A8170615E99D6800E08A96 /* libChessKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B555C215D6CB5700424562 /* libChessKit.a */; };
+		A0A8170715E99D6800E08A96 /* libCoreChess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B555DC15D6CC2700424562 /* libCoreChess.a */; };
+		A0A8170C15E99D8200E08A96 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199996FF1558AF7300F437EC /* CoreText.framework */; };
+		A0A8170F15E99DAB00E08A96 /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A0A8170E15E99DAB00E08A96 /* BoardViewController.m */; };
+		A0A8171015E99EF600E08A96 /* CKBoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DE68A4154DC8760019F0A1 /* CKBoardView.m */; };
+		A0A8171115E99F1700E08A96 /* CKAccessibility.m in Sources */ = {isa = PBXBuildFile; fileRef = 19DB330B15BCF8270050B976 /* CKAccessibility.m */; };
+		A0A8171215E99FA800E08A96 /* AlphaBBishop.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68B2154DDDB50019F0A1 /* AlphaBBishop.tiff */; };
+		A0A8171315E99FA800E08A96 /* AlphaBBishop@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68B3154DDDB50019F0A1 /* AlphaBBishop@2x.tiff */; };
+		A0A8171415E99FA800E08A96 /* AlphaBKing.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68B4154DDDB50019F0A1 /* AlphaBKing.tiff */; };
+		A0A8171515E99FA800E08A96 /* AlphaBKing@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68B5154DDDB50019F0A1 /* AlphaBKing@2x.tiff */; };
+		A0A8171615E99FA800E08A96 /* AlphaBKnight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68B6154DDDB50019F0A1 /* AlphaBKnight.tiff */; };
+		A0A8171715E99FA800E08A96 /* AlphaBKnight@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68B7154DDDB50019F0A1 /* AlphaBKnight@2x.tiff */; };
+		A0A8171815E99FA800E08A96 /* AlphaBPawn.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68B8154DDDB50019F0A1 /* AlphaBPawn.tiff */; };
+		A0A8171915E99FA800E08A96 /* AlphaBPawn@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68B9154DDDB50019F0A1 /* AlphaBPawn@2x.tiff */; };
+		A0A8171A15E99FA800E08A96 /* AlphaBQueen.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68BA154DDDB50019F0A1 /* AlphaBQueen.tiff */; };
+		A0A8171B15E99FA800E08A96 /* AlphaBQueen@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68BB154DDDB50019F0A1 /* AlphaBQueen@2x.tiff */; };
+		A0A8171C15E99FA800E08A96 /* AlphaBRook.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68BC154DDDB50019F0A1 /* AlphaBRook.tiff */; };
+		A0A8171D15E99FA800E08A96 /* AlphaBRook@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68BD154DDDB50019F0A1 /* AlphaBRook@2x.tiff */; };
+		A0A8171E15E99FA800E08A96 /* AlphaWBishop.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68BE154DDDB50019F0A1 /* AlphaWBishop.tiff */; };
+		A0A8171F15E99FA800E08A96 /* AlphaWBishop@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68BF154DDDB50019F0A1 /* AlphaWBishop@2x.tiff */; };
+		A0A8172015E99FA800E08A96 /* AlphaWKing.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C0154DDDB50019F0A1 /* AlphaWKing.tiff */; };
+		A0A8172115E99FA800E08A96 /* AlphaWKing@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C1154DDDB50019F0A1 /* AlphaWKing@2x.tiff */; };
+		A0A8172215E99FA800E08A96 /* AlphaWKnight.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C2154DDDB50019F0A1 /* AlphaWKnight.tiff */; };
+		A0A8172315E99FA800E08A96 /* AlphaWKnight@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C3154DDDB50019F0A1 /* AlphaWKnight@2x.tiff */; };
+		A0A8172415E99FA800E08A96 /* AlphaWPawn.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C4154DDDB50019F0A1 /* AlphaWPawn.tiff */; };
+		A0A8172515E99FA800E08A96 /* AlphaWPawn@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C5154DDDB50019F0A1 /* AlphaWPawn@2x.tiff */; };
+		A0A8172615E99FA800E08A96 /* AlphaWQueen.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C6154DDDB50019F0A1 /* AlphaWQueen.tiff */; };
+		A0A8172715E99FA800E08A96 /* AlphaWQueen@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C7154DDDB50019F0A1 /* AlphaWQueen@2x.tiff */; };
+		A0A8172815E99FA800E08A96 /* AlphaWRook.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C8154DDDB50019F0A1 /* AlphaWRook.tiff */; };
+		A0A8172915E99FA800E08A96 /* AlphaWRook@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE68C9154DDDB50019F0A1 /* AlphaWRook@2x.tiff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -307,6 +343,20 @@
 			remoteInfo = CoreChessTests;
 		};
 		19B555EB15D6CC5400424562 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19B555D615D6CC2600424562 /* CoreChess.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 19F27742146DAA7200B58AB1;
+			remoteInfo = CoreChess;
+		};
+		A0A8170815E99D6D00E08A96 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 19B555B515D6CB5600424562 /* ChessKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 19F27777146DAAE700B58AB1;
+			remoteInfo = ChessKit;
+		};
+		A0A8170A15E99D6D00E08A96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 19B555D615D6CC2600424562 /* CoreChess.xcodeproj */;
 			proxyType = 1;
@@ -641,6 +691,15 @@
 		19DE6964154DDDB50019F0A1 /* XBoardWRook.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = XBoardWRook.tiff; sourceTree = "<group>"; };
 		19DE6965154DDDB50019F0A1 /* XBoardWRook@2x.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "XBoardWRook@2x.tiff"; sourceTree = "<group>"; };
 		19FF471C1544A0D100A7C545 /* 2500.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 2500.pgn; path = ../../ChessKit/ChessKitTests/2500.pgn; sourceTree = "<group>"; };
+		A0A816F215E99D4E00E08A96 /* Chessboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chessboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0A816F915E99D4E00E08A96 /* Chessboard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chessboard-Info.plist"; sourceTree = "<group>"; };
+		A0A816FB15E99D4E00E08A96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A0A816FD15E99D4E00E08A96 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A0A816FF15E99D4E00E08A96 /* Chessboard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Chessboard-Prefix.pch"; sourceTree = "<group>"; };
+		A0A8170015E99D4E00E08A96 /* CBAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CBAppDelegate.h; sourceTree = "<group>"; };
+		A0A8170115E99D4E00E08A96 /* CBAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CBAppDelegate.m; sourceTree = "<group>"; };
+		A0A8170D15E99DAB00E08A96 /* BoardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
+		A0A8170E15E99DAB00E08A96 /* BoardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -657,6 +716,19 @@
 				19B79B6614833F5B000AD1A7 /* UIKit.framework in Frameworks */,
 				19B79B6814833F5B000AD1A7 /* Foundation.framework in Frameworks */,
 				19B79B6A14833F5B000AD1A7 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A0A816EF15E99D4E00E08A96 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0A8170C15E99D8200E08A96 /* CoreText.framework in Frameworks */,
+				A0A8170615E99D6800E08A96 /* libChessKit.a in Frameworks */,
+				A0A8170715E99D6800E08A96 /* libCoreChess.a in Frameworks */,
+				A0A816F415E99D4E00E08A96 /* UIKit.framework in Frameworks */,
+				A0A816F515E99D4E00E08A96 /* Foundation.framework in Frameworks */,
+				A0A816F615E99D4E00E08A96 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -774,6 +846,7 @@
 				199997011558AFF400F437EC /* QuartzCore.framework */,
 				199996FF1558AF7300F437EC /* CoreText.framework */,
 				19B79B6B14833F5B000AD1A7 /* ChessUI */,
+				A0A816F715E99D4E00E08A96 /* Chessboard */,
 				19B79B6414833F5B000AD1A7 /* Frameworks */,
 				19B79B6214833F5B000AD1A7 /* Products */,
 			);
@@ -783,6 +856,7 @@
 			isa = PBXGroup;
 			children = (
 				19B79B6114833F5B000AD1A7 /* CBase Chess.app */,
+				A0A816F215E99D4E00E08A96 /* Chessboard.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1191,6 +1265,29 @@
 			path = Pieces;
 			sourceTree = "<group>";
 		};
+		A0A816F715E99D4E00E08A96 /* Chessboard */ = {
+			isa = PBXGroup;
+			children = (
+				A0A8170015E99D4E00E08A96 /* CBAppDelegate.h */,
+				A0A8170115E99D4E00E08A96 /* CBAppDelegate.m */,
+				A0A816F815E99D4E00E08A96 /* Supporting Files */,
+				A0A8170D15E99DAB00E08A96 /* BoardViewController.h */,
+				A0A8170E15E99DAB00E08A96 /* BoardViewController.m */,
+			);
+			path = Chessboard;
+			sourceTree = "<group>";
+		};
+		A0A816F815E99D4E00E08A96 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A0A816F915E99D4E00E08A96 /* Chessboard-Info.plist */,
+				A0A816FA15E99D4E00E08A96 /* InfoPlist.strings */,
+				A0A816FD15E99D4E00E08A96 /* main.m */,
+				A0A816FF15E99D4E00E08A96 /* Chessboard-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1211,6 +1308,25 @@
 			name = "CBase Chess";
 			productName = ChessUI;
 			productReference = 19B79B6114833F5B000AD1A7 /* CBase Chess.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A0A816F115E99D4E00E08A96 /* Chessboard */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A0A8170315E99D4E00E08A96 /* Build configuration list for PBXNativeTarget "Chessboard" */;
+			buildPhases = (
+				A0A816EE15E99D4E00E08A96 /* Sources */,
+				A0A816EF15E99D4E00E08A96 /* Frameworks */,
+				A0A816F015E99D4E00E08A96 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A0A8170915E99D6D00E08A96 /* PBXTargetDependency */,
+				A0A8170B15E99D6D00E08A96 /* PBXTargetDependency */,
+			);
+			name = Chessboard;
+			productName = Chessboard;
+			productReference = A0A816F215E99D4E00E08A96 /* Chessboard.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1245,6 +1361,7 @@
 			projectRoot = "";
 			targets = (
 				19B79B6014833F5B000AD1A7 /* CBase Chess */,
+				A0A816F115E99D4E00E08A96 /* Chessboard */,
 			);
 		};
 /* End PBXProject section */
@@ -1507,6 +1624,38 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A0A816F015E99D4E00E08A96 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0A816FC15E99D4E00E08A96 /* InfoPlist.strings in Resources */,
+				A0A8171215E99FA800E08A96 /* AlphaBBishop.tiff in Resources */,
+				A0A8171315E99FA800E08A96 /* AlphaBBishop@2x.tiff in Resources */,
+				A0A8171415E99FA800E08A96 /* AlphaBKing.tiff in Resources */,
+				A0A8171515E99FA800E08A96 /* AlphaBKing@2x.tiff in Resources */,
+				A0A8171615E99FA800E08A96 /* AlphaBKnight.tiff in Resources */,
+				A0A8171715E99FA800E08A96 /* AlphaBKnight@2x.tiff in Resources */,
+				A0A8171815E99FA800E08A96 /* AlphaBPawn.tiff in Resources */,
+				A0A8171915E99FA800E08A96 /* AlphaBPawn@2x.tiff in Resources */,
+				A0A8171A15E99FA800E08A96 /* AlphaBQueen.tiff in Resources */,
+				A0A8171B15E99FA800E08A96 /* AlphaBQueen@2x.tiff in Resources */,
+				A0A8171C15E99FA800E08A96 /* AlphaBRook.tiff in Resources */,
+				A0A8171D15E99FA800E08A96 /* AlphaBRook@2x.tiff in Resources */,
+				A0A8171E15E99FA800E08A96 /* AlphaWBishop.tiff in Resources */,
+				A0A8171F15E99FA800E08A96 /* AlphaWBishop@2x.tiff in Resources */,
+				A0A8172015E99FA800E08A96 /* AlphaWKing.tiff in Resources */,
+				A0A8172115E99FA800E08A96 /* AlphaWKing@2x.tiff in Resources */,
+				A0A8172215E99FA800E08A96 /* AlphaWKnight.tiff in Resources */,
+				A0A8172315E99FA800E08A96 /* AlphaWKnight@2x.tiff in Resources */,
+				A0A8172415E99FA800E08A96 /* AlphaWPawn.tiff in Resources */,
+				A0A8172515E99FA800E08A96 /* AlphaWPawn@2x.tiff in Resources */,
+				A0A8172615E99FA800E08A96 /* AlphaWQueen.tiff in Resources */,
+				A0A8172715E99FA800E08A96 /* AlphaWQueen@2x.tiff in Resources */,
+				A0A8172815E99FA800E08A96 /* AlphaWRook.tiff in Resources */,
+				A0A8172915E99FA800E08A96 /* AlphaWRook@2x.tiff in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1550,6 +1699,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A0A816EE15E99D4E00E08A96 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0A816FE15E99D4E00E08A96 /* main.m in Sources */,
+				A0A8170215E99D4E00E08A96 /* CBAppDelegate.m in Sources */,
+				A0A8170F15E99DAB00E08A96 /* BoardViewController.m in Sources */,
+				A0A8171015E99EF600E08A96 /* CKBoardView.m in Sources */,
+				A0A8171115E99F1700E08A96 /* CKAccessibility.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1562,6 +1723,16 @@
 			isa = PBXTargetDependency;
 			name = CoreChess;
 			targetProxy = 19B555EB15D6CC5400424562 /* PBXContainerItemProxy */;
+		};
+		A0A8170915E99D6D00E08A96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ChessKit;
+			targetProxy = A0A8170815E99D6D00E08A96 /* PBXContainerItemProxy */;
+		};
+		A0A8170B15E99D6D00E08A96 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CoreChess;
+			targetProxy = A0A8170A15E99D6D00E08A96 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1590,6 +1761,14 @@
 			);
 			name = PGNTags.strings;
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A0A816FA15E99D4E00E08A96 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A0A816FB15E99D4E00E08A96 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1705,6 +1884,44 @@
 			};
 			name = Release;
 		};
+		A0A8170415E99D4E00E08A96 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Chessboard/Chessboard-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/**";
+				INFOPLIST_FILE = "Chessboard/Chessboard-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A0A8170515E99D4E00E08A96 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Chessboard/Chessboard-Prefix.pch";
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/**";
+				INFOPLIST_FILE = "Chessboard/Chessboard-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1725,6 +1942,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		A0A8170315E99D4E00E08A96 /* Build configuration list for PBXNativeTarget "Chessboard" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A0A8170415E99D4E00E08A96 /* Debug */,
+				A0A8170515E99D4E00E08A96 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
