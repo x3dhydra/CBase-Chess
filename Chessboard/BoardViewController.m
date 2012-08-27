@@ -11,12 +11,14 @@
 #import "CKGameFormatter.h"
 #import "CTLabel.h"
 
-@interface BoardViewController () <CKBoardViewDelegate>
+@interface BoardViewController () <CKBoardViewDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) CKBoardView *boardView;
 @property (nonatomic, strong) CKGame *game;
 @property (nonatomic, strong) CKGameTree *gameTree;
 @property (nonatomic, strong) CTLabel *gameTextLabel;
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) CKMove *pendingMove;
+@property (nonatomic, strong) NSString *pendingMoveText;
 
 - (CKPosition *)position;
 @end
@@ -107,15 +109,18 @@
 		
 		if (self.gameTree.children.count)
 		{
-			CKGameTree *tree = [self.gameTree gameTreeWithMove:move];
-			[self.gameTree replaceChildAtIndex:0 withGameTree:tree];
+			self.pendingMove = move;
+			self.pendingMoveText = moveString;
+			UIAlertView *alert = [[UIAlertView alloc] initWithTitle:moveString message:@"Input new move" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"New Variation", @"New Main Line", @"Replace", nil];
+			[alert show];
+			return nil;
 		}
 		else
 		{
 			[self.gameTree addMove:move];
 		}
-	
-		self.gameTree = [self.gameTree nextTree];
+
+		self.gameTree = [[self.gameTree children] lastObject];
 		self.gameTree.moveString = moveString;
 		
 		[self updateGameText];
@@ -171,6 +176,40 @@
     
     NSAttributedString *string = [formatter attributedGameTree];
 	return string;
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex != [alertView cancelButtonIndex])
+	{
+		if (buttonIndex == alertView.firstOtherButtonIndex)
+		{
+			// New variation
+			[self.gameTree addMove:self.pendingMove];
+			self.gameTree = [self.gameTree.children lastObject];
+			self.gameTree.moveString = self.pendingMoveText;
+			[self.boardView setPosition:self.gameTree.position];
+		}
+		else if (buttonIndex == alertView.firstOtherButtonIndex + 1)
+		{
+			// New mainline - can't do for now
+		}
+		else if (buttonIndex == alertView.firstOtherButtonIndex + 2)
+		{
+			// Replace mainline
+			CKGameTree *tree = [self.gameTree gameTreeWithMove:self.pendingMove];
+			tree.moveString = self.pendingMoveText;
+			[self.gameTree replaceChildAtIndex:0 withGameTree:tree];
+			self.gameTree = tree;
+			[self.boardView setPosition:self.gameTree.position];
+		}
+		
+		self.pendingMoveText = nil;
+		self.pendingMove = nil;
+		[self updateGameText];
+	}
 }
 
 @end
