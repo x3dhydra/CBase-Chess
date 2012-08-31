@@ -10,6 +10,8 @@
 #import "CKBoardView.h"
 #import "CKGameFormatter.h"
 #import "CTLabel.h"
+#import "UIAlertView+BlocksKit.h"
+#import "CBUnruledPosition.h"
 
 @interface BoardViewController () <CKBoardViewDelegate, UIAlertViewDelegate>
 @property (nonatomic, strong) CKBoardView *boardView;
@@ -30,7 +32,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-		_game = [CKGame game];
+		_game = [CKGame gameWithStartingPosition:[CBUnruledPosition standardPosition]];
 		_gameTree = _game.gameTree;
 		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Flip" style:UIBarButtonItemStyleBordered target:self action:@selector(flipBoard)];
     }
@@ -117,6 +119,40 @@
 		}
 		else
 		{
+			if ([self.gameTree.position isMovePromotion:move])
+			{
+				UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Promote" message:@"Select promotion piece" delegate:nil cancelButtonTitle:@"Cancel" otherButtonTitles:NSLocalizedString(@"Queen", @"queen"), NSLocalizedString(@"Rook", @"rook"), NSLocalizedString(@"Bishop", @"bishop"), NSLocalizedString(@"Knight", @"knight"), nil];
+				[alert setDidDismissBlock:^(UIAlertView *alertView, NSInteger index) {
+					if (index == alertView.cancelButtonIndex)
+						return;
+					
+					switch (index - 1) {
+						case 0:
+							move.promotionPiece = QueenPiece;
+							break;
+						case 1:
+							move.promotionPiece = RookPiece;
+							break;
+						case 2:
+							move.promotionPiece = BishopPiece;
+							break;
+						case 3:
+							move.promotionPiece = KnightPiece;
+							break;
+					}
+					
+					[self.gameTree addMove:move];
+					self.gameTree = [[self.gameTree children] lastObject];
+					self.gameTree.moveString = moveString;
+					[self.boardView setPosition:self.gameTree.position withAnimation:CKBoardAnimationDelta];
+					[self updateGameText];
+
+				}];
+				[alert show];
+				
+				return nil;
+			}
+			
 			[self.gameTree addMove:move];
 		}
 

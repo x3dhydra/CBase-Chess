@@ -7,3 +7,6 @@
 [submodule "libChessKit"]
 	path = libChessKit
 	url = git://github.com/x3dhydra/ChessKit.git
+[submodule "BlocksKit"]
+	path = BlocksKit
+	url = git://github.com/zwaldowski/BlocksKit.git

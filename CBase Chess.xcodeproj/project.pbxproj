@@ -270,6 +270,10 @@
 		19DE6A19154DDDB60019F0A1 /* XBoardWRook@2x.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 19DE6965154DDDB50019F0A1 /* XBoardWRook@2x.tiff */; };
 		A063D9EF15EAB52A0015A981 /* CTFrameWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A063D9EE15EAB52A0015A981 /* CTFrameWrapper.m */; };
 		A063D9F015EAB52A0015A981 /* CTFrameWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = A063D9EE15EAB52A0015A981 /* CTFrameWrapper.m */; };
+		A07543B215F03CC0004572A6 /* libBlocksKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A075439F15F03832004572A6 /* libBlocksKit.a */; };
+		A07543B415F03E37004572A6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07543B315F03E37004572A6 /* MessageUI.framework */; };
+		A07543B815F041BD004572A6 /* CBUnruledPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = A07543B715F041BD004572A6 /* CBUnruledPosition.m */; };
+		A07543B915F0424C004572A6 /* CBUnruledPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = A07543B715F041BD004572A6 /* CBUnruledPosition.m */; };
 		A0A816F415E99D4E00E08A96 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6514833F5B000AD1A7 /* UIKit.framework */; };
 		A0A816F515E99D4E00E08A96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6714833F5B000AD1A7 /* Foundation.framework */; };
 		A0A816F615E99D4E00E08A96 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6914833F5B000AD1A7 /* CoreGraphics.framework */; };
@@ -357,6 +361,48 @@
 			proxyType = 1;
 			remoteGlobalIDString = 19F27742146DAA7200B58AB1;
 			remoteInfo = CoreChess;
+		};
+		A075439E15F03832004572A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A075439115F03831004572A6 /* BlocksKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6C3DBF8D1382F1BA00E6C9AA;
+			remoteInfo = "iOS Library";
+		};
+		A07543A015F03832004572A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A075439115F03831004572A6 /* BlocksKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6CC40A751447BB1400E47595;
+			remoteInfo = "OS X Framework";
+		};
+		A07543A215F03832004572A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A075439115F03831004572A6 /* BlocksKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6CC08FCE1385555D00DDEABB;
+			remoteInfo = "OS X Library";
+		};
+		A07543A415F03832004572A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A075439115F03831004572A6 /* BlocksKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6CC0900913855CAE00DDEABB;
+			remoteInfo = "Chameleon Library";
+		};
+		A07543A615F03832004572A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A075439115F03831004572A6 /* BlocksKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 60FF000713C023CB004A1394;
+			remoteInfo = "iOS Tests";
+		};
+		A07543B015F03CBD004572A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A075439115F03831004572A6 /* BlocksKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6C3DBF8C1382F1BA00E6C9AA;
+			remoteInfo = "iOS Library";
 		};
 		A0A8170815E99D6D00E08A96 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -702,6 +748,10 @@
 		19FF471C1544A0D100A7C545 /* 2500.pgn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 2500.pgn; path = ../../ChessKit/ChessKitTests/2500.pgn; sourceTree = "<group>"; };
 		A063D9ED15EAB52A0015A981 /* CTFrameWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTFrameWrapper.h; sourceTree = "<group>"; };
 		A063D9EE15EAB52A0015A981 /* CTFrameWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CTFrameWrapper.m; sourceTree = "<group>"; };
+		A075439115F03831004572A6 /* BlocksKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = BlocksKit.xcodeproj; path = BlocksKit/BlocksKit.xcodeproj; sourceTree = "<group>"; };
+		A07543B315F03E37004572A6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		A07543B615F041BD004572A6 /* CBUnruledPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBUnruledPosition.h; path = Classes/CBUnruledPosition.h; sourceTree = "<group>"; };
+		A07543B715F041BD004572A6 /* CBUnruledPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBUnruledPosition.m; path = Classes/CBUnruledPosition.m; sourceTree = "<group>"; };
 		A0A816F215E99D4E00E08A96 /* Chessboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chessboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0A816F915E99D4E00E08A96 /* Chessboard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chessboard-Info.plist"; sourceTree = "<group>"; };
 		A0A816FB15E99D4E00E08A96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -734,6 +784,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A07543B415F03E37004572A6 /* MessageUI.framework in Frameworks */,
+				A07543B215F03CC0004572A6 /* libBlocksKit.a in Frameworks */,
 				A0A8170C15E99D8200E08A96 /* CoreText.framework in Frameworks */,
 				A0A8170615E99D6800E08A96 /* libChessKit.a in Frameworks */,
 				A0A8170715E99D6800E08A96 /* libCoreChess.a in Frameworks */,
@@ -842,6 +894,7 @@
 		19B555E115D6CC3F00424562 /* Subprojects */ = {
 			isa = PBXGroup;
 			children = (
+				A075439115F03831004572A6 /* BlocksKit.xcodeproj */,
 				19B555D615D6CC2600424562 /* CoreChess.xcodeproj */,
 				19B555B515D6CB5600424562 /* ChessKit.xcodeproj */,
 			);
@@ -852,6 +905,7 @@
 		19B79B5614833F5B000AD1A7 = {
 			isa = PBXGroup;
 			children = (
+				A07543B315F03E37004572A6 /* MessageUI.framework */,
 				19B554DD15C5142100424562 /* libz.dylib */,
 				193A933515BD1E2E00E7F73A /* Default-Portrait@2x~ipad.png */,
 				193A933315BD1E2400E7F73A /* Default-Portrait~ipad.png */,
@@ -914,6 +968,7 @@
 		19B79B7C14833F65000AD1A7 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A07543B515F0416B004572A6 /* Model */,
 				19C8FFD315C23C33002299C9 /* TWIC */,
 				1912911A1559F019006F02B2 /* ThirdParty */,
 				19DE68A1154DC84D0019F0A1 /* UI */,
@@ -1278,6 +1333,27 @@
 			path = Pieces;
 			sourceTree = "<group>";
 		};
+		A075439215F03831004572A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A075439F15F03832004572A6 /* libBlocksKit.a */,
+				A07543A115F03832004572A6 /* BlocksKit.framework */,
+				A07543A315F03832004572A6 /* BlocksKit.dylib */,
+				A07543A515F03832004572A6 /* BlocksKit_Chameleon.dylib */,
+				A07543A715F03832004572A6 /* iOS Tests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A07543B515F0416B004572A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A07543B615F041BD004572A6 /* CBUnruledPosition.h */,
+				A07543B715F041BD004572A6 /* CBUnruledPosition.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		A0A816F715E99D4E00E08A96 /* Chessboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1334,6 +1410,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A07543B115F03CBD004572A6 /* PBXTargetDependency */,
 				A0A8170915E99D6D00E08A96 /* PBXTargetDependency */,
 				A0A8170B15E99D6D00E08A96 /* PBXTargetDependency */,
 			);
@@ -1362,6 +1439,10 @@
 			productRefGroup = 19B79B6214833F5B000AD1A7 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = A075439215F03831004572A6 /* Products */;
+					ProjectRef = A075439115F03831004572A6 /* BlocksKit.xcodeproj */;
+				},
 				{
 					ProductGroup = 19B555B615D6CB5600424562 /* Products */;
 					ProjectRef = 19B555B515D6CB5600424562 /* ChessKit.xcodeproj */;
@@ -1406,6 +1487,41 @@
 			fileType = wrapper.cfbundle;
 			path = CoreChessTests.octest;
 			remoteRef = 19B555DD15D6CC2700424562 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A075439F15F03832004572A6 /* libBlocksKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libBlocksKit.a;
+			remoteRef = A075439E15F03832004572A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A07543A115F03832004572A6 /* BlocksKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = BlocksKit.framework;
+			remoteRef = A07543A015F03832004572A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A07543A315F03832004572A6 /* BlocksKit.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = BlocksKit.dylib;
+			remoteRef = A07543A215F03832004572A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A07543A515F03832004572A6 /* BlocksKit_Chameleon.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = BlocksKit_Chameleon.dylib;
+			remoteRef = A07543A415F03832004572A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A07543A715F03832004572A6 /* iOS Tests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "iOS Tests.app";
+			remoteRef = A07543A615F03832004572A6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1712,6 +1828,7 @@
 				19B5550015C5B48700424562 /* TWICDatabaseListViewController.m in Sources */,
 				19B5550315C5C22F00424562 /* CBaseNotifications.m in Sources */,
 				A063D9EF15EAB52A0015A981 /* CTFrameWrapper.m in Sources */,
+				A07543B815F041BD004572A6 /* CBUnruledPosition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1730,6 +1847,7 @@
 				A0A8174515EAAFFD00E08A96 /* BRParagraphStyle.m in Sources */,
 				A0A8174615EAAFFD00E08A96 /* NSMutableAttributedString+BRExtensions.m in Sources */,
 				A063D9F015EAB52A0015A981 /* CTFrameWrapper.m in Sources */,
+				A07543B915F0424C004572A6 /* CBUnruledPosition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1745,6 +1863,11 @@
 			isa = PBXTargetDependency;
 			name = CoreChess;
 			targetProxy = 19B555EB15D6CC5400424562 /* PBXContainerItemProxy */;
+		};
+		A07543B115F03CBD004572A6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "iOS Library";
+			targetProxy = A07543B015F03CBD004572A6 /* PBXContainerItemProxy */;
 		};
 		A0A8170915E99D6D00E08A96 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1816,10 +1939,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"../ChessKit/ChessKit/**",
-					"../CoreChess/CoreChess/**",
-				);
+				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1842,10 +1962,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = (
-					"../ChessKit/ChessKit/**",
-					"../CoreChess/CoreChess/**",
-				);
+				HEADER_SEARCH_PATHS = "${SOURCE_ROOT}/**";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
@@ -1871,10 +1988,7 @@
 				);
 				INFOPLIST_FILE = "ChessUI/CBase Chess-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Chess-figmfltbxwiioablppkbsvluywcn/Build/Products/Debug-iphoneos\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "CBase Chess";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E156F43-4049-4325-B660-CB55E02B2C9B";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1895,10 +2009,7 @@
 				);
 				INFOPLIST_FILE = "ChessUI/CBase Chess-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../../../../Library/Developer/Xcode/DerivedData/Chess-figmfltbxwiioablppkbsvluywcn/Build/Products/Debug-iphoneos\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "CBase Chess";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E156F43-4049-4325-B660-CB55E02B2C9B";
 				TARGETED_DEVICE_FAMILY = "1,2";
