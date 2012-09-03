@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CCSquare.h"
 #import "CCBoard.h"
+#import "CKBoardTheme.h"
 
 typedef enum 
 {
@@ -33,6 +34,8 @@ typedef enum
 @property (nonatomic, strong) UIImage *lightSquareImage;
 @property (nonatomic, strong) UIImage *darkSquareImage;
 
+@property (nonatomic, strong) CKBoardTheme *boardTheme;
+
 @property (nonatomic, assign) BOOL debugSquares; // If YES then square names will be drawn on the squares
 
 @property (nonatomic, assign, getter = isFlipped) BOOL flipped;
@@ -49,7 +52,6 @@ typedef enum
 - (void)removePieceFromSquare:(CCSquare)square;
 
 - (UIImage *)imageForPiece:(CCColoredPiece)piece;
-- (void)setImage:(UIImage *)image forPiece:(CCColoredPiece)piece;
 
 // Dictionary with keys for each colored piece, wrapped as an NSNumber.  Raises an exception if any of the images are missing
 - (void)setPieceImages:(NSDictionary *)pieceImages;

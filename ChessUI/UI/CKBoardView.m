@@ -40,6 +40,7 @@ typedef void (^CKAnimationBlock)(void);
 @synthesize pieceViews = _pieceViews;
 @synthesize squareAccessibilityElements = _squareAccessibilityElements;
 @synthesize animationCompletionBlocks = _animationCompletionBlocks;
+@synthesize boardTheme = _boardTheme;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -121,6 +122,10 @@ typedef void (^CKAnimationBlock)(void);
 {
     if (!_lightSquareColor)
     {
+		UIColor *lightSquareColor = [self.boardTheme lightSquareColor];
+		if (lightSquareColor)
+			return lightSquareColor;
+		
         _lightSquareColor = [[self class] lightSquareColor];
     }
     return _lightSquareColor;
@@ -130,9 +135,29 @@ typedef void (^CKAnimationBlock)(void);
 {
     if (!_darkSquareColor)
     {
-        _darkSquareColor = [[self class] darkSquareColor];
+        UIColor *darkSquareColor = [self.boardTheme darkSquareColor];
+		if (darkSquareColor)
+			return darkSquareColor;
+		
+		_darkSquareColor = [[self class] darkSquareColor];
     }
     return _darkSquareColor;
+}
+
+- (UIImage *)darkSquareImage
+{
+	if (!_darkSquareImage)
+		return [self.boardTheme darkSquareImage];
+	else
+		return _darkSquareImage;
+}
+
+- (UIImage *)lightSquareImage
+{
+	if (!_lightSquareImage)
+		return [self.boardTheme lightSquareImage];
+	else
+		return _lightSquareImage;
 }
 
 - (CGRect)rectForSquare:(CCSquare)square
@@ -259,25 +284,23 @@ typedef void (^CKAnimationBlock)(void);
 
 #pragma mark - Piece Images
 
+- (CKBoardTheme *)boardTheme
+{
+	if (_boardTheme)
+		return _boardTheme;
+	else
+		return [CKBoardTheme defaultTheme];
+}
+
+- (void)setBoardTheme:(CKBoardTheme *)boardTheme
+{
+	_boardTheme = boardTheme;
+	[self setNeedsLayout];
+}
+
 - (UIImage *)imageForPiece:(CCColoredPiece)piece
 {
-    return [_pieceImages objectForKey:[NSNumber numberWithInt:piece]];
-}
-
-- (void)setImage:(UIImage *)image forPiece:(CCColoredPiece)piece
-{
-    [_pieceImages setObject:image forKey:[NSNumber numberWithInt:piece]];
-}
-
-// Dictionary with keys for each colored piece, wrapped as an NSNumber.  Raises an exception if any of the images are missing
-- (void)setPieceImages:(NSDictionary *)pieceImages
-{
-    _pieceImages = [NSMutableDictionary dictionaryWithDictionary:pieceImages];
-}
-
-- (NSDictionary *)pieceImages
-{
-    return [NSDictionary dictionaryWithDictionary:_pieceImages];
+	return [self.boardTheme imageForPiece:piece];
 }
 
 #pragma mark - ChessKit Convenience Methods
