@@ -274,6 +274,7 @@
 		A07543B415F03E37004572A6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07543B315F03E37004572A6 /* MessageUI.framework */; };
 		A07543B815F041BD004572A6 /* CBUnruledPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = A07543B715F041BD004572A6 /* CBUnruledPosition.m */; };
 		A07543B915F0424C004572A6 /* CBUnruledPosition.m in Sources */ = {isa = PBXBuildFile; fileRef = A07543B715F041BD004572A6 /* CBUnruledPosition.m */; };
+		A086E73D161774E8004AEF65 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A086E73C161774E8004AEF65 /* Default-568h@2x.png */; };
 		A0A816F415E99D4E00E08A96 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6514833F5B000AD1A7 /* UIKit.framework */; };
 		A0A816F515E99D4E00E08A96 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6714833F5B000AD1A7 /* Foundation.framework */; };
 		A0A816F615E99D4E00E08A96 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19B79B6914833F5B000AD1A7 /* CoreGraphics.framework */; };
@@ -778,6 +779,7 @@
 		A07543B315F03E37004572A6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		A07543B615F041BD004572A6 /* CBUnruledPosition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CBUnruledPosition.h; path = Classes/CBUnruledPosition.h; sourceTree = "<group>"; };
 		A07543B715F041BD004572A6 /* CBUnruledPosition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CBUnruledPosition.m; path = Classes/CBUnruledPosition.m; sourceTree = "<group>"; };
+		A086E73C161774E8004AEF65 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		A0A816F215E99D4E00E08A96 /* Chessboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chessboard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0A816F915E99D4E00E08A96 /* Chessboard-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Chessboard-Info.plist"; sourceTree = "<group>"; };
 		A0A816FB15E99D4E00E08A96 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1048,6 +1050,7 @@
 				193A932C15BD1DBE00E7F73A /* Icon-72.png */,
 				193A932D15BD1DBE00E7F73A /* Icon-72@2x.png */,
 				193A932E15BD1DBE00E7F73A /* Icon@2x.png */,
+				A086E73C161774E8004AEF65 /* Default-568h@2x.png */,
 				193A932915BD19D200E7F73A /* Default@2x.png */,
 				193A932715BD19C900E7F73A /* Default-Landscape@2x.png */,
 				193A931715BD18A200E7F73A /* Default.png */,
@@ -1780,6 +1783,7 @@
 				193A933415BD1E2400E7F73A /* Default-Portrait~ipad.png in Resources */,
 				193A933615BD1E2E00E7F73A /* Default-Portrait@2x~ipad.png in Resources */,
 				193A934F15BE367000E7F73A /* Semi-Transparent-Board.png in Resources */,
+				A086E73D161774E8004AEF65 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2034,7 +2038,7 @@
 		19B79B7A14833F5B000AD1A7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Austen Green (K9XW242PUS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChessUI/CBase Chess-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2046,7 +2050,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "CBase Chess";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E156F43-4049-4325-B660-CB55E02B2C9B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2055,7 +2059,7 @@
 		19B79B7B14833F5B000AD1A7 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Austen Green (K9XW242PUS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ChessUI/CBase Chess-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -2067,7 +2071,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = "CBase Chess";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E156F43-4049-4325-B660-CB55E02B2C9B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};

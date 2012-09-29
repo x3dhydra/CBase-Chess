@@ -326,6 +326,7 @@
 {
     [super viewDidLoad];
     
+	/*
     [self.boardView setImage:[UIImage imageNamed:@"AlphaBBishop.tiff"] forPiece:BB];
     [self.boardView setImage:[UIImage imageNamed:@"AlphaBKing.tiff"] forPiece:BK];
     [self.boardView setImage:[UIImage imageNamed:@"AlphaBKnight.tiff"] forPiece:BN];
@@ -338,8 +339,11 @@
     [self.boardView setImage:[UIImage imageNamed:@"AlphaWPawn.tiff"] forPiece:WP];
     [self.boardView setImage:[UIImage imageNamed:@"AlphaWQueen.tiff"] forPiece:WQ];
     [self.boardView setImage:[UIImage imageNamed:@"AlphaWRook.tiff"] forPiece:WR];
-    
-	// Do any additional setup after loading the view.
+    */
+	
+	CKBoardTheme *theme = [[CKBoardTheme alloc] initWithPiecePrefix:@"USCF" extension:@"tiff"];
+	[CKBoardTheme setDefaultTheme:theme];
+	
     [self.boardView setPosition:self.game.gameTree.position];
 }
 
